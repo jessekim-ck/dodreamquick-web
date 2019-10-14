@@ -1,0 +1,20 @@
+.appContainer {
+    margin: 24px auto;
+    padding: 0 140px 0 140px;
+}
+
+.navBarContainer {
+    padding: 0 125px 0 125px;
+    background-color: #f5f5f5;
+}
+
+@media (max-width: 1023px) {
+    .appContainer {
+        margin: 24px auto;
+        padding: 0 14px 0 14px;
+    }
+
+    .navBarContainer {
+        background-color: #f5f5f5;
+    }
+}
