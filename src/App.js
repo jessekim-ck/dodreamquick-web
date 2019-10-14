@@ -3,6 +3,8 @@ import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import NavigationBar from './components/NavigationBar'
 import {get_current_user, refresh_token} from "./apis/api";
 import styles from './app.module.css'
+import favicon from './assets/favicon.ico'
+import {Helmet} from 'react-helmet'
 
 // Redux
 import {connect} from 'react-redux';
@@ -32,6 +34,13 @@ class App extends React.Component {
     render() {
         return (
             <Router>
+                <div className="application">
+                    <Helmet>
+                        <meta charSet="utf-8"/>
+                        <title>두드림퀵</title>
+                        <link rel="shortcut icon" href={favicon}/>
+                    </Helmet>
+                </div>
                 <div>
                     <div className={styles.navBarContainer}>
                         <NavigationBar />
