@@ -1,10 +1,9 @@
 .appContainer {
     margin: 24px auto;
-    padding: 0 140px 0 140px;
+    padding: 0 30px 0 30px;
 }
 
 .navBarContainer {
-    padding: 0 125px 0 125px;
     background-color: #f5f5f5;
 }
 

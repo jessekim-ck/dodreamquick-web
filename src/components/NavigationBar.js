@@ -4,16 +4,9 @@ import Nav from 'react-bootstrap/Nav'
 
 // redux
 import {connect} from 'react-redux'
-import {log_out} from "../redux/actions/user_actions";
-import NavDropdown from "react-bootstrap/NavDropdown";
 
 
 const NavigationBar = props => {
-
-    const on_log_out = async () => {
-        await localStorage.removeItem('token')
-        props.dispatch(log_out())
-    }
 
     return (
         <Navbar expand="lg">
@@ -24,18 +17,22 @@ const NavigationBar = props => {
                     <Nav.Link href="/">Home</Nav.Link>
                     <Nav.Link href="/order">Order</Nav.Link>
                     <Nav.Link href="/search_cost">Cost</Nav.Link>
+                    <Nav.Link href="/post">Post</Nav.Link>
                 </Nav>
             </Navbar.Collapse>
             <Navbar.Collapse className="justify-content-end">
-                <Nav>
+                <div>
                     {
                         props.username ?
-                            <NavDropdown title={"Hello, " + props.username}>
-                                <NavDropdown.Item onClick={on_log_out}>Log Out</NavDropdown.Item>
-                            </NavDropdown> :
-                            <Nav.Link href="/user/log_in">Log In</Nav.Link>
+                            <Nav className={"mr-auto"}>
+                                <Nav.Link href="/my_page">{props.username} (마이페이지)</Nav.Link>
+                            </Nav> :
+                            <Nav className={"mr-auto"}>
+                                <Nav.Link onClick={() => props.open_modal('login')}>로그인</Nav.Link>
+                                <Nav.Link onClick={() => props.open_modal('signup')}>회원가입</Nav.Link>
+                            </Nav>
                     }
-                </Nav>
+                </div>
             </Navbar.Collapse>
         </Navbar>
     )

@@ -1,14 +1,14 @@
 import React from 'react';
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import NavigationBar from './components/NavigationBar'
-import {get_current_user, refresh_token} from "./apis/api";
+import {authenticate_user, get_current_user, refresh_token, sign_up} from "./apis/api";
 import styles from './app.module.css'
 import favicon from './assets/favicon.ico'
 import {Helmet} from 'react-helmet'
 
 // Redux
 import {connect} from 'react-redux';
-import {log_in} from './redux/actions/user_actions'
+import {log_in, log_out} from './redux/actions/user_actions'
 
 // Routes
 import Index from './routes/index'
@@ -16,9 +16,19 @@ import Order from './routes/order'
 import OrderComplete from './routes/order_complete'
 import LogIn from './routes/log_in'
 import SearchCost from './routes/search_cost'
+import Post from './routes/post'
+import MyPage from './routes/my_page'
+
+import LoginModal from "./components/LoginModal";
+import SignupModal from "./components/SignupModal";
 
 
 class App extends React.Component {
+
+    state = {
+        show_login_modal: false,
+        show_signup_modal: false,
+    }
 
     async componentDidMount() {
         const token = localStorage.getItem('token')
@@ -29,6 +39,45 @@ class App extends React.Component {
             const current_user = await get_current_user()
             this.props.dispatch(log_in(current_user))
         }
+    }
+
+    open_modal = key => {
+        this.setState({[`show_${key}_modal`]: true})
+    }
+
+    close_modal = key => {
+        this.setState({[`show_${key}_modal`]: false})
+    }
+
+    authenticate = async (username, password) => {
+        try {
+            await authenticate_user(username, password)
+            const current_user = await get_current_user()
+            await this.props.dispatch(log_in(current_user))
+            await this.close_modal('login')
+        } catch (err) {
+            await localStorage.removeItem('token')
+            console.log('Login Failed!!')
+        }
+    }
+
+    sign_up = async (username, password) => {
+        try {
+            const result = await sign_up(username, password)
+            if (result) {
+                await this.authenticate(username, password)
+                await this.close_modal('signup')
+            } else {
+                alert("회원가입할 수 없습니다!")
+            }
+        } catch (err) {
+            console.log()
+        }
+    }
+
+    log_out = async () => {
+        await localStorage.removeItem('token')
+        await this.props.dispatch(log_out())
     }
 
     render() {
@@ -43,7 +92,10 @@ class App extends React.Component {
                 </div>
                 <div>
                     <div className={styles.navBarContainer}>
-                        <NavigationBar />
+                        <NavigationBar
+                            open_modal={this.open_modal}
+                            close_modal={this.close_modal}
+                            log_out={this.log_out} />
                     </div>
                     <div className={styles.appContainer}>
                         <Switch>
@@ -52,8 +104,24 @@ class App extends React.Component {
                             <Route path="/order" component={Order}/>
                             <Route path="/search_cost" component={SearchCost}/>
                             <Route path="/user/log_in" component={LogIn}/>
+                            <Route path="/post" component={Post}/>
+                            <Route path="/my_page" component={MyPage}/>
                         </Switch>
                     </div>
+                </div>
+                <div>
+                    <LoginModal
+                        show_modal={this.state.show_login_modal}
+                        close_modal={() => this.close_modal("login")}
+                        authenticate={this.authenticate}
+                    />
+                </div>
+                <div>
+                    <SignupModal
+                        show_modal={this.state.show_signup_modal}
+                        close_modal={() => this.close_modal("signup")}
+                        sign_up={this.sign_up}
+                    />
                 </div>
             </Router>
         )

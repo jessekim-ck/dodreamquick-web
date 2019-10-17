@@ -1,9 +1,11 @@
+import 'react-app-polyfill/ie9';
+import 'core-js/stable'
+
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
 import * as serviceWorker from './serviceWorker';
-import 'react-app-polyfill/ie9';
 
 // redux
 import {Provider} from 'react-redux'

@@ -1,6 +1,20 @@
 import {api, get_header} from './config'
 
 
+export const sign_up = async (username, password) => {
+    try {
+        const response = await api.post(
+            'api/sign_up/',
+            {username, password}
+        )
+        const result = await response.data
+        return result
+    } catch (err) {
+        console.log(err)
+        throw err
+    }
+}
+
 export const authenticate_user = async (username, password) => {
     try {
         const response = await api.post(
@@ -110,6 +124,80 @@ export const getLocationList = async () => {
     try {
         const response = await api.get(
             'api/getLocationList/'
+        )
+        const result = await response.data
+        return result
+    } catch (err) {
+        console.log(err)
+        throw err
+    }
+}
+
+export const getNoticeList = async () => {
+    try {
+        const response = await api.get(
+            'api/getNoticeList/'
+        )
+        const result = await response.data
+        return result
+    } catch (err) {
+        console.log(err)
+        throw err
+    }
+}
+
+export const getFAQList = async () => {
+    try {
+        const response = await api.get(
+            'api/getFAQList/'
+        )
+        const result = await response.data
+        return result
+    } catch (err) {
+        console.log(err)
+        throw err
+    }
+}
+
+export const getUserLocationList = async () => {
+    try {
+        const header = await get_header()
+        const response = await api.post(
+            'api/getUserLocationList/',
+            {},
+            {headers: header}
+        )
+        const result = await response.data
+        return result
+    } catch (err) {
+        console.log(err)
+        throw err
+    }
+}
+
+export const addUserLocation = async user_location_name => {
+    try {
+        const header = await get_header()
+        const response = await api.post(
+            'api/addUserLocation/',
+            {user_location_name},
+            {headers: header}
+        )
+        const result = await response.data
+        return result
+    } catch (err) {
+        console.log(err)
+        throw err
+    }
+}
+
+export const setDefaultLocation = async (target, location) => {
+    try {
+        const header = await get_header()
+        const response = await api.post(
+            'api/setDefaultLocation/',
+            {target, location},
+            {headers: header}
         )
         const result = await response.data
         return result

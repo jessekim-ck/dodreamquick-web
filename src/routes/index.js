@@ -5,10 +5,9 @@ import {connect} from 'react-redux'
 
 
 const Index = props => {
-    console.log(props)
     return (
         <div>
-            {"Hello, " + props.username}
+            {"Hello, " + (props.username || "stranger")}
         </div>
     )
 }

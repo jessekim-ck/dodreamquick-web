@@ -9,15 +9,9 @@ const initial_state = {
 const user_reducer = (state = initial_state, action) => {
     switch (action.type) {
         case LOG_IN:
-            return ({
-                username: action.payload.username,
-                deposit: action.payload.deposit,
-            })
+            return ({...action.payload})
         case LOG_OUT:
-            return ({
-                username: '',
-                deposit: 0,
-            })
+            return initial_state
         default:
             return state
     }
