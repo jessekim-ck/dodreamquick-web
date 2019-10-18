@@ -175,12 +175,12 @@ export const getUserLocationList = async () => {
     }
 }
 
-export const addUserLocation = async user_location_name => {
+export const addUserLocation = async location => {
     try {
         const header = await get_header()
         const response = await api.post(
             'api/addUserLocation/',
-            {user_location_name},
+            {location},
             {headers: header}
         )
         const result = await response.data

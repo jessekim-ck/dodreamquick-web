@@ -23,7 +23,7 @@ const ListItem = props => {
 const FAQListView = props => {
 
     const list_items = props.FAQ_list.map(
-        FAQ => <ListItem FAQ={{...FAQ}} />
+        FAQ => <ListItem FAQ={{...FAQ}} key={FAQ.id}/>
     )
 
     return (

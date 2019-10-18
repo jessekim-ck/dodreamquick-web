@@ -23,7 +23,7 @@ const ListItem = props => {
 const NoticeListView = props => {
 
     const list_items = props.notice_list.map(
-        notice => <ListItem notice={{...notice}} />
+        notice => <ListItem notice={{...notice}} key={notice.id}/>
     )
 
     return (

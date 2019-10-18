@@ -10,8 +10,10 @@ const LocationItem = props => {
 
     return (
         <div>
-            <p></p>
-            <p>{props.location.name}</p>
+            <div>{props.location.alias}</div>
+            <div>{props.location.name}</div>
+            <div>{props.location.phone}</div>
+            <div>{props.location.location}</div>
             <Button>선택</Button>
         </div>
     )
@@ -21,7 +23,7 @@ const LocationItem = props => {
 class LocationListView extends React.Component {
 
     location_items = () => this.props.location_list.map(
-        location => (<LocationItem location={{...location}}/>)
+        location => (<LocationItem location={{...location}} key={location.id}/>)
     )
 
     render() {
@@ -43,6 +45,8 @@ class LocationAddForm extends React.Component {
     state = {
         alias: "",
         name: "",
+        location: "",
+        phone: "",
         default_departure_location: false,
         default_arrival_location: false,
 
@@ -51,11 +55,11 @@ class LocationAddForm extends React.Component {
 
     add_location = async event => {
         event.preventDefault()
-        await addUserLocation(this.state.name)
+        await addUserLocation(this.state.location)
         if (this.state.default_departure_location) {
-            await setDefaultLocation("departure", this.state.name)
+            await setDefaultLocation("departure", this.state.location)
         } else if (this.state.default_arrival_location) {
-            await setDefaultLocation("arrival", this.state.name)
+            await setDefaultLocation("arrival", this.state.location)
         }
         await this.props.update_location_list()
         this.props.stop_add_location()
@@ -66,7 +70,7 @@ class LocationAddForm extends React.Component {
     }
 
     on_complete = address => {
-        this.setState({name: address, show_postcode: false})
+        this.setState({location: address, show_postcode: false})
     }
 
     on_change = event => {
@@ -91,10 +95,20 @@ class LocationAddForm extends React.Component {
                         />
                     </Form.Group>
                     <Form.Group>
+                        <Form.Label>보내시는(받는) 분 성함</Form.Label>
+                        <Form.Control
+                            type="text"
+                            name="name"
+                            value={this.state.name}
+                            onChange={event => this.on_change(event)}
+                            required
+                        />
+                    </Form.Group>
+                    <Form.Group>
                         <Form.Label>주소</Form.Label>
                         <Form.Control
                             type="text"
-                            value={this.state.name}
+                            value={this.state.location}
                             readOnly={true}
                             onClick={this.toggle_postcode}
                             required
@@ -102,6 +116,16 @@ class LocationAddForm extends React.Component {
                         {
                             this.state.show_postcode &&
                             <PostCodeForm on_complete={this.on_complete}/>}
+                    </Form.Group>
+                    <Form.Group>
+                        <Form.Label>보내시는(받는) 분 핸드폰 번호</Form.Label>
+                        <Form.Control
+                            type="text"
+                            name="phone"
+                            value={this.state.phone}
+                            onChange={event => this.on_change(event)}
+                            required
+                        />
                     </Form.Group>
                     <Form.Group>
                         <Form.Check
@@ -165,7 +189,7 @@ class ManageLocationModal extends React.Component {
         return (
             <Modal
                 show={this.props.show_modal}
-                onHide={this.props.close_modal}>
+                onHide={() => {this.props.close_modal(); this.setState({adding_location: false})}}>
                 <Modal.Header>주소지 관리</Modal.Header>
                 <Modal.Body>
                     {
