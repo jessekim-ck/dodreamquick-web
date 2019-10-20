@@ -1,21 +1,21 @@
 import React from 'react'
 import Card from 'react-bootstrap/Card'
 import Accordion from 'react-bootstrap/Accordion'
+import styles from "../app.module.css";
 
 
 const ListItem = props => {
 
     return (
-        <div>
-            <Card>
-                <Accordion.Toggle as={Card.Header} eventKey={props.FAQ.id}>
-                    {props.FAQ.title}
-                </Accordion.Toggle>
-                <Accordion.Collapse eventKey={props.FAQ.id}>
-                    <Card.Body>{props.FAQ.text}</Card.Body>
-                </Accordion.Collapse>
-            </Card>
-        </div>
+        <Accordion className={styles.postItem}>
+            <Accordion.Toggle className={styles.header} as={Card.Header} eventKey={props.FAQ.id}>
+                <div className={styles.index}>{props.FAQ.id}</div>
+                <div>{props.FAQ.title}</div>
+            </Accordion.Toggle>
+            <Accordion.Collapse className={styles.body} eventKey={props.FAQ.id}>
+                <Card.Body>{props.FAQ.text}</Card.Body>
+            </Accordion.Collapse>
+        </Accordion>
     )
 }
 
@@ -27,9 +27,9 @@ const FAQListView = props => {
     )
 
     return (
-        <Accordion>
+        <div className={styles.postList}>
             {list_items}
-        </Accordion>
+        </div>
     )
 }
 

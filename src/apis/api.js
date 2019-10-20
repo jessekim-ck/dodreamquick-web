@@ -175,12 +175,12 @@ export const getUserLocationList = async () => {
     }
 }
 
-export const addUserLocation = async location => {
+export const getUserDefaultLocations = async () => {
     try {
         const header = await get_header()
         const response = await api.post(
-            'api/addUserLocation/',
-            {location},
+            'api/getUserDefaultLocations/',
+            {},
             {headers: header}
         )
         const result = await response.data
@@ -191,13 +191,58 @@ export const addUserLocation = async location => {
     }
 }
 
-export const setDefaultLocation = async (target, location) => {
+export const addUserLocation = async (name, location, location_detail, phone) => {
+    try {
+        const header = await get_header()
+        const response = await api.post(
+            'api/addUserLocation/',
+            {name, location, location_detail, phone},
+            {headers: header}
+        )
+        const result = await response.data
+        return result
+    } catch (err) {
+        console.log(err)
+        throw err
+    }
+}
+
+export const deleteUserLocation = async location_id => {
+    try {
+        const header = await get_header()
+        const response = await api.post(
+            'api/deleteUserLocation/',
+            {location_id},
+            {headers: header}
+        )
+        const result = await response.data
+        return result
+    } catch (err) {
+        console.log(err)
+        throw err
+    }
+}
+
+export const setDefaultLocation = async (target, location_id) => {
     try {
         const header = await get_header()
         const response = await api.post(
             'api/setDefaultLocation/',
-            {target, location},
+            {target, location_id},
             {headers: header}
+        )
+        const result = await response.data
+        return result
+    } catch (err) {
+        console.log(err)
+        throw err
+    }
+}
+
+export const getNews = async () => {
+    try {
+        const response = await api.get(
+            'api/getNews/'
         )
         const result = await response.data
         return result

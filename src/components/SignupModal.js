@@ -2,6 +2,7 @@ import React from 'react'
 import Form from 'react-bootstrap/Form'
 import Modal from 'react-bootstrap/Modal'
 import Button from 'react-bootstrap/Button'
+import styles from '../app.module.css'
 
 
 class SignupModal extends React.Component {
@@ -32,34 +33,39 @@ class SignupModal extends React.Component {
                 show={this.props.show_modal}
                 onHide={() => this.props.close_modal('signup')} >
 
-                <Modal.Header>회원가입하세요!</Modal.Header>
+                <Modal.Header>두드림퀵에 오신 것을 환영합니다!</Modal.Header>
                 <Modal.Body>
                     <Form onSubmit={event => this.on_submit(event)}>
                         <Form.Group>
-                            <Form.Label>Username</Form.Label>
+                            <Form.Label>이메일 주소</Form.Label>
                             <Form.Control
                                 type="text"
                                 name="username"
+                                className={styles.input}
                                 value={this.state.username}
                                 onChange={event => this.on_change(event)}
-                                placeholder="Username" />
-                            <Form.Text className="text-muted">
-                                Write your username!
-                            </Form.Text>
+                                placeholder="test@test.com" />
                         </Form.Group>
 
                         <Form.Group>
-                            <Form.Label>Password</Form.Label>
+                            <Form.Label>비밀번호</Form.Label>
                             <Form.Control
                                 type="password"
                                 name="password"
+                                className={styles.input}
                                 value={this.state.password}
                                 onChange={event => this.on_change(event)}
-                                placeholder="Password" />
+                                placeholder="비밀번호를 입력해주세요" />
                         </Form.Group>
 
-                        <Button variant="primary" type="submit">
-                            Log In
+                        <Form.Group>
+                            <Form.Text>
+                                두드림퀵의 <a href="">이용 약관</a> 및 <a href="">개인정보 취급 방침</a>에 동의합니다.
+                            </Form.Text>
+                        </Form.Group>
+
+                        <Button className={styles.basicButtonGreen} type="submit">
+                            회원 가입
                         </Button>
                     </Form>
                 </Modal.Body>

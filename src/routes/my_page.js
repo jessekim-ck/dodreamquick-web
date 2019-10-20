@@ -37,8 +37,7 @@ class MyPage extends React.Component {
                 <Button onClick={this.log_out}>로그아웃</Button>
                 <ManageLocationModal
                     show_modal={this.state.show_modal}
-                    close_modal={this.close_modal}
-                />
+                    close_modal={this.close_modal} />
             </div>
         )
     }

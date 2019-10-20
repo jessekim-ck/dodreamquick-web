@@ -2,19 +2,49 @@ import React from 'react'
 import Modal from 'react-bootstrap/Modal'
 import Button from 'react-bootstrap/Button'
 import Form from 'react-bootstrap/Form'
-import {addUserLocation, getUserLocationList, setDefaultLocation} from "../apis/api";
+import {
+    addUserLocation,
+    deleteUserLocation,
+    getUserLocationList,
+    setDefaultLocation
+} from "../apis/api";
 import PostCodeForm from "./PostCodeForm";
+import styles from "../app.module.css"
 
 
 const LocationItem = props => {
 
     return (
-        <div>
-            <div>{props.location.alias}</div>
-            <div>{props.location.name}</div>
-            <div>{props.location.phone}</div>
-            <div>{props.location.location}</div>
-            <Button>선택</Button>
+        <div className={styles.locationItem}>
+            <div className={styles.name}>
+                <div>이름: {props.location.name}</div>
+                <div>
+                    {
+                        props.location.is_default_departure &&
+                            <div className={styles.sticker}>기본 출발지</div>
+                    }
+                    {
+                        props.location.is_default_arrival &&
+                        <div className={styles.sticker}>기본 도착지</div>
+                    }
+                </div>
+            </div>
+            <div className={styles.address}>주소: {props.location.location}</div>
+            <div className={styles.address}>상세주소: {props.location.location_detail}</div>
+            <div className={styles.phone}>핸드폰 번호: {props.location.phone}</div>
+            <div className={styles.buttons}>
+                <Button
+                    className={styles.basicButtonGreen}
+                    onClick={() => {if (props.on_select_location) {props.on_select_location(props.location)}}}>
+                    선택
+                </Button>
+                <Button
+                    className={styles.basicButtonWhite}
+                    onClick={() => props.delete_location(props.location.id)}>
+                    삭제
+                </Button>
+            </div>
+
         </div>
     )
 }
@@ -23,7 +53,13 @@ const LocationItem = props => {
 class LocationListView extends React.Component {
 
     location_items = () => this.props.location_list.map(
-        location => (<LocationItem location={{...location}} key={location.id}/>)
+        location => (
+            <LocationItem
+                location={{...location}}
+                delete_location={this.props.delete_location}
+                on_select_location={this.props.on_select_location}
+                key={location.id}/>
+        )
     )
 
     render() {
@@ -31,8 +67,9 @@ class LocationListView extends React.Component {
             <div>
                 {this.location_items()}
                 <Button
+                    className={styles.addLocationButton}
                     onClick={this.props.start_add_location} >
-                    주소지 추가
+                    + 주소지 추가
                 </Button>
             </div>
         )
@@ -46,7 +83,9 @@ class LocationAddForm extends React.Component {
         alias: "",
         name: "",
         location: "",
+        location_detail: "",
         phone: "",
+
         default_departure_location: false,
         default_arrival_location: false,
 
@@ -55,11 +94,16 @@ class LocationAddForm extends React.Component {
 
     add_location = async event => {
         event.preventDefault()
-        await addUserLocation(this.state.location)
+        const location = await addUserLocation(
+            this.state.name,
+            this.state.location,
+            this.state.location_detail,
+            this.state.phone
+        )
         if (this.state.default_departure_location) {
-            await setDefaultLocation("departure", this.state.location)
+            await setDefaultLocation("departure", location.id)
         } else if (this.state.default_arrival_location) {
-            await setDefaultLocation("arrival", this.state.location)
+            await setDefaultLocation("arrival", location.id)
         }
         await this.props.update_location_list()
         this.props.stop_add_location()
@@ -85,76 +129,66 @@ class LocationAddForm extends React.Component {
             <div>
                 <Form onSubmit={event => this.add_location(event)}>
                     <Form.Group>
-                        <Form.Label>주소지 이름</Form.Label>
-                        <Form.Control
-                            type="text"
-                            name="alias"
-                            value={this.state.alias}
-                            onChange={event => this.on_change(event)}
-                            required
-                        />
-                    </Form.Group>
-                    <Form.Group>
-                        <Form.Label>보내시는(받는) 분 성함</Form.Label>
                         <Form.Control
                             type="text"
                             name="name"
+                            placeholder="보내시는(받는) 분 성함"
                             value={this.state.name}
+                            className={styles.input}
                             onChange={event => this.on_change(event)}
-                            required
-                        />
+                            required />
                     </Form.Group>
                     <Form.Group>
-                        <Form.Label>주소</Form.Label>
                         <Form.Control
                             type="text"
+                            placeholder="주소 (클릭하여 검색)"
+                            className={styles.input}
                             value={this.state.location}
-                            readOnly={true}
                             onClick={this.toggle_postcode}
-                            required
-                        />
+                            readOnly={true}
+                            required />
                         {
                             this.state.show_postcode &&
-                            <PostCodeForm on_complete={this.on_complete}/>}
+                            <PostCodeForm on_complete={this.on_complete}/>
+                        }
+                        <Form.Control
+                            type="text"
+                            name="location_detail"
+                            placeholder="상세 주소"
+                            className={styles.input}
+                            value={this.state.location_detail}
+                            onChange={event => this.on_change(event)}
+                            required />
                     </Form.Group>
                     <Form.Group>
-                        <Form.Label>보내시는(받는) 분 핸드폰 번호</Form.Label>
                         <Form.Control
                             type="text"
                             name="phone"
+                            placeholder="보내시는(받는) 분 핸드폰 번호"
                             value={this.state.phone}
+                            className={styles.input}
                             onChange={event => this.on_change(event)}
-                            required
-                        />
-                    </Form.Group>
-                    <Form.Group>
-                        <Form.Check
-                            onChange={
-                                event => this.setState({
-                                    default_departure_location: event.target.checked
-                                })
-                            }
-                            label="기본 픽업 주소지로 설정" />
-                    </Form.Group>
-                    <Form.Group>
-                        <Form.Check
-                            onChange={
-                                event => this.setState({
-                                    default_arrival_location: event.target.checked
-                                })
-                            }
-                            label="기본 도착 주소지로 설정" />
+                            required />
                     </Form.Group>
 
-                    <Button type="submit">
-                        주소지 추가하기
-                    </Button>
+                    <Form.Group className={styles.flexRow}>
+                        <Form.Check
+                            className={styles.input}
+                            onChange={event => this.setState({
+                                default_departure_location: event.target.checked
+                            })}
+                            label="기본 픽업지로 설정" />
+                        <Form.Check
+                            className={styles.input}
+                            onChange={event => this.setState({
+                                default_arrival_location: event.target.checked
+                            })}
+                            label="기본 도착지로 설정" />
+                    </Form.Group>
+
+                    <Button className={styles.saveLocationButton} type="submit">저장</Button>
+                    <Button className={styles.addLocationButton} onClick={this.props.stop_add_location}>목록 보기</Button>
                 </Form>
-
-                <Button
-                    onClick={this.props.stop_add_location}>
-                    목록 보기
-                </Button>
             </div>
         )
     }
@@ -170,7 +204,22 @@ class ManageLocationModal extends React.Component {
 
     update_location_list = async () => {
         const location_list = await getUserLocationList()
-        this.setState({location_list})
+        const sorted = await location_list.sort(
+            (a, b) => {
+                if (a.is_default_departure) {
+                    return -1
+                } else if (b.is_default_departure) {
+                    return 1
+                } else if (a.is_default_arrival) {
+                    return -1
+                } else if (b.is_default_arrival) {
+                    return 1
+                } else {
+                    return 0
+                }
+            }
+        )
+        this.setState({location_list: sorted})
     }
 
     async componentDidMount() {
@@ -185,20 +234,35 @@ class ManageLocationModal extends React.Component {
         this.setState({adding_location: false})
     }
 
+    delete_location = async location_id => {
+        await deleteUserLocation(location_id)
+        await this.update_location_list()
+    }
+
+    hide_modal = () => {
+        this.props.close_modal();
+        this.setState({adding_location: false})
+    }
+
     render() {
         return (
             <Modal
                 show={this.props.show_modal}
-                onHide={() => {this.props.close_modal(); this.setState({adding_location: false})}}>
-                <Modal.Header>주소지 관리</Modal.Header>
-                <Modal.Body>
+                onHide={this.hide_modal}>
+                <Modal.Header>
+                    <div>주소지 관리</div>
+                    <div onClick={this.hide_modal}>X</div>
+                </Modal.Header>
+                <Modal.Body className={styles.manageLocationModal}>
                     {
                         this.state.adding_location ?
                             <LocationAddForm
                                 update_location_list={this.update_location_list}
                                 stop_add_location={this.stop_add_location}/> :
                             <LocationListView
+                                on_select_location={this.props.on_select_location}
                                 start_add_location={this.start_add_location}
+                                delete_location={this.delete_location}
                                 location_list={this.state.location_list}/>
                     }
                 </Modal.Body>

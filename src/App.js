@@ -16,7 +16,9 @@ import Order from './routes/order'
 import OrderComplete from './routes/order_complete'
 import LogIn from './routes/log_in'
 import SearchCost from './routes/search_cost'
-import Post from './routes/post'
+import PostNotice from './routes/post_notice'
+import PostFAQ from './routes/post_faq'
+import PostNews from './routes/post_news'
 import MyPage from './routes/my_page'
 
 import LoginModal from "./components/LoginModal";
@@ -31,13 +33,13 @@ class App extends React.Component {
     }
 
     async componentDidMount() {
-        const token = localStorage.getItem('token')
+        const token = await localStorage.getItem('token')
         if (!token || token === 'undefined') {
             await localStorage.removeItem('token')
         } else {
             await refresh_token()
             const current_user = await get_current_user()
-            this.props.dispatch(log_in(current_user))
+            await this.props.dispatch(log_in(current_user))
         }
     }
 
@@ -91,12 +93,10 @@ class App extends React.Component {
                     </Helmet>
                 </div>
                 <div>
-                    <div className={styles.navBarContainer}>
-                        <NavigationBar
-                            open_modal={this.open_modal}
-                            close_modal={this.close_modal}
-                            log_out={this.log_out} />
-                    </div>
+                    <NavigationBar
+                        open_modal={this.open_modal}
+                        close_modal={this.close_modal}
+                        log_out={this.log_out} />
                     <div className={styles.appContainer}>
                         <Switch>
                             <Route exact path="/" component={Index}/>
@@ -104,7 +104,9 @@ class App extends React.Component {
                             <Route path="/order" component={Order}/>
                             <Route path="/search_cost" component={SearchCost}/>
                             <Route path="/user/log_in" component={LogIn}/>
-                            <Route path="/post" component={Post}/>
+                            <Route path="/post/notice" component={PostNotice}/>
+                            <Route path="/post/faq" component={PostFAQ}/>
+                            <Route path="/post/news" component={PostNews}/>
                             <Route path="/my_page" component={MyPage}/>
                         </Switch>
                     </div>

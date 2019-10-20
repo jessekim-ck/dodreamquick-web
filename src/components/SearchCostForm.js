@@ -1,5 +1,7 @@
 import React from 'react'
 import {getLocationList, getOrderPrice} from "../apis/api";
+import Table from 'react-bootstrap/Table'
+import styles from '../app.module.css'
 
 
 const SelectLocationForm = props => {
@@ -21,13 +23,21 @@ class SearchCostForm extends React.Component {
 
     state = {
         location_list: [],
-        selected_departure_location: null,
-        selected_arrival_location: null
+        selected_departure_location: "",
+        selected_arrival_location: "",
+        order_price: ""
     }
 
     async componentDidMount() {
         const location_list = await getLocationList()
         this.setState({location_list})
+    }
+
+    async componentDidUpdate(prevProps, prevState, snapshot) {
+        if (prevState.selected_departure_location !== this.state.selected_departure_location ||
+        prevState.selected_arrival_location !== this.state.selected_arrival_location) {
+            await this.search_price()
+        }
     }
 
     select_location = key => value => {
@@ -36,36 +46,73 @@ class SearchCostForm extends React.Component {
 
     search_price = async () => {
         const order_price = await getOrderPrice(this.state.selected_departure_location, this.state.selected_arrival_location)
-        this.setState({order_price})
+        if (order_price !== 0) {
+            this.setState({order_price})
+        }
     }
 
     render() {
         return (
             <div>
-                <div>
-                    픽업 장소:
-                    <SelectLocationForm
-                        location_list={this.state.location_list}
-                        select_location={this.select_location("selected_departure_location")} />
-                </div>
-                <div>
-                    배송 장소:
-                    <SelectLocationForm
-                        location_list={this.state.location_list}
-                        select_location={this.select_location("selected_arrival_location")} />
+                <div className={styles.label}>
+                    <div className={styles.title}>배송 요금 조회</div>
+                    <div className={styles.description}>픽업지와 배송지의 지역구를 선택하신 후 [계산하기] 버튼을 클릭하여 주시기 바랍니다.</div>
                 </div>
 
-                <div>
-                    <button onClick={this.search_price}>갸격 찾기</button>
+                <Table>
+                    <thead>
+                        <tr>
+                            <th>픽업지</th>
+                            <th>배송지</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>
+                                <div>
+                                    <SelectLocationForm
+                                        location_list={this.state.location_list}
+                                        select_location={this.select_location("selected_departure_location")} />
+                                </div>
+
+                            </td>
+                            <td>
+                                <SelectLocationForm
+                                    location_list={this.state.location_list}
+                                    select_location={this.select_location("selected_arrival_location")} />
+                            </td>
+                        </tr>
+                    </tbody>
+                </Table>
+
+                <div className={styles.label}>
+                    <div className={styles.title}>계산 결과</div>
+                    <div className={styles.description}>픽업지에서 배송지까지의 요금은</div>
                 </div>
 
-                <div>
-                    {
-                        this.state.order_price ?
-                            <div>{this.state.order_price}</div> :
-                            <div>주소를 선택해주세요!</div>
-                    }
-                </div>
+                <Table>
+                    <thead>
+                        <tr>
+                            <th>픽업지</th>
+                            <th>배송지</th>
+                            <th>배송 요금</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>{this.state.selected_departure_location}</td>
+                            <td>{this.state.selected_arrival_location}</td>
+                            <td>
+                                {
+                                    this.state.order_price &&
+                                        this.state.order_price !== 0 &&
+                                            <div>{this.state.order_price} 원</div>
+                                }
+                            </td>
+                        </tr>
+                    </tbody>
+                </Table>
+
             </div>
         )
     }

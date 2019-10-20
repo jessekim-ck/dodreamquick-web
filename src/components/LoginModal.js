@@ -2,6 +2,7 @@ import React from 'react'
 import Form from 'react-bootstrap/Form'
 import Modal from 'react-bootstrap/Modal'
 import Button from 'react-bootstrap/Button'
+import styles from '../app.module.css'
 
 
 class LoginModal extends React.Component {
@@ -32,34 +33,33 @@ class LoginModal extends React.Component {
                 show={this.props.show_modal}
                 onHide={this.props.close_modal} >
 
-                <Modal.Header>로그인하세요!</Modal.Header>
+                <Modal.Header>로그인</Modal.Header>
                 <Modal.Body>
                     <Form onSubmit={event => this.on_submit(event)}>
                         <Form.Group>
-                            <Form.Label>Username</Form.Label>
+                            <Form.Label>이메일 주소</Form.Label>
                             <Form.Control
                                 type="text"
                                 name="username"
+                                className={styles.input}
                                 value={this.state.username}
                                 onChange={event => this.on_change(event)}
-                                placeholder="Username" />
-                            <Form.Text className="text-muted">
-                                Write your username!
-                            </Form.Text>
+                                placeholder="test@test.com" />
                         </Form.Group>
 
                         <Form.Group>
-                            <Form.Label>Password</Form.Label>
+                            <Form.Label>비밀번호</Form.Label>
                             <Form.Control
                                 type="password"
                                 name="password"
+                                className={styles.input}
                                 value={this.state.password}
                                 onChange={event => this.on_change(event)}
-                                placeholder="Password" />
+                                placeholder="비밀번호를 입력해주세요" />
                         </Form.Group>
 
-                        <Button variant="primary" type="submit">
-                            Log In
+                        <Button className={styles.basicButtonGreen} type="submit">
+                            로그인
                         </Button>
                     </Form>
                 </Modal.Body>
