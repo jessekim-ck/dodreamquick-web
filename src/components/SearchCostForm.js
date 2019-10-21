@@ -48,6 +48,8 @@ class SearchCostForm extends React.Component {
         const order_price = await getOrderPrice(this.state.selected_departure_location, this.state.selected_arrival_location)
         if (order_price !== 0) {
             this.setState({order_price})
+        } else {
+            this.setState({order_price: ""})
         }
     }
 
