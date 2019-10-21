@@ -20,6 +20,8 @@ import PostNotice from './routes/post_notice'
 import PostFAQ from './routes/post_faq'
 import PostNews from './routes/post_news'
 import MyPage from './routes/my_page'
+import PolicyOfUse from './routes/policy_of_use'
+import PolicyOfPersonalInformation from './routes/policy_of_personal_information'
 
 import LoginModal from "./components/LoginModal";
 import SignupModal from "./components/SignupModal";
@@ -108,6 +110,8 @@ class App extends React.Component {
                             <Route path="/post/faq" component={PostFAQ}/>
                             <Route path="/post/news" component={PostNews}/>
                             <Route path="/my_page" component={MyPage}/>
+                            <Route path="/policy/use" component={PolicyOfUse}/>
+                            <Route path="/policy/personal_information" component={PolicyOfPersonalInformation}/>
                         </Switch>
                     </div>
                 </div>

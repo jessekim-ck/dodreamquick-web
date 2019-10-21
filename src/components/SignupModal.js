@@ -60,7 +60,7 @@ class SignupModal extends React.Component {
 
                         <Form.Group>
                             <Form.Text>
-                                두드림퀵의 <a href="">이용 약관</a> 및 <a href="">개인정보 취급 방침</a>에 동의합니다.
+                                두드림퀵의 <a href="/policy/use" target="_blank">이용 약관</a> 및 <a href="/policy/personal_information" target="_blank">개인정보 취급 방침</a>에 동의합니다.
                             </Form.Text>
                         </Form.Group>
 
