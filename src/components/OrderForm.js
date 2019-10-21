@@ -15,12 +15,12 @@ class OrderForm extends React.Component {
         sender_name: '',
         sender_phone: '',
         sender_address: '',
-        sender_detail_address: '',
+        sender_address_detail: '',
 
         receiver_name: '',
         receiver_phone: '',
         receiver_address: '',
-        receiver_detail_address: '',
+        receiver_address_detail: '',
 
         depositor: '',
 
@@ -59,7 +59,7 @@ class OrderForm extends React.Component {
             this.setState({
                 sender_name: default_departure_location.name || "",
                 sender_address: default_departure_location.location || "",
-                sender_detail_address: default_departure_location.location_detail || "",
+                sender_address_detail: default_departure_location.location_detail || "",
                 sender_phone: default_departure_location.phone || "",
             })
         }
@@ -68,7 +68,7 @@ class OrderForm extends React.Component {
             this.setState({
                 receiver_name: default_arrival_location.name || "",
                 receiver_address: default_arrival_location.location || "",
-                receiver_detail_address: default_arrival_location.location_detail || "",
+                receiver_address_detail: default_arrival_location.location_detail || "",
                 receiver_phone: default_arrival_location.phone || "",
             })
         }
@@ -100,8 +100,8 @@ class OrderForm extends React.Component {
         }
         const make_order = await this.props.make_order({
             ...this.state,
-            sender_address: this.state.sender_address + ' ' + this.state.sender_detail_address,
-            receiver_address: this.state.receiver_address + ' ' + this.state.receiver_detail_address,
+            sender_address: this.state.sender_address + ' ' + this.state.sender_address_detail,
+            receiver_address: this.state.receiver_address + ' ' + this.state.receiver_address_detail,
         })
         return make_order
     }
@@ -137,7 +137,8 @@ class OrderForm extends React.Component {
     on_complete_search = key => address => {
         this.setState({
             [key]: address,
-            [key + "_finder"]: false
+            [key + "_detail"]: "",
+            [key + "_finder"]: false,
         })
     }
 
@@ -145,7 +146,7 @@ class OrderForm extends React.Component {
         this.setState({
             [`${key}_name`]: user_location.name,
             [`${key}_address`]: user_location.location,
-            [`${key}_detail_address`]: user_location.location_detail,
+            [`${key}_address_detail`]: user_location.location_detail,
             [`${key}_phone`]: user_location.phone
         })
         this.close_modal()
@@ -222,11 +223,11 @@ class OrderForm extends React.Component {
                                         <PostCodeForm on_complete={this.on_complete_search('sender_address')}/>
                                     }
                                     <Form.Control
-                                        id="sender_detail_address"
+                                        id="sender_address_detail"
                                         type="text"
-                                        name="sender_detail_address"
+                                        name="sender_address_detail"
                                         className={styles.input}
-                                        value={this.state.sender_detail_address}
+                                        value={this.state.sender_address_detail}
                                         onChange={event => this.on_change(event)}
                                         placeholder="상세 주소 입력" required />
                                     <Form.Text className="text-muted">
@@ -301,11 +302,11 @@ class OrderForm extends React.Component {
                                         <PostCodeForm on_complete={this.on_complete_search('receiver_address')}/>
                                     }
                                     <Form.Control
-                                        id="receiver_detail_address"
+                                        id="receiver_address_detail"
                                         type="text"
-                                        name="receiver_detail_address"
+                                        name="receiver_address_detail"
                                         className={styles.input}
-                                        value={this.state.receiver_detail_address}
+                                        value={this.state.receiver_address_detail}
                                         onChange={event => this.on_change(event)}
                                         placeholder="상세 주소 입력" required />
                                     <Form.Text className="text-muted">
