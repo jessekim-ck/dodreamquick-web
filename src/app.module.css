@@ -1,6 +1,7 @@
 .appContainer {
-    margin: 96px auto;
-    padding: 0 120px 0 120px;
+    margin: 112px auto;
+    width: 80%;
+    max-width: 1440px;
 }
 
 .navBarContainer {
@@ -16,7 +17,7 @@
 
 .title {
     margin: 8px 0px;
-    font-size: 20px;
+    font-size: 24px;
     font-weight: bold;
     color: green;
 }
@@ -29,7 +30,6 @@
 .orderSection .row {
     flex-direction: row;
     display: flex;
-    font-size: 16px;
 }
 
 .orderSection .row .name {
@@ -41,7 +41,7 @@
 
 .input {
     width: 100%;
-    font-size: 14px;
+    font-size: 16px;
     height: 80%;
     align-items: center;
 }
@@ -67,7 +67,7 @@
     margin: 8px 0px;
     padding: 12px 24px;
     border: 1px solid green;
-    font-size: 12px;
+    font-size: 18px;
 }
 
 .locationItem .name {
@@ -80,9 +80,9 @@
     background-color: black;
     color: white;
     padding: 4px 12px;
-    margin-left: 8px;
-    font-size: 8px;
-    height: 100%;
+    margin-left: 12px;
+    font-size: 12px;
+    height: 90%;
 }
 
 .locationItem .address {
@@ -103,7 +103,7 @@
     background-color: green;
     color: white;
     border: 0px;
-    font-size: 12px;
+    font-size: 18px;
 }
 
 .basicButtonWhite {
@@ -112,7 +112,7 @@
     background-color: white;
     color: green;
     border: 1px solid green;
-    font-size: 12px;
+    font-size: 18px;
 }
 
 
@@ -123,7 +123,7 @@
     background-color: white;
     color: green;
     font-weight: bold;
-    font-size: 14px;
+    font-size: 18px;
 }
 
 .saveLocationButton {
@@ -133,10 +133,10 @@
     background-color: green;
     color: white;
     font-weight: bold;
-    font-size: 14px;
+    font-size: 18px;
 }
 
-.basicButtonGreen:hover, basicButtonGreen:active, .saveLocationButton:hover .saveLocationButton:active {
+.basicButtonGreen:hover, basicButtonGreen:active, .saveLocationButton:hover, .saveLocationButton:active {
     background-color: green;
     opacity: 0.9;
 }
@@ -150,39 +150,50 @@
 }
 
 .newsContainer {
-    margin: 24px auto;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, 330px);
+    grid-gap: 24px;
 }
 
 .newsCard {
-    float: left;
-    margin-top: 8px;
-    margin-right: 12px;
     border: 1px solid lightgrey;
-    width: 30%;
     height: 300px;
 }
 
-.newsCard .thumbnail {
-    width: 100%;
-    height: 140px;
-    object-fit: cover;
+.newsCardHeader {
+    height: 50%;
+    overflow: hidden;
 }
 
-.newsCard .title {
+.newsCardThumbnail {
+    display: block;
+    width: 100%;
+    overflow: hidden;
+}
+
+.newsCardBody {
+    height: 50%;
+    padding: 12px;
+}
+
+.newsCard a:hover {
+    text-decoration: none;
+}
+
+.newsCardTitle {
     font-size: 16px;
-    margin: 12px 12px;
     color: black;
+    height: 30%;
 
     text-overflow: ellipsis;
     white-space: nowrap;
     overflow: hidden;
 }
 
-.newsCard .text {
+.newsCardText {
     font-size: 12px;
     color: grey;
-    margin: 8px 12px;
-    height: 30%;
+    height: 70%;
 
     overflow: hidden;
 }
@@ -194,7 +205,7 @@
 
 .description {
     color: grey;
-    font-size: 14px;
+    font-size: 16px;
 }
 
 .postList {
@@ -209,7 +220,7 @@
 
 .postItem .header {
     background-color: white;
-    font-size: 14px;
+    font-size: 16px;
     font-weight: bold;
 
     flex-direction: row;
@@ -221,14 +232,22 @@
 }
 
 .postItem .body {
-    font-size: 12px;
+    font-size: 16px;
     border-bottom: 1px solid lightgrey;
+}
+
+.modalAdditionalButtons {
+    flex-direction: row;
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 24px;
 }
 
 
 @media (max-width: 1023px) {
     .appContainer {
         margin: 96px auto;
+        width: 100%;
         padding: 0 14px 0 14px;
     }
 

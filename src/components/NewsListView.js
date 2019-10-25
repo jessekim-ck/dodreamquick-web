@@ -4,16 +4,20 @@ import styles from '../app.module.css'
 
 const NewsItem = props => {
     return (
-        <a href={props.news.href} target="_blank" rel="noopener noreferrer">
-            <div className={styles.newsCard}>
-                <img
-                    className={styles.thumbnail}
-                    src={props.news.image}
-                    alt=""/>
-                <div className={styles.title}>{props.news.title}</div>
-                <div className={styles.text}>{props.news.text}</div>
-            </div>
-        </a>
+        <div className={styles.newsCard}>
+            <a href={props.news.href} target="_blank" rel="noopener noreferrer">
+                <div className={styles.newsCardHeader}>
+                    <img
+                        className={styles.newsCardThumbnail}
+                        src={props.news.image}
+                        alt=""/>
+                </div>
+                <div className={styles.newsCardBody}>
+                    <div className={styles.newsCardTitle}>{props.news.title}</div>
+                    <div className={styles.newsCardText}>{props.news.text}</div>
+                </div>
+            </a>
+        </div>
     )
 }
 

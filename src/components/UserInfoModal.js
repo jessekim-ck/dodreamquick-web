@@ -3,13 +3,22 @@ import Form from 'react-bootstrap/Form'
 import Modal from 'react-bootstrap/Modal'
 import Button from 'react-bootstrap/Button'
 import styles from '../app.module.css'
+import {connect} from "react-redux";
 
 
-class SignupModal extends React.Component {
+class UserInfoModal extends React.Component {
 
     state = {
         username: "",
-        password: "",
+        password: ""
+    }
+
+    async componentDidMount() {
+        const username = await this.props.username
+        console.log(username)
+        this.setState({
+            username: this.props.username
+        })
     }
 
     on_change = event => {
@@ -24,25 +33,30 @@ class SignupModal extends React.Component {
 
     on_submit = async event => {
         await event.preventDefault()
-        await this.props.sign_up(this.state.username, this.state.password)
+
+        if (this.state.password.length >= 6) {
+            await this.props.set_password(this.state.password)
+            this.props.close_modal()
+        } else {
+            alert('비밀번호는 6자리 이상이어야 합니다.')
+        }
     }
 
     render() {
         return (
-            <Modal
-                show={this.props.show_modal}
-                onHide={() => this.props.close_modal('signup')} >
-
-                <Modal.Header>두드림퀵에 오신 것을 환영합니다!</Modal.Header>
+            <Modal show={this.props.show_modal} onHide={this.props.close_modal}>
+                <Modal.Header>회원 정보 변경</Modal.Header>
                 <Modal.Body>
                     <Form onSubmit={event => this.on_submit(event)}>
                         <Form.Group>
                             <Form.Label>이메일 주소</Form.Label>
                             <Form.Control
+                                required
+                                readOnly={true}
                                 type="text"
                                 name="username"
                                 className={styles.input}
-                                value={this.state.username}
+                                value={this.state.username || this.props.username}
                                 onChange={event => this.on_change(event)}
                                 placeholder="test@test.com" />
                         </Form.Group>
@@ -50,6 +64,7 @@ class SignupModal extends React.Component {
                         <Form.Group>
                             <Form.Label>비밀번호</Form.Label>
                             <Form.Control
+                                required
                                 type="password"
                                 name="password"
                                 className={styles.input}
@@ -58,21 +73,17 @@ class SignupModal extends React.Component {
                                 placeholder="비밀번호를 입력해주세요" />
                         </Form.Group>
 
-                        <Form.Group>
-                            <Form.Text>
-                                두드림퀵의 <a href="/policy/use" target="_blank">이용 약관</a> 및 <a href="/policy/personal_information" target="_blank">개인정보 취급 방침</a>에 동의합니다.
-                            </Form.Text>
-                        </Form.Group>
-
                         <Button className={styles.basicButtonGreen} type="submit">
-                            회원 가입
+                            비밀번호 변경
                         </Button>
                     </Form>
                 </Modal.Body>
-
             </Modal>
+
         )
     }
 }
 
-export default SignupModal
+const mapStateToProps = state => state.user
+
+export default connect(mapStateToProps)(UserInfoModal)

@@ -1,7 +1,7 @@
 import React from 'react';
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import NavigationBar from './components/NavigationBar'
-import {authenticate_user, get_current_user, refresh_token, sign_up} from "./apis/api";
+import {authenticate_user, get_current_user, refresh_token, setPassword, sign_up} from "./apis/api";
 import styles from './app.module.css'
 import favicon from './assets/favicon.ico'
 import {Helmet} from 'react-helmet'
@@ -19,19 +19,18 @@ import SearchCost from './routes/search_cost'
 import PostNotice from './routes/post_notice'
 import PostFAQ from './routes/post_faq'
 import PostNews from './routes/post_news'
-import MyPage from './routes/my_page'
 import PolicyOfUse from './routes/policy_of_use'
 import PolicyOfPersonalInformation from './routes/policy_of_personal_information'
 
-import LoginModal from "./components/LoginModal";
-import SignupModal from "./components/SignupModal";
+import AuthModal from "./components/AuthModal";
+import UserInfoModal from "./components/UserInfoModal";
 
 
 class App extends React.Component {
 
     state = {
-        show_login_modal: false,
-        show_signup_modal: false,
+        show_auth_modal: false,
+        show_user_info_modal: false,
     }
 
     async componentDidMount() {
@@ -60,8 +59,12 @@ class App extends React.Component {
             await this.props.dispatch(log_in(current_user))
             await this.close_modal('login')
         } catch (err) {
-            await localStorage.removeItem('token')
-            console.log('Login Failed!!')
+            if (err.toString().includes('400')) {
+                alert("회원 정보를 찾을 수 없습니다! 오타를 확인해주세요.")
+            } else {
+                alert("로그인할 수 없습니다! 두드림퀵 카카오톡 플러스친구로 문의해주세요.")
+                console.log(err)
+            }
         }
     }
 
@@ -76,6 +79,13 @@ class App extends React.Component {
             }
         } catch (err) {
             console.log()
+        }
+    }
+
+    set_password = async password => {
+        const result = await setPassword(password)
+        if (result === 1) {
+            alert("비밀번호가 변경되었습니다!")
         }
     }
 
@@ -109,25 +119,23 @@ class App extends React.Component {
                             <Route path="/post/notice" component={PostNotice}/>
                             <Route path="/post/faq" component={PostFAQ}/>
                             <Route path="/post/news" component={PostNews}/>
-                            <Route path="/my_page" component={MyPage}/>
                             <Route path="/policy/use" component={PolicyOfUse}/>
                             <Route path="/policy/personal_information" component={PolicyOfPersonalInformation}/>
                         </Switch>
                     </div>
                 </div>
                 <div>
-                    <LoginModal
-                        show_modal={this.state.show_login_modal}
-                        close_modal={() => this.close_modal("login")}
+                    <AuthModal
+                        show_modal={this.state.show_auth_modal}
+                        close_modal={() => this.close_modal('auth')}
                         authenticate={this.authenticate}
-                    />
+                        sign_up={this.sign_up} />
                 </div>
                 <div>
-                    <SignupModal
-                        show_modal={this.state.show_signup_modal}
-                        close_modal={() => this.close_modal("signup")}
-                        sign_up={this.sign_up}
-                    />
+                    <UserInfoModal
+                        show_modal={this.state.show_user_info_modal}
+                        close_modal={() => this.close_modal('user_info')}
+                        set_password={this.set_password} />
                 </div>
             </Router>
         )

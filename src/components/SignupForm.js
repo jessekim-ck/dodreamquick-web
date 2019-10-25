@@ -5,7 +5,7 @@ import Button from 'react-bootstrap/Button'
 import styles from '../app.module.css'
 
 
-class LoginModal extends React.Component {
+class SignupForm extends React.Component {
 
     state = {
         username: "",
@@ -24,16 +24,22 @@ class LoginModal extends React.Component {
 
     on_submit = async event => {
         await event.preventDefault()
-        await this.props.authenticate(this.state.username, this.state.password)
+
+        if (
+            this.state.username.match(/.+@.+\..+/) &&
+            this.state.password
+        ) {
+            await this.props.sign_up(this.state.username, this.state.password)
+            this.props.on_hide()
+        } else {
+            alert('입력값이 올바르지 않습니다.')
+        }
     }
 
     render() {
         return (
-            <Modal
-                show={this.props.show_modal}
-                onHide={this.props.close_modal} >
-
-                <Modal.Header>로그인</Modal.Header>
+            <div>
+                <Modal.Header>두드림퀵에 오신 것을 환영합니다!</Modal.Header>
                 <Modal.Body>
                     <Form onSubmit={event => this.on_submit(event)}>
                         <Form.Group>
@@ -58,15 +64,20 @@ class LoginModal extends React.Component {
                                 placeholder="비밀번호를 입력해주세요" />
                         </Form.Group>
 
+                        <Form.Group>
+                            <Form.Text>
+                                두드림퀵의 <a href="/policy/use" target="_blank">이용 약관</a> 및 <a href="/policy/personal_information" target="_blank">개인정보 취급 방침</a>에 동의합니다.
+                            </Form.Text>
+                        </Form.Group>
+
                         <Button className={styles.basicButtonGreen} type="submit">
-                            로그인
+                            회원 가입
                         </Button>
                     </Form>
                 </Modal.Body>
-
-            </Modal>
+            </div>
         )
     }
 }
 
-export default LoginModal
+export default SignupForm

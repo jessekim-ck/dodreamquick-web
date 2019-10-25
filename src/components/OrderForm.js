@@ -435,7 +435,6 @@ class OrderForm extends React.Component {
                                 <Form.Control as="textarea" rows="5" value={policies.personal_information_collection} readOnly />
                             }
 
-
                             <Form.Group className={styles.row}>
                                 <div className={styles.flexRow}>
                                     <Form.Check

@@ -251,3 +251,48 @@ export const getNews = async () => {
         throw err
     }
 }
+
+export const findUsername = async username => {
+    try {
+        const response = await api.post(
+            'api/findUsername/',
+            {username}
+        )
+        const result = await response.data
+        return result
+    } catch (err) {
+        console.log(err)
+    }
+}
+
+export const resetPassword = async username => {
+    try {
+        const response = await api.post(
+            'api/resetPassword/',
+            {username}
+        )
+        const result = await response.data
+        return result
+    } catch (err) {
+        if (err.toString().includes("User does not exist.")) {
+            alert("이메일 주소를 찾을 수 없습니다!")
+        } else {
+            alert("이메일을 전송할 수 없습니다. 에러 메시지: " + err.toString())
+        }
+    }
+}
+
+export const setPassword = async password => {
+    try {
+        const header = await get_header()
+        const response = await api.post(
+            'api/setPassword/',
+            {password},
+            {headers: header}
+        )
+        const result = response.data
+        return result
+    } catch (err) {
+        alert(err)
+    }
+}

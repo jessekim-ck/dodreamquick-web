@@ -73,11 +73,10 @@ class NavigationBar extends React.Component {
                             this.props.username ?
                                 <Nav className={"mr-auto"}>
                                     <Nav.Link onClick={this.do_log_out}>로그아웃</Nav.Link>
-                                    <Nav.Link href="/my_page">내 정보</Nav.Link>
+                                    <Nav.Link onClick={() => this.props.open_modal('user_info')}>내 정보</Nav.Link>
                                 </Nav> :
                                 <Nav className={"mr-auto"}>
-                                    <Nav.Link onClick={() => this.props.open_modal('login')}>로그인</Nav.Link>
-                                    <Nav.Link onClick={() => this.props.open_modal('signup')}>회원가입</Nav.Link>
+                                    <Nav.Link onClick={() => this.props.open_modal('auth')}>로그인</Nav.Link>
                                 </Nav>
                         }
                     </div>
