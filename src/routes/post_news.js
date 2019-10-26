@@ -16,7 +16,6 @@ class PostNews extends React.Component {
     }
 
     render() {
-        console.log(this.state.news_list)
         return (
             <div>
                 <div className={styles.label}>

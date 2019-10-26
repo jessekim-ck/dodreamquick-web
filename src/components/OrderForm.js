@@ -52,28 +52,31 @@ class OrderForm extends React.Component {
     
     async componentDidMount() {
         const default_locations = await getUserDefaultLocations()
-        const default_departure_location = await default_locations.default_departure_location
-        const default_arrival_location = await default_locations.default_arrival_location
 
-        if (default_departure_location) {
-            this.setState({
-                sender_name: default_departure_location.name || "",
-                sender_address: default_departure_location.location || "",
-                sender_address_detail: default_departure_location.location_detail || "",
-                sender_phone: default_departure_location.phone || "",
-            })
+        if (default_locations) {
+            const default_departure_location = await default_locations.default_departure_location
+            const default_arrival_location = await default_locations.default_arrival_location
+
+            if (default_departure_location) {
+                this.setState({
+                    sender_name: default_departure_location.name || "",
+                    sender_address: default_departure_location.location || "",
+                    sender_address_detail: default_departure_location.location_detail || "",
+                    sender_phone: default_departure_location.phone || "",
+                })
+            }
+
+            if (default_arrival_location) {
+                this.setState({
+                    receiver_name: default_arrival_location.name || "",
+                    receiver_address: default_arrival_location.location || "",
+                    receiver_address_detail: default_arrival_location.location_detail || "",
+                    receiver_phone: default_arrival_location.phone || "",
+                })
+            }
+
+            await this.update_order_price()
         }
-
-        if (default_arrival_location) {
-            this.setState({
-                receiver_name: default_arrival_location.name || "",
-                receiver_address: default_arrival_location.location || "",
-                receiver_address_detail: default_arrival_location.location_detail || "",
-                receiver_phone: default_arrival_location.phone || "",
-            })
-        }
-
-        await this.update_order_price()
     }
 
     async componentDidUpdate(prevProps, prevState, snapshot) {
@@ -337,34 +340,22 @@ class OrderForm extends React.Component {
                         <div className={styles.box}>
 
                             <Form.Group className={styles.row}>
-                                <Form.Label className={styles.name}>입금자명</Form.Label>
-                                <div className={styles.input}>
-                                    <Form.Control
-                                        type="text"
-                                        name="depositor"
-                                        className={styles.input}
-                                        value={this.state.depositor}
-                                        onChange={event => this.on_change(event)}
-                                        placeholder="예: 홍길동" required />
-                                </div>
-                            </Form.Group>
-
-                            <Form.Group className={styles.row}>
                                 <Form.Label className={styles.name}>배송 물품</Form.Label>
                                 <div className={styles.input}>
                                     <Form.Control
+                                        required
                                         type="text"
                                         name="carry_item"
                                         className={styles.input}
                                         value={this.state.carry_item}
                                         onChange={event => this.on_change(event)}
-                                        placeholder="예: 꽃 바구니" required />
-                                    <Form.Check label="배송 물품의 무게가 5kg 이하입니다" required />
+                                        placeholder="예: 꽃 바구니"/>
+                                    <Form.Check label="배송 물품의 무게가 5kg 이하입니다" required/>
                                 </div>
                             </Form.Group>
 
                             <Form.Group className={styles.row}>
-                                <Form.Label className={styles.name}>추가 요청사항</Form.Label>
+                                <Form.Label className={styles.name}>추가 요청사항 (선택)</Form.Label>
                                 <div className={styles.input}>
                                     <Form.Control
                                         type="text"
@@ -380,7 +371,6 @@ class OrderForm extends React.Component {
                     </div>
 
                     <div className={styles.orderSection}>
-
                         <div className={styles.label}>
                             <div className={styles.title}>4. 결제 정보</div>
                         </div>
@@ -396,7 +386,7 @@ class OrderForm extends React.Component {
                                     inline
                                     name="credit_card"
                                     type="radio"
-                                    label="카드 결제"
+                                    label="카드 결제 / 카카오페이"
                                     checked={this.state.credit_card}
                                     className={styles.input}
                                     onChange={event => this.on_toggle(event)} />

@@ -4,21 +4,15 @@ import Modal from 'react-bootstrap/Modal'
 import Button from 'react-bootstrap/Button'
 import styles from '../app.module.css'
 import {connect} from "react-redux";
+import {log_out} from "../redux/actions/user_actions";
 
 
 class UserInfoModal extends React.Component {
 
     state = {
         username: "",
-        password: ""
-    }
-
-    async componentDidMount() {
-        const username = await this.props.username
-        console.log(username)
-        this.setState({
-            username: this.props.username
-        })
+        password: "",
+        password_check: "",
     }
 
     on_change = event => {
@@ -34,11 +28,22 @@ class UserInfoModal extends React.Component {
     on_submit = async event => {
         await event.preventDefault()
 
-        if (this.state.password.length >= 6) {
-            await this.props.set_password(this.state.password)
-            this.props.close_modal()
+        if (this.state.password && this.state.password.length < 6) {
+            alert("비밀번호는 6자리 이상이어야 합니다!")
+        } else if (this.state.password !== this.state.password_check) {
+            alert("입력한 두 비밀번호가 같지 않습니다. 다시 입력해주세요!")
+        } else if (this.state.username && !this.state.username.match(/.+@.+\..+/)) {
+            alert("올바른 이메일 형식을 입력해주세요!")
         } else {
-            alert('비밀번호는 6자리 이상이어야 합니다.')
+            await this.props.edit_user_info(this.state.username, this.state.password)
+            await this.props.dispatch(log_out())
+            await this.props.close_modal()
+            await this.setState({
+                username: "",
+                password: "",
+                password_check: "",
+            })
+            this.props.open_auth_modal()
         }
     }
 
@@ -51,26 +56,30 @@ class UserInfoModal extends React.Component {
                         <Form.Group>
                             <Form.Label>이메일 주소</Form.Label>
                             <Form.Control
-                                required
-                                readOnly={true}
                                 type="text"
                                 name="username"
                                 className={styles.input}
-                                value={this.state.username || this.props.username}
+                                value={this.state.username}
                                 onChange={event => this.on_change(event)}
-                                placeholder="test@test.com" />
+                                placeholder={this.props.username} />
                         </Form.Group>
 
                         <Form.Group>
                             <Form.Label>비밀번호</Form.Label>
                             <Form.Control
-                                required
                                 type="password"
                                 name="password"
                                 className={styles.input}
                                 value={this.state.password}
                                 onChange={event => this.on_change(event)}
-                                placeholder="비밀번호를 입력해주세요" />
+                                placeholder="비밀번호를 변경하려면 입력해주세요" />
+                            <Form.Control
+                                type="password"
+                                name="password_check"
+                                className={styles.input}
+                                value={this.state.password_check}
+                                onChange={event => this.on_change(event)}
+                                placeholder="비밀번호를 다시 입력해주세요" />
                         </Form.Group>
 
                         <Button className={styles.basicButtonGreen} type="submit">

@@ -178,16 +178,19 @@ export const getUserLocationList = async () => {
 export const getUserDefaultLocations = async () => {
     try {
         const header = await get_header()
-        const response = await api.post(
-            'api/getUserDefaultLocations/',
-            {},
-            {headers: header}
-        )
-        const result = await response.data
-        return result
+        if (header.Authorization) {
+            const response = await api.post(
+                'api/getUserDefaultLocations/',
+                {},
+                {headers: header}
+            )
+            const result = await response.data
+            return result
+        } else {
+            return null
+        }
     } catch (err) {
         console.log(err)
-        throw err
     }
 }
 
@@ -282,12 +285,12 @@ export const resetPassword = async username => {
     }
 }
 
-export const setPassword = async password => {
+export const editUserInfo = async (username, password) => {
     try {
         const header = await get_header()
         const response = await api.post(
-            'api/setPassword/',
-            {password},
+            'api/editUserInfo/',
+            {username, password},
             {headers: header}
         )
         const result = response.data

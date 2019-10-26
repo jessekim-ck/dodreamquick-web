@@ -1,7 +1,7 @@
 import React from 'react';
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import NavigationBar from './components/NavigationBar'
-import {authenticate_user, get_current_user, refresh_token, setPassword, sign_up} from "./apis/api";
+import {authenticate_user, editUserInfo, get_current_user, refresh_token, sign_up} from "./apis/api";
 import styles from './app.module.css'
 import favicon from './assets/favicon.ico'
 import {Helmet} from 'react-helmet'
@@ -21,6 +21,7 @@ import PostFAQ from './routes/post_faq'
 import PostNews from './routes/post_news'
 import PolicyOfUse from './routes/policy_of_use'
 import PolicyOfPersonalInformation from './routes/policy_of_personal_information'
+import HowToUse from './routes/how_to_use'
 
 import AuthModal from "./components/AuthModal";
 import UserInfoModal from "./components/UserInfoModal";
@@ -82,10 +83,10 @@ class App extends React.Component {
         }
     }
 
-    set_password = async password => {
-        const result = await setPassword(password)
+    edit_user_info = async (username, password) => {
+        const result = await editUserInfo(username, password)
         if (result === 1) {
-            alert("비밀번호가 변경되었습니다!")
+            alert("회원 정보가 변경되었습니다!")
         }
     }
 
@@ -121,6 +122,7 @@ class App extends React.Component {
                             <Route path="/post/news" component={PostNews}/>
                             <Route path="/policy/use" component={PolicyOfUse}/>
                             <Route path="/policy/personal_information" component={PolicyOfPersonalInformation}/>
+                            <Route path="/how_to_use" component={HowToUse}/>
                         </Switch>
                     </div>
                 </div>
@@ -134,8 +136,10 @@ class App extends React.Component {
                 <div>
                     <UserInfoModal
                         show_modal={this.state.show_user_info_modal}
+                        open_auth_modal={() => this.open_modal('auth')}
                         close_modal={() => this.close_modal('user_info')}
-                        set_password={this.set_password} />
+                        authenticate={this.authenticate}
+                        edit_user_info={this.edit_user_info} />
                 </div>
             </Router>
         )

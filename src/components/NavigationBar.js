@@ -4,6 +4,7 @@ import Nav from 'react-bootstrap/Nav'
 import NavDropdown from 'react-bootstrap/NavDropdown'
 import Logo from '../assets/favicon.png'
 import styles from '../app.module.css'
+import {isMobile} from 'react-device-detect'
 
 
 // redux
@@ -18,16 +19,30 @@ class NavigationBar extends React.Component {
         show_post: false,
     }
 
+    componentDidMount() {
+        if (isMobile) {
+            this.setState({
+                show_service_intro: true,
+                show_post: true,
+            })
+        }
+    }
+
     on_mouse_hover = key => {
-        this.setState({
-            [`show_${key}`]: true
-        })
+        if (!isMobile) {
+            this.setState({
+                [`show_${key}`]: true
+            })
+        }
+
     }
 
     on_mouse_leave = key => {
-        this.setState({
-            [`show_${key}`]: false
-        })
+        if (!isMobile) {
+            this.setState({
+                [`show_${key}`]: false
+            })
+        }
     }
 
     do_log_out = async () => {
@@ -54,7 +69,7 @@ class NavigationBar extends React.Component {
                             onMouseEnter={() => this.on_mouse_hover('service_intro')}
                             onMouseLeave={() => this.on_mouse_leave('service_intro')}>
                             <NavDropdown.Item href="/search_cost">요금 안내</NavDropdown.Item>
-                            <NavDropdown.Item href="/no_page_yet">이용 방법</NavDropdown.Item>
+                            <NavDropdown.Item href="/how_to_use">이용 방법(공사 중)</NavDropdown.Item>
                         </NavDropdown>
                         <NavDropdown
                             title="게시판"

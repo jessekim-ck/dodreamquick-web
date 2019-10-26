@@ -25,14 +25,13 @@ class LoginForm extends React.Component {
     on_submit = async event => {
         await event.preventDefault()
 
-        if (
-            this.state.username.match(/.+@.+\..+/) &&
-            this.state.password
-        ) {
+        if (!this.state.username.match(/.+@.+\..+/)) {
+            alert('올바른 이메일 형식을 입력해주세요!')
+        } else if (this.state.password.length < 6) {
+            alert('비밀번호는 6자리 이상이어야 합니다!')
+        } else {
             await this.props.authenticate(this.state.username, this.state.password)
             this.props.on_hide()
-        } else {
-            alert('입력값이 올바르지 않습니다.')
         }
     }
 
@@ -68,10 +67,10 @@ class LoginForm extends React.Component {
 
                         <div className={styles.modalAdditionalButtons}>
                             <div onClick={() => this.props.move_page_to("RESETPASSWORD")}>
-                                <a href="javascript:undefined">비밀번호 찾기</a>
+                                <a onClick={event => event.preventDefault()} href="/">비밀번호 찾기</a>
                             </div>
                             <div onClick={() => this.props.move_page_to("SIGNUP")}>
-                                <a href="javascript:undefined">회원가입</a>
+                                <a onClick={event => event.preventDefault()} href="/">회원가입</a>
                             </div>
                         </div>
 

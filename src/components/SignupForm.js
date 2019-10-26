@@ -25,14 +25,13 @@ class SignupForm extends React.Component {
     on_submit = async event => {
         await event.preventDefault()
 
-        if (
-            this.state.username.match(/.+@.+\..+/) &&
-            this.state.password
-        ) {
+        if (!this.state.username.match(/.+@.+\..+/)) {
+            alert('올바른 이메일 형식을 입력해주세요!')
+        } else if (this.state.password.length < 6) {
+            alert('비밀번호는 6자리 이상이어야 합니다!')
+        } else {
             await this.props.sign_up(this.state.username, this.state.password)
             this.props.on_hide()
-        } else {
-            alert('입력값이 올바르지 않습니다.')
         }
     }
 
