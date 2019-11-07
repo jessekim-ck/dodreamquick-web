@@ -1,10 +1,11 @@
 import React from 'react'
 import SearchCostForm from '../components/SearchCostForm'
+import styles from "../app.module.css"
 
 
 const SearchCost = () => {
     return (
-        <div>
+        <div className={styles.contentContainer}>
             <SearchCostForm />
         </div>
     )

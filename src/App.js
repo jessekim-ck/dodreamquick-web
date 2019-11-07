@@ -14,7 +14,6 @@ import {log_in, log_out} from './redux/actions/user_actions'
 import Index from './routes/index'
 import Order from './routes/order'
 import OrderComplete from './routes/order_complete'
-import LogIn from './routes/log_in'
 import SearchCost from './routes/search_cost'
 import PostNotice from './routes/post_notice'
 import PostFAQ from './routes/post_faq'
@@ -106,18 +105,18 @@ class App extends React.Component {
                         <link rel="shortcut icon" href={favicon}/>
                     </Helmet>
                 </div>
+
                 <div>
                     <NavigationBar
                         open_modal={this.open_modal}
                         close_modal={this.close_modal}
-                        log_out={this.log_out} />
+                        log_out={this.log_out}/>
                     <div className={styles.appContainer}>
                         <Switch>
                             <Route exact path="/" component={Index}/>
                             <Route path="/order/complete" component={OrderComplete}/>
                             <Route path="/order" component={Order}/>
                             <Route path="/search_cost" component={SearchCost}/>
-                            <Route path="/user/log_in" component={LogIn}/>
                             <Route path="/post/notice" component={PostNotice}/>
                             <Route path="/post/faq" component={PostFAQ}/>
                             <Route path="/post/news" component={PostNews}/>
@@ -126,8 +125,10 @@ class App extends React.Component {
                             <Route path="/how_to_use" component={HowToUse}/>
                         </Switch>
                     </div>
+
                     <Footer/>
                 </div>
+
                 <div>
                     <AuthModal
                         show_modal={this.state.show_auth_modal}

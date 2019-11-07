@@ -1,6 +1,7 @@
 import React from 'react'
 import {addOrder, makeOrderPaid, validateIMPPayment} from "../apis/api";
 import OrderForm from "../components/OrderForm";
+import styles from "../app.module.css"
 
 
 class Order extends React.Component {
@@ -52,7 +53,7 @@ class Order extends React.Component {
 
     render() {
         return (
-            <div>
+            <div className={styles.contentContainer}>
                 <OrderForm make_order={this.make_order}/>
             </div>
         )

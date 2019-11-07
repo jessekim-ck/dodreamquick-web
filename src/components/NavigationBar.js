@@ -6,7 +6,6 @@ import Logo from '../assets/favicon.png'
 import styles from '../app.module.css'
 import {isMobile} from 'react-device-detect'
 
-
 // redux
 import {connect} from 'react-redux'
 import {log_out} from "../redux/actions/user_actions";
@@ -52,14 +51,14 @@ class NavigationBar extends React.Component {
 
     render() {
         return (
-            <Navbar expand="lg" fixed="top" className={styles.navBarContainer}>
+            <Navbar expand="lg" className={styles.navBarContainer}>
                 <Navbar.Brand href="/">
                     <img
                         src={Logo}
                         height="35"
                         alt="두드림퀵"/>
                 </Navbar.Brand>
-                <Navbar.Toggle aria-controls="basic-navbar-nav" />
+                <Navbar.Toggle aria-controls="basic-navbar-nav"/>
                 <Navbar.Collapse id="basic-navbar-nav">
                     <Nav className="mr-auto">
                         <Nav.Link href="/order">배송 신청</Nav.Link>
@@ -76,7 +75,7 @@ class NavigationBar extends React.Component {
                             show={this.state.show_post}
                             onMouseEnter={() => this.on_mouse_hover('post')}
                             onMouseLeave={() => this.on_mouse_leave('post')}>
-                        <NavDropdown.Item href="/post/notice">공지사항</NavDropdown.Item>
+                            <NavDropdown.Item href="/post/notice">공지사항</NavDropdown.Item>
                             <NavDropdown.Item href="/post/faq">FAQ</NavDropdown.Item>
                             <NavDropdown.Item href="/post/news">언론 보도</NavDropdown.Item>
                         </NavDropdown>

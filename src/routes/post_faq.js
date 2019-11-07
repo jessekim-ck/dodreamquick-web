@@ -17,7 +17,7 @@ class PostFAQ extends React.Component {
 
     render() {
         return (
-            <div>
+            <div className={styles.contentContainer}>
                 <div className={styles.label}>
                     <div className={styles.title}>자주 묻는 질문</div>
                 </div>

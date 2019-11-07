@@ -1,9 +1,10 @@
 import React from 'react'
+import styles from "../app.module.css"
 
 
 const OrderComplete = () => {
     return (
-        <div>
+        <div className={styles.contentContainer}>
             Order Completed!
         </div>
     )

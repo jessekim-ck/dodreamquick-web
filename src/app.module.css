@@ -1,13 +1,17 @@
 .appContainer {
-    margin-top: 70px;
+    min-height: 80vh;
+    padding-bottom: 96px;
+}
+
+.contentContainer {
+    margin: 72px 10%;
 }
 
 .navBarContainer {
     background-color: white;
     border-bottom: 1px solid grey;
     color: black;
-    height: 70px;
-    padding: 8px 10% 8px 10%;
+    padding: 12px 10%;
 }
 
 .orderSection {
@@ -383,7 +387,8 @@
 .footer {
     background-color: white;
     text-align: center;
-    margin: 48px 0;
+    padding: 48px 0;
+    border-top: 1px solid #f5f5f5;
 }
 
 .footerTitle {
@@ -399,8 +404,12 @@
 
 @media (max-width: 767px) {
 
+    .contentContainer {
+        margin: 48px 24px;
+    }
+
     .navBarContainer {
-        padding: 0px 24px;
+        padding: 8px 12px;
     }
 
     .orderSection .row {
@@ -474,9 +483,7 @@
     }
 
     .landingAppealItemContainer {
-        display: flex;
         flex-direction: column;
-        justify-content: space-between;
     }
 
     .landingAppealItem {
@@ -484,27 +491,12 @@
         margin: 18px 0;
     }
 
-    .landingAppealItemTitle {
-    }
-
-    .landingAppealItemText {
-    }
-
-    .footer {
-        background-color: white;
-        text-align: center;
-        margin: 48px 0;
-    }
-
     .footerTitle {
         font-size: 12px;
-        margin-bottom: 8px;
     }
 
     .footerText {
         font-size: 8px;
-        color: grey;
-        margin-bottom: 4px;
     }
 
 }

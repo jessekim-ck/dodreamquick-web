@@ -17,7 +17,7 @@ class PostNotice extends React.Component {
 
     render() {
         return (
-            <div>
+            <div className={styles.contentContainer}>
                 <div className={styles.label}>
                     <div className={styles.title}>공지사항</div>
                 </div>

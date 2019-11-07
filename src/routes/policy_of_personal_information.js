@@ -1,12 +1,13 @@
 import React from "react"
 import policies from '../policies'
 import Form from "react-bootstrap/Form";
+import styles from "../app.module.css"
 
 
 const PolicyOfPersonalInformation = () => {
 
     return (
-        <div>
+        <div className={styles.contentContainer}>
             <h3>개인정보 처리 방침</h3>
             <br/>
             <div>

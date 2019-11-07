@@ -1,12 +1,13 @@
 import React from "react"
 import policies from '../policies'
 import Form from "react-bootstrap/Form";
+import styles from "../app.module.css"
 
 
 const PolicyOfUse = () => {
 
     return (
-        <div>
+        <div className={styles.contentContainer}>
             <h3>이용 약관</h3>
             <br/>
             <div>

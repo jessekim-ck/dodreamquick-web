@@ -7,19 +7,21 @@ import logo from '../assets/logo.png'
 const HowToUse = props => {
 
     return (
-        <Carousel className={styles.carousel}>
-            <Carousel.Item>
-                <div className={styles.carouselItem}>
-                    <div className={styles.carouselLeft}>
-                        <img className={styles.carouselImg} src={logo} alt=""/>
+        <div className={styles.contentContainer}>
+            <Carousel className={styles.carousel}>
+                <Carousel.Item>
+                    <div className={styles.carouselItem}>
+                        <div className={styles.carouselLeft}>
+                            <img className={styles.carouselImg} src={logo} alt=""/>
+                        </div>
+                        <div className={styles.carouselRight}>
+                            <h3>Hello!</h3>
+                            <p>hello world!</p>
+                        </div>
                     </div>
-                    <div className={styles.carouselRight}>
-                        <h3>Hello!</h3>
-                        <p>hello world!</p>
-                    </div>
-                </div>
-            </Carousel.Item>
-        </Carousel>
+                </Carousel.Item>
+            </Carousel>
+        </div>
     )
 }
 
