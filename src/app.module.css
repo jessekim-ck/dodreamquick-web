@@ -1,13 +1,12 @@
 .appContainer {
-    margin: 112px auto;
-    width: 80%;
-    max-width: 1440px;
+    margin-top: 70px;
 }
 
 .navBarContainer {
     background-color: white;
     border-bottom: 1px solid grey;
     color: black;
+    height: 70px;
     padding: 8px 10% 8px 10%;
 }
 
@@ -273,15 +272,135 @@
     color: white;
 }
 
+.landingDoor {
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    width: 100%;
+    height: 480px;
+}
+
+.landingDoorText {
+    height: 50%;
+
+    display: flex;
+    align-items: flex-end; /* Vertical center alignment */
+    justify-content: center; /* Horizontal center alignment */
+    text-align: center;
+
+    font-size: 40px;
+    color: white;
+}
+
+.landingDoorCTA {
+    height: 40%;
+
+    display: flex;
+    align-items: center; /* Vertical center alignment */
+    justify-content: center; /* Horizontal center alignment */
+}
+
+.buttonCTA {
+    border: 0px;
+    border-radius: 24px;
+    width: 168px;
+    height: 48px;
+    margin: 0px 28px;
+    font-size: 18px;
+    background-color: white;
+}
+
+.landingIntro {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+
+    width: 80%;
+    padding: 120px 0;
+    margin: 0 auto;
+}
+
+.landingIntroText {
+    width: 50%;
+    padding-right: 24px;
+    word-break: keep-all;
+}
+
+.landingIntroTextTitle {
+    font-size: 28px;
+    margin-bottom: 12px;
+}
+
+.landingIntroTextText {
+    font-size: 20px;
+    line-height: 1.8;
+}
+
+.landingIntroImage {
+    width: 45%;
+    height: auto;
+
+    margin: auto 0;
+}
+
+.landingAppeal {
+    background-color: #282c34;
+    width: 100%;
+
+    color: white;
+    padding: 24px 10%;
+}
+
+.landingAppealTitle {
+    font-size: 28px;
+    text-align: center;
+    margin: 18px 0;
+}
+
+.landingAppealItemContainer {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.landingAppealItem {
+    width: 20%;
+    text-align: center;
+    margin: 18px 0;
+}
+
+.landingAppealItemTitle {
+    color: green;
+    font-size: 24px;
+    margin: 12px 0;
+}
+
+.landingAppealItemText {
+    color: white;
+    font-size: 20px;
+}
+
+.footer {
+    background-color: white;
+    text-align: center;
+    margin: 48px 0;
+}
+
+.footerTitle {
+    font-size: 18px;
+    margin-bottom: 8px;
+}
+
+.footerText {
+    font-size: 14px;
+    color: grey;
+    margin-bottom: 4px;
+}
+
 @media (max-width: 767px) {
-    .appContainer {
-        margin: 96px auto;
-        width: 100%;
-        padding: 0 14px;
-    }
 
     .navBarContainer {
-        padding: 0px 12px;
+        padding: 0px 24px;
     }
 
     .orderSection .row {
@@ -299,6 +418,93 @@
     .newsContainer {
         display: grid;
         grid-template-columns: repeat(1, 100%);
+    }
+
+    .landingDoor {
+        height: 480px;
+    }
+
+    .landingDoorText {
+        font-size: 24px;
+    }
+
+    .landingDoorCTA {
+        flex-direction: column;
+    }
+
+    .buttonCTA {
+        width: 168px;
+        height: 40px;
+        margin: 12px 0;
+        font-size: 16px;
+    }
+
+    .landingIntro {
+        flex-direction: column;
+        width: 90%;
+    }
+
+    .landingIntroText {
+        width: 100%;
+        padding-right: 12px;
+    }
+
+    .landingIntroTextTitle {
+        font-size: 24px;
+        margin-bottom: 12px;
+    }
+
+    .landingIntroTextText {
+        font-size: 18px;
+        line-height: 1.8;
+    }
+
+    .landingIntroImage {
+        width: 100%;
+        height: auto;
+    }
+
+    .landingAppeal {
+        color: white;
+        padding: 24px 10%;
+    }
+
+    .landingAppealTitle {
+        font-size: 24px;
+    }
+
+    .landingAppealItemContainer {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+    }
+
+    .landingAppealItem {
+        width: 100%;
+        margin: 18px 0;
+    }
+
+    .landingAppealItemTitle {
+    }
+
+    .landingAppealItemText {
+    }
+
+    .footer {
+        background-color: white;
+        text-align: center;
+        margin: 48px 0;
+    }
+
+    .footerTitle {
+        font-size: 12px;
+        margin-bottom: 8px;
+    }
+
+    .footerText {
+        font-size: 8px;
+        color: grey;
+        margin-bottom: 4px;
     }
 
 }

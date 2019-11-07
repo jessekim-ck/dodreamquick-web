@@ -25,6 +25,7 @@ import HowToUse from './routes/how_to_use'
 
 import AuthModal from "./components/AuthModal";
 import UserInfoModal from "./components/UserInfoModal";
+import Footer from "./components/Footer";
 
 
 class App extends React.Component {
@@ -125,6 +126,7 @@ class App extends React.Component {
                             <Route path="/how_to_use" component={HowToUse}/>
                         </Switch>
                     </div>
+                    <Footer/>
                 </div>
                 <div>
                     <AuthModal
