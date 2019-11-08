@@ -68,7 +68,7 @@ class NavigationBar extends React.Component {
                             onMouseEnter={() => this.on_mouse_hover('service_intro')}
                             onMouseLeave={() => this.on_mouse_leave('service_intro')}>
                             <NavDropdown.Item href="/search_cost">요금 안내</NavDropdown.Item>
-                            <NavDropdown.Item href="/how_to_use">이용 방법(공사 중)</NavDropdown.Item>
+                            <NavDropdown.Item href="/how_to_use">이용 방법</NavDropdown.Item>
                         </NavDropdown>
                         <NavDropdown
                             title="게시판"

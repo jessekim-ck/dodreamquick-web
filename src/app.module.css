@@ -1,6 +1,6 @@
 .appContainer {
-    min-height: 80vh;
-    padding-bottom: 96px;
+    min-height: 70vh;
+    padding-bottom: 48px;
 }
 
 .contentContainer {
@@ -260,20 +260,43 @@
 
 .carouselLeft {
     width: 60%;
+    height: 80%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
     align-self: center;
     overflow: hidden;
 }
 
 .carouselImg {
-    display: block;
-    margin-left: auto;
-    margin-right: auto;
+    height: 100%;
 }
 
 .carouselRight {
     width: 40%;
+    height: 40%;
+    display: flex;
+    flex-direction: column;
     align-self: center;
+    justify-content: space-between;
     color: white;
+}
+
+.carouselTitle {
+    font-size: 28px;
+}
+
+.carouselText {
+
+}
+
+.carouselTextTitle {
+    font-size: 20px;
+    margin-bottom: 8px;
+}
+
+.carouselTextText {
+    font-size: 16px;
 }
 
 .landingDoor {
@@ -402,6 +425,40 @@
     margin-bottom: 4px;
 }
 
+.introTableContainer {
+    margin-top: 96px;
+}
+
+.introTableTitle {
+    font-size: 28px;
+    width: 70%;
+    margin: 0px auto 24px;
+}
+
+.introTable {
+    margin: 0px auto;
+    border-top: 1px solid #f5f5f5;
+    padding: 48px 0;
+}
+
+.introTableRow {
+    width: 70%;
+    margin: 0px auto 48px;
+    flex-direction: row;
+    display: flex;
+}
+
+.introTableRowTitle {
+    width: 30%;
+    font-weight: bold;
+    font-size: 20px;
+}
+
+.introTableRowText {
+    width: 70%;
+    font-size: 18px;
+}
+
 @media (max-width: 767px) {
 
     .contentContainer {
@@ -499,5 +556,92 @@
         font-size: 8px;
     }
 
+    .carousel {
+    }
+
+    .carouselItem {
+        width: 80%;
+        height: 400px;
+        margin: 0px auto;
+        flex-direction: column;
+        display: flex;
+    }
+
+    .carouselLeft {
+        width: 100%;
+        height: 40%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        align-self: center;
+    }
+
+    .carouselImg {
+        width: 50%;
+        height: auto;
+    }
+
+    .carouselRight {
+        width: 100%;
+        height: 50%;
+        display: flex;
+        flex-direction: column;
+        align-self: center;
+        justify-content: center;
+        color: white;
+        text-align: center;
+    }
+
+    .carouselTitle {
+        font-size: 22px;
+        margin-bottom: 24px;
+    }
+
+    .carouselText {
+
+    }
+
+    .carouselTextTitle {
+        font-size: 18px;
+        margin-bottom: 8px;
+    }
+
+    .carouselTextText {
+        font-size: 14px;
+        word-break: keep-all;
+    }
+
+    .introTableContainer {
+        margin-top: 96px;
+    }
+
+    .introTableTitle {
+        font-size: 24px;
+        text-align: center;
+    }
+
+    .introTable {
+        margin: 0px auto;
+        border-top: 1px solid #f5f5f5;
+        padding: 48px 0;
+    }
+
+    .introTableRow {
+        width: 100%;
+        margin: 0px auto 48px;
+        flex-direction: column;
+        display: flex;
+    }
+
+    .introTableRowTitle {
+        width: 100%;
+        font-size: 20px;
+        margin-bottom: 12px;
+    }
+
+    .introTableRowText {
+        width: 100%;
+        font-size: 18px;
+    }
 }
 
