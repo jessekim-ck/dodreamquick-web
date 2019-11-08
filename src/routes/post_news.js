@@ -18,9 +18,7 @@ class PostNews extends React.Component {
     render() {
         return (
             <div className={styles.contentContainer}>
-                <div className={styles.label}>
-                    <div className={styles.title}>DODREAM NEWS</div>
-                </div>
+                <div className={styles.pageTitle}>DODREAM NEWS</div>
                 <NewsListView news_list={this.state.news_list}/>
             </div>
 

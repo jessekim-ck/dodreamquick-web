@@ -34,9 +34,7 @@ const PostCodeForm = props => {
     }
 
     return (
-        <div>
-            <DaumPostCode onComplete={on_select_address(props.on_complete)}/>
-        </div>
+        <DaumPostCode style={{width: "100%"}} onComplete={on_select_address(props.on_complete)}/>
     )
 }
 

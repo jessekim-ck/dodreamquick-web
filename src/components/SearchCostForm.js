@@ -56,19 +56,24 @@ class SearchCostForm extends React.Component {
     render() {
         return (
             <div>
-                <div className={styles.label}>
-                    <div className={styles.title}>배송 요금 조회</div>
-                    <div className={styles.description}>픽업지와 배송지의 지역구를 선택하신 후 [계산하기] 버튼을 클릭하여 주시기 바랍니다.</div>
-                </div>
+                <div className={styles.searchCostForm}>
+                    <div className={styles.searchCostFormLabel}>
+                        <div className={styles.searchCostFormLabelTitle}>
+                            배송 요금 조회
+                        </div>
+                        <div className={styles.searchCostFormLabelDescription}>
+                            픽업지와 배송지의 지역구를 선택하신 후 [계산하기] 버튼을 클릭하여 주시기 바랍니다.
+                        </div>
+                    </div>
 
-                <Table>
-                    <thead>
+                    <Table>
+                        <thead>
                         <tr>
                             <th>픽업지</th>
                             <th>배송지</th>
                         </tr>
-                    </thead>
-                    <tbody>
+                        </thead>
+                        <tbody>
                         <tr>
                             <td>
                                 <div>
@@ -84,37 +89,44 @@ class SearchCostForm extends React.Component {
                                     select_location={this.select_location("selected_arrival_location")} />
                             </td>
                         </tr>
-                    </tbody>
-                </Table>
-
-                <div className={styles.label}>
-                    <div className={styles.title}>계산 결과</div>
-                    <div className={styles.description}>픽업지에서 배송지까지의 요금은</div>
+                        </tbody>
+                    </Table>
                 </div>
 
-                <Table>
-                    <thead>
+
+                <div className={styles.searchCostForm}>
+                    <div className={styles.searchCostFormLabel}>
+                        <div className={styles.searchCostFormLabelTitle}>
+                            계산 결과
+                        </div>
+                        <div className={styles.searchCostFormLabelDescription}>
+                            픽업지에서 배송지까지의 요금은
+                        </div>
+                    </div>
+
+                    <Table>
+                        <thead>
                         <tr>
                             <th>픽업지</th>
                             <th>배송지</th>
                             <th>배송 요금</th>
                         </tr>
-                    </thead>
-                    <tbody>
+                        </thead>
+                        <tbody>
                         <tr>
                             <td>{this.state.selected_departure_location}</td>
                             <td>{this.state.selected_arrival_location}</td>
                             <td>
                                 {
                                     this.state.order_price &&
-                                        this.state.order_price !== 0 &&
-                                            <div>{this.state.order_price} 원</div>
+                                    this.state.order_price !== 0 &&
+                                    <div>{this.state.order_price} 원</div>
                                 }
                             </td>
                         </tr>
-                    </tbody>
-                </Table>
-
+                        </tbody>
+                    </Table>
+                </div>
             </div>
         )
     }

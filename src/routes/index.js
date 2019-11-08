@@ -25,8 +25,8 @@ const Index = props => {
                     고객님의 집 앞까지 배송합니다
                 </div>
                 <div className={styles.landingDoorCTA}>
-                    <button className={styles.buttonCTA}>배송 신청하기</button>
-                    <button className={styles.buttonCTA}>문의하기</button>
+                    <button className={styles.CTAWhite}>배송 신청하기</button>
+                    <button className={styles.CTAYellow}>문의하기</button>
                 </div>
             </div>
 
@@ -40,8 +40,7 @@ const Index = props => {
                             <span>만 65세 이상의 어르신</span>이 지하철을 이용하여 저렴하고 빠르게 물품을 배송해드리는 지하철 퀵서비스입니다.
                         </p>
                         <p>
-                            두드림퀵은 지역별 노인일자리 전담기관인 시니어클럽과 연계하고 있으며,
-                            <span>배송지와 가까운 곳에 있는 기사님을 배정</span>하여 더욱 빠른 서비스를 제공합니다.
+                            두드림퀵은 지역별 노인일자리 전담기관인 시니어클럽과 연계하고 있으며, <span>배송지와 가까운 곳에 있는 기사님을 배정</span>하여 더욱 빠른 서비스를 제공합니다.
                             두드림퀵은 기사님들의 소득 향상 및 업무 환경 개선을 위해 최선을 다하고 있습니다.
                         </p>
                     </div>
@@ -102,7 +101,6 @@ const Index = props => {
                         </div>
                     </div>
                 </div>
-
             </div>
         </div>
     )

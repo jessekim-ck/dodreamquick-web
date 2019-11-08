@@ -54,7 +54,34 @@ class Order extends React.Component {
     render() {
         return (
             <div className={styles.contentContainer}>
-                <OrderForm make_order={this.make_order}/>
+                <div className={styles.orderCautionContainer}>
+                    <div className={styles.orderCautionTitle}>
+                        배송 신청 전 주의사항
+                    </div>
+                    <div className={styles.orderCautionContent}>
+                        <div className={styles.orderCautionItem}>
+                            <div className={styles.orderCautionItemTitle}>
+                                예약 주문 불가
+                            </div>
+                            <div className={styles.orderCautionItemText}>
+                                두드림퀵은 <span>예약 주문을 받지 않습니다.</span>
+                            </div>
+                        </div>
+
+                        <div className={styles.orderCautionItem}>
+                            <div className={styles.orderCautionItemTitle}>
+                                주문 접수 가능 시간
+                            </div>
+                            <div className={styles.orderCautionItemText}>
+                                주문 접수 가능 시간은 <span>월-금요일 오전 9시-오후 6시</span>입니다. (토, 일요일/공휴일 휴무)
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div className={styles.orderFormContainer}>
+                    <div className={styles.orderFormTitle}>배송 신청</div>
+                    <OrderForm make_order={this.make_order}/>
+                </div>
             </div>
         )
     }

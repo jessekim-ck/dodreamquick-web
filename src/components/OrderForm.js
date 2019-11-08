@@ -172,34 +172,36 @@ class OrderForm extends React.Component {
             <div>
                 <Form onSubmit={this.on_submit_order}>
 
-                    <div id="sender_group" className={styles.orderSection}>
+                    <div id="sender_group" className={styles.orderFormSection}>
 
-                        <div className={styles.label}>
-                            <div className={styles.title}>1. 픽업지 정보 입력</div>
+                        <div className={styles.orderFormSectionLabel}>
+                            1. 픽업지 정보 입력
                         </div>
 
 
-                        <div className={styles.box}>
-                            <Form.Group className={styles.row}>
-                                <Form.Label className={styles.name}>성함</Form.Label>
-                                <div className={styles.input}>
+                        <div className={styles.orderFormSectionBox}>
+                            <Form.Group className={styles.orderFormSectionRow}>
+                                <Form.Label className={styles.orderFormSectionRowName}>
+                                    성함
+                                </Form.Label>
+                                <div className={styles.orderFormSectionRowInput}>
                                     <Form.Control
                                         type="text"
                                         name="sender_name"
-                                        className={styles.input}
+                                        className={styles.orderFormSection}
                                         value={this.state.sender_name}
                                         onChange={event => this.on_change(event)}
                                         placeholder="예: 홍길동" required />
                                 </div>
                             </Form.Group>
 
-                            <Form.Group className={styles.row}>
-                                <Form.Label className={styles.name}>핸드폰 번호</Form.Label>
-                                <div className={styles.input}>
+                            <Form.Group className={styles.orderFormSectionRow}>
+                                <Form.Label className={styles.orderFormSectionRowName}>핸드폰 번호</Form.Label>
+                                <div className={styles.orderFormSectionRowInput}>
                                     <Form.Control
                                         type="text"
                                         name="sender_phone"
-                                        className={styles.input}
+                                        className={styles.orderFormSectionRowInput}
                                         value={this.state.sender_phone}
                                         onChange={event => this.on_change(event)}
                                         placeholder="01012345678" required />
@@ -209,13 +211,13 @@ class OrderForm extends React.Component {
                                 </div>
                             </Form.Group>
 
-                            <Form.Group className={styles.row}>
-                                <Form.Label className={styles.name}>주소</Form.Label>
-                                <div className={styles.input}>
+                            <Form.Group className={styles.orderFormSectionRow}>
+                                <Form.Label className={styles.orderFormSectionRowName}>주소</Form.Label>
+                                <div className={styles.orderFormSectionRowInput}>
                                     <Form.Control
                                         id="sender_address"
                                         type="text"
-                                        className={styles.input}
+                                        className={styles.orderFormSectionRowInput}
                                         placeholder="주소 (클릭하여 검색)"
                                         value={this.state.sender_address}
                                         onChange={event => this.on_change(event)}
@@ -229,7 +231,7 @@ class OrderForm extends React.Component {
                                         id="sender_address_detail"
                                         type="text"
                                         name="sender_address_detail"
-                                        className={styles.input}
+                                        className={styles.orderFormSectionRowInput}
                                         value={this.state.sender_address_detail}
                                         onChange={event => this.on_change(event)}
                                         placeholder="상세 주소 입력" required />
@@ -252,33 +254,33 @@ class OrderForm extends React.Component {
                     </div>
 
 
-                    <div id="receiver_group" className={styles.orderSection}>
+                    <div id="receiver_group" className={styles.orderFormSection}>
 
-                        <div className={styles.label}>
-                            <div className={styles.title}>2. 배송지 정보 입력</div>
+                        <div className={styles.orderFormSectionLabel}>
+                            2. 배송지 정보 입력
                         </div>
 
-                        <div className={styles.box}>
-                            <Form.Group className={styles.row}>
-                                <Form.Label className={styles.name}>성함</Form.Label>
-                                <div className={styles.input}>
+                        <div className={styles.orderFormSectionBox}>
+                            <Form.Group className={styles.orderFormSectionRow}>
+                                <Form.Label className={styles.orderFormSectionRowName}>성함</Form.Label>
+                                <div className={styles.orderFormSectionRowInput}>
                                     <Form.Control
                                         type="text"
                                         name="receiver_name"
-                                        className={styles.input}
+                                        className={styles.orderFormSectionRowInput}
                                         value={this.state.receiver_name}
                                         onChange={event => this.on_change(event)}
                                         placeholder="예: 홍길동" required />
                                 </div>
                             </Form.Group>
 
-                            <Form.Group className={styles.row}>
-                                <Form.Label className={styles.name}>핸드폰 번호</Form.Label>
-                                <div className={styles.input}>
+                            <Form.Group className={styles.orderFormSectionRow}>
+                                <Form.Label className={styles.orderFormSectionRowName}>핸드폰 번호</Form.Label>
+                                <div className={styles.orderFormSectionRowInput}>
                                     <Form.Control
                                         type="text"
                                         name="receiver_phone"
-                                        className={styles.input}
+                                        className={styles.orderFormSectionRowInput}
                                         value={this.state.receiver_phone}
                                         onChange={event => this.on_change(event)}
                                         placeholder="01012345678" required />
@@ -288,13 +290,13 @@ class OrderForm extends React.Component {
                                 </div>
                             </Form.Group>
 
-                            <Form.Group className={styles.row}>
-                                <Form.Label className={styles.name}>주소</Form.Label>
-                                <div className={styles.input}>
+                            <Form.Group className={styles.orderFormSectionRow}>
+                                <Form.Label className={styles.orderFormSectionRowName}>주소</Form.Label>
+                                <div className={styles.orderFormSectionRowInput}>
                                     <Form.Control
                                         id="receiver_address"
                                         type="text"
-                                        className={styles.input}
+                                        className={styles.orderFormSectionRowInput}
                                         placeholder="주소 (클릭하여 검색)"
                                         value={this.state.receiver_address}
                                         onChange={event => this.on_change(event)}
@@ -308,7 +310,7 @@ class OrderForm extends React.Component {
                                         id="receiver_address_detail"
                                         type="text"
                                         name="receiver_address_detail"
-                                        className={styles.input}
+                                        className={styles.orderFormSectionRowInput}
                                         value={this.state.receiver_address_detail}
                                         onChange={event => this.on_change(event)}
                                         placeholder="상세 주소 입력" required />
@@ -331,22 +333,22 @@ class OrderForm extends React.Component {
 
                     </div>
 
-                    <div className={styles.orderSection}>
+                    <div className={styles.orderFormSection}>
 
-                        <div className={styles.label}>
-                            <div className={styles.title}>3. 기타 정보 입력</div>
+                        <div className={styles.orderFormSectionLabel}>
+                            3. 기타 정보 입력
                         </div>
 
-                        <div className={styles.box}>
+                        <div className={styles.orderFormSectionBox}>
 
-                            <Form.Group className={styles.row}>
-                                <Form.Label className={styles.name}>배송 물품</Form.Label>
-                                <div className={styles.input}>
+                            <Form.Group className={styles.orderFormSectionRow}>
+                                <Form.Label className={styles.orderFormSectionRowName}>배송 물품</Form.Label>
+                                <div className={styles.orderFormSectionRowInput}>
                                     <Form.Control
                                         required
                                         type="text"
                                         name="carry_item"
-                                        className={styles.input}
+                                        className={styles.orderFormSectionRowInput}
                                         value={this.state.carry_item}
                                         onChange={event => this.on_change(event)}
                                         placeholder="예: 꽃 바구니"/>
@@ -354,13 +356,13 @@ class OrderForm extends React.Component {
                                 </div>
                             </Form.Group>
 
-                            <Form.Group className={styles.row}>
-                                <Form.Label className={styles.name}>추가 요청사항 (선택)</Form.Label>
-                                <div className={styles.input}>
+                            <Form.Group className={styles.orderFormSectionRow}>
+                                <Form.Label className={styles.orderFormSectionRowName}>추가 요청사항 (선택)</Form.Label>
+                                <div className={styles.orderFormSectionRowInput}>
                                     <Form.Control
                                         type="text"
                                         name="memo"
-                                        className={styles.input}
+                                        className={styles.orderFormSectionRowInput}
                                         value={this.state.memo}
                                         onChange={event => this.on_change(event)} />
                                 </div>
@@ -370,39 +372,43 @@ class OrderForm extends React.Component {
 
                     </div>
 
-                    <div className={styles.orderSection}>
-                        <div className={styles.label}>
-                            <div className={styles.title}>4. 결제 정보</div>
+                    <div className={styles.orderFormSection}>
+                        <div className={styles.orderFormSectionLabel}>
+                            4. 결제 정보
                         </div>
 
-                        <div className={styles.box}>
-                            <Form.Group className={styles.row}>
-                                <Form.Label className={styles.name}>결제 금액</Form.Label>
-                                <Form.Label className={styles.input}>{this.state.price} 원</Form.Label>
+                        <div className={styles.orderFormSectionBox}>
+                            <Form.Group className={styles.orderFormSectionRow}>
+                                <Form.Label className={styles.orderFormSectionRowName}>
+                                    결제 금액
+                                </Form.Label>
+                                <Form.Label className={styles.orderFormSectionRowInput}>
+                                    {this.state.price} 원
+                                </Form.Label>
                             </Form.Group>
-                            <Form.Group className={styles.row}>
-                                <Form.Label className={styles.name}>결제 방식</Form.Label>
+
+                            <Form.Group className={styles.orderFormSectionRow}>
+                                <Form.Label className={styles.orderFormSectionRowName}>결제 방식</Form.Label>
                                 <Form.Check
                                     inline
                                     name="credit_card"
                                     type="radio"
                                     label="카드 결제 / 카카오페이"
                                     checked={this.state.credit_card}
-                                    className={styles.input}
+                                    className={styles.orderFormSectionRowInput}
                                     onChange={event => this.on_toggle(event)} />
                             </Form.Group>
                         </div>
                     </div>
 
-                    <div className={styles.orderSection}>
+                    <div className={styles.orderFormSection}>
 
-                        <div className={styles.label}>
-                            <div className={styles.title}>5. 약관 동의</div>
+                        <div className={styles.orderFormSectionLabel}>
+                            5. 약관 동의
                         </div>
 
-
-                        <div className={styles.box}>
-                            <Form.Group className={styles.row}>
+                        <div className={styles.orderFormSectionBox}>
+                            <Form.Group className={styles.orderFormSectionFlexRow}>
                                 <Form.Check
                                     name="agree_all"
                                     checked={this.state.agree_all}
@@ -410,14 +416,15 @@ class OrderForm extends React.Component {
                                     label="전체 동의" />
                             </Form.Group>
 
-                            <Form.Group className={styles.row}>
-                                <div className={styles.flexRow}>
-                                    <Form.Check
-                                        name="agree_first_policy"
-                                        checked={this.state.agree_first_policy}
-                                        onChange={event => this.on_toggle(event)}
-                                        label="개인 정보 수집 및 이용 동의" required />
-                                    <div onClick={() => this.setState(prevState => ({show_first_policy: !prevState.show_first_policy}))} >[내용 보기]</div>
+                            <Form.Group className={styles.orderFormSectionFlexRow}>
+                                <Form.Check
+                                    name="agree_first_policy"
+                                    checked={this.state.agree_first_policy}
+                                    onChange={event => this.on_toggle(event)}
+                                    label="개인 정보 수집 및 이용 동의" required />
+                                <div
+                                    onClick={() => this.setState(prevState => ({show_first_policy: !prevState.show_first_policy}))}>
+                                    [내용 보기]
                                 </div>
                             </Form.Group>
                             {
@@ -425,14 +432,15 @@ class OrderForm extends React.Component {
                                 <Form.Control as="textarea" rows="5" value={policies.personal_information_collection} readOnly />
                             }
 
-                            <Form.Group className={styles.row}>
-                                <div className={styles.flexRow}>
-                                    <Form.Check
-                                        name="agree_second_policy"
-                                        checked={this.state.agree_second_policy}
-                                        onChange={event => this.on_toggle(event)}
-                                        label="개인 정보 제 3자 제공 동의" required />
-                                    <div onClick={() => this.setState(prevState => ({show_second_policy: !prevState.show_second_policy}))}>[내용 보기]</div>
+                            <Form.Group className={styles.orderFormSectionFlexRow}>
+                                <Form.Check
+                                    name="agree_second_policy"
+                                    checked={this.state.agree_second_policy}
+                                    onChange={event => this.on_toggle(event)}
+                                    label="개인 정보 제 3자 제공 동의" required />
+                                <div
+                                    onClick={() => this.setState(prevState => ({show_second_policy: !prevState.show_second_policy}))}>
+                                    [내용 보기]
                                 </div>
                             </Form.Group>
                             {
@@ -443,9 +451,11 @@ class OrderForm extends React.Component {
 
                     </div>
 
-                    <Button className={styles.basicButtonGreen} type="submit">
-                        배송 신청
-                    </Button>
+                    <div className={styles.orderFormSubmit}>
+                        <Button className={styles.CTAGreen} type="submit">
+                            배송 신청
+                        </Button>
+                    </div>
                 </Form>
 
                 {

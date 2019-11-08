@@ -18,9 +18,7 @@ class PostNotice extends React.Component {
     render() {
         return (
             <div className={styles.contentContainer}>
-                <div className={styles.label}>
-                    <div className={styles.title}>공지사항</div>
-                </div>
+                <div className={styles.pageTitle}>공지사항</div>
                 <div>
                     <NoticeListView notice_list={this.state.notice_list}/>
                 </div>

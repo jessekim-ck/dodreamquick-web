@@ -18,48 +18,105 @@
     padding: 12px 10%;
 }
 
-.orderSection {
+/* Page: Order Page */
+
+.orderCautionContainer {
+    border-bottom: 1px solid #f5f5f5;
+    padding: 24px 0;
+}
+
+.orderCautionTitle {
+    text-align: center;
+    color: #1A8F74;
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.orderCautionContent {
+    width: 60%;
+    margin: 36px auto;
+}
+
+.orderCautionItem {
+    flex-direction: row;
+    display: flex;
+    margin-top: 24px;
+}
+
+.orderCautionItemTitle {
+    width: 50%;
+    font-size: 18px;
+    font-weight: bold;
+}
+
+.orderCautionItemText {
+    width: 50%;
+    font-size: 18px;
+}
+
+.orderFormContainer {
+    padding: 24px 12px;
+}
+
+.orderFormTitle {
+    font-size: 20px;
+    color: #1A8F74;
+    font-weight: bold;
+    text-align: center;
+    margin-bottom: 24px;
+}
+
+.orderFormSection {
     margin-bottom: 18px;
 }
 
-.title {
-    margin: 8px 0px;
-    font-size: 24px;
+.orderFormSectionLabel {
+    font-size: 18px;
     font-weight: bold;
-    color: green;
+    color: #1A8F74;
+    margin-bottom: 12px;
 }
 
-.orderSection .box {
-    border: solid 1px black;
+.orderFormSectionBox {
+    border: solid 1px #d3d3d3;
     padding: 12px 96px 12px 18px;
+    width: 100%;
 }
 
-.orderSection .row {
+.orderFormSectionRow {
     flex-direction: row;
     display: flex;
+    width: 100%;
 }
 
-.orderSection .row .name {
+.orderFormSectionRowName {
     width: 160px;
     padding-right: 18px;
     font-size: 16px;
     font-weight: bold;
 }
 
-.input {
+.orderFormSectionRowInput {
     width: 100%;
     font-size: 16px;
     height: 80%;
     align-items: center;
 }
 
-.orderSection .flexRow {
+.orderFormSectionFlexRow {
     width: 100%;
     flex-direction: row;
     display: flex;
     align-items: center;
     justify-content: space-between;
 }
+
+.orderFormSubmit {
+    margin: 48px 0;
+    text-align: center;
+}
+
+/* Component: Manage Location Modal */
 
 .manageLocationModal {
     margin: 0px 12px;
@@ -73,7 +130,7 @@
 .locationItem {
     margin: 8px 0px;
     padding: 12px 24px;
-    border: 1px solid green;
+    border: 1px solid #1A8F74;
     font-size: 18px;
 }
 
@@ -104,10 +161,12 @@
     margin-top: 8px;
 }
 
+/* Component: Buttons */
+
 .basicButtonGreen {
     padding: 4px 24px;
     margin: 0px 24px 0px 0px;
-    background-color: green;
+    background-color: #1A8F74;
     color: white;
     border: 0px;
     font-size: 18px;
@@ -117,18 +176,17 @@
     padding: 4px 24px;
     margin: 0px 24px 0px 0px;
     background-color: white;
-    color: green;
-    border: 1px solid green;
+    color: #1A8F74;
+    border: 1px solid #1A8F74;
     font-size: 18px;
 }
-
 
 .addLocationButton {
     width: 100%;
     margin-top: 8px;
     border: 1px solid black;
     background-color: white;
-    color: green;
+    color: #1A8F74;
     font-weight: bold;
     font-size: 18px;
 }
@@ -137,29 +195,63 @@
     width: 100%;
     margin-top: 8px;
     border: 1px solid black;
-    background-color: green;
+    background-color: #1A8F74;
     color: white;
     font-weight: bold;
     font-size: 18px;
 }
 
-.basicButtonGreen:hover, basicButtonGreen:active, .saveLocationButton:hover, .saveLocationButton:active {
-    background-color: green;
+.basicButton#1A8F74:hover, basicButton#1A8F74:active, .saveLocationButton:hover, .saveLocationButton:active {
+    background-color: #1A8F74;
     opacity: 0.9;
 }
 
 .basicButtonWhite:hover, .addLocationButton:hover, .basicButtonWhite:active, .addLocationButton:active {
     background-color: #f5f5f5;
-    border: 1px solid green;
-    color: green;
+    border: 1px solid #1A8F74;
+    color: #1A8F74;
 
     opacity: 0.9;
 }
+
+.CTAGreen {
+    border: 0px;
+    border-radius: 24px;
+    width: 168px;
+    height: 48px;
+    margin: 0px 28px;
+    font-size: 18px;
+    background-color: #1A8F74;
+    color: white;
+}
+
+.CTAWhite {
+    border: 0px;
+    border-radius: 24px;
+    width: 168px;
+    height: 48px;
+    margin: 0px 28px;
+    font-size: 18px;
+    background-color: white;
+}
+
+.CTAYellow {
+    border: 0px;
+    border-radius: 24px;
+    width: 168px;
+    height: 48px;
+    margin: 0px 28px;
+    font-size: 18px;
+    background-color: yellow;
+}
+
+/* Page: News Page */
 
 .newsContainer {
     display: grid;
     grid-template-columns: repeat(auto-fill, 33%);
     grid-gap: 0;
+    margin: 0 -12px;
 }
 
 .newsCard {
@@ -206,15 +298,30 @@
     overflow: hidden;
 }
 
-.label {
+/* Component: Search Cost Form */
+
+.searchCostForm {
+    margin-bottom: 48px;
+}
+
+.searchCostFormLabel {
     margin-top: 24px;
     margin-bottom: 18px;
 }
 
-.description {
+.searchCostFormLabelTitle {
+    color: #1A8F74;
+    font-size: 18px;
+    font-weight: bold;
+    margin-bottom: 12px;
+}
+
+.searchCostFormLabelDescription {
     color: grey;
     font-size: 16px;
 }
+
+/*  */
 
 .postList {
     border-top: 2px solid black;
@@ -250,6 +357,133 @@
     justify-content: space-between;
     margin-bottom: 24px;
 }
+
+/* Page: Landing Page */
+
+.landingDoor {
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    width: 100%;
+    height: 480px;
+}
+
+.landingDoorText {
+    height: 50%;
+
+    display: flex;
+    align-items: flex-end; /* Vertical center alignment */
+    justify-content: center; /* Horizontal center alignment */
+    text-align: center;
+
+    font-size: 36px;
+    color: white;
+}
+
+.landingDoorCTA {
+    height: 40%;
+
+    display: flex;
+    align-items: center; /* Vertical center alignment */
+    justify-content: center; /* Horizontal center alignment */
+}
+
+.landingIntro {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+
+    width: 80%;
+    padding: 120px 0;
+    margin: 0 auto;
+}
+
+.landingIntroText {
+    width: 50%;
+    padding-right: 24px;
+}
+
+.landingIntroTextTitle {
+    font-size: 24px;
+    margin-bottom: 12px;
+    font-weight: bold;
+}
+
+.landingIntroTextText {
+    font-size: 20px;
+    line-height: 1.8;
+}
+
+.landingIntroImage {
+    width: 45%;
+    height: auto;
+
+    margin: auto 0;
+}
+
+.landingAppeal {
+    background-color: #282c34;
+    width: 100%;
+
+    color: white;
+    padding: 24px 10%;
+}
+
+.landingAppealTitle {
+    font-size: 24px;
+    text-align: center;
+    margin: 18px 0;
+}
+
+.landingAppealItemContainer {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.landingAppealItem {
+    width: 20%;
+    text-align: center;
+    margin: 18px 0;
+}
+
+.landingAppealItemImage {
+    width: 50%;
+    margin-bottom: 12px;
+}
+
+.landingAppealItemTitle {
+    color: #1A8F74;
+    font-size: 20px;
+    margin: 12px 0;
+}
+
+.landingAppealItemText {
+    color: white;
+    font-size: 16px;
+}
+
+/* Component: Footer */
+
+.footer {
+    background-color: white;
+    text-align: center;
+    padding: 48px 0;
+    border-top: 1px solid #f5f5f5;
+}
+
+.footerTitle {
+    font-size: 18px;
+    margin-bottom: 8px;
+}
+
+.footerText {
+    font-size: 14px;
+    color: grey;
+    margin-bottom: 4px;
+}
+
+/* Page: Intro Page */
 
 .carousel {
     background-color: grey;
@@ -304,143 +538,13 @@
     font-size: 16px;
 }
 
-.landingDoor {
-    background-size: cover;
-    background-repeat: no-repeat;
-    background-position: center;
-    width: 100%;
-    height: 480px;
-}
-
-.landingDoorText {
-    height: 50%;
-
-    display: flex;
-    align-items: flex-end; /* Vertical center alignment */
-    justify-content: center; /* Horizontal center alignment */
-    text-align: center;
-
-    font-size: 36px;
-    color: white;
-}
-
-.landingDoorCTA {
-    height: 40%;
-
-    display: flex;
-    align-items: center; /* Vertical center alignment */
-    justify-content: center; /* Horizontal center alignment */
-}
-
-.buttonCTA {
-    border: 0px;
-    border-radius: 24px;
-    width: 168px;
-    height: 48px;
-    margin: 0px 28px;
-    font-size: 18px;
-    background-color: white;
-}
-
-.landingIntro {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-
-    width: 80%;
-    padding: 120px 0;
-    margin: 0 auto;
-}
-
-.landingIntroText {
-    width: 50%;
-    padding-right: 24px;
-}
-
-.landingIntroTextTitle {
-    font-size: 28px;
-    margin-bottom: 12px;
-    font-weight: bold;
-}
-
-.landingIntroTextText {
-    font-size: 20px;
-    line-height: 1.8;
-}
-
-.landingIntroImage {
-    width: 45%;
-    height: auto;
-
-    margin: auto 0;
-}
-
-.landingAppeal {
-    background-color: #282c34;
-    width: 100%;
-
-    color: white;
-    padding: 24px 10%;
-}
-
-.landingAppealTitle {
-    font-size: 28px;
-    text-align: center;
-    margin: 18px 0;
-}
-
-.landingAppealItemContainer {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-}
-
-.landingAppealItem {
-    width: 20%;
-    text-align: center;
-    margin: 18px 0;
-}
-
-.landingAppealItemImage {
-    width: 70%;
-}
-
-.landingAppealItemTitle {
-    color: green;
-    font-size: 24px;
-    margin: 12px 0;
-}
-
-.landingAppealItemText {
-    color: white;
-    font-size: 18px;
-}
-
-.footer {
-    background-color: white;
-    text-align: center;
-    padding: 48px 0;
-    border-top: 1px solid #f5f5f5;
-}
-
-.footerTitle {
-    font-size: 18px;
-    margin-bottom: 8px;
-}
-
-.footerText {
-    font-size: 14px;
-    color: grey;
-    margin-bottom: 4px;
-}
-
 .introTableContainer {
     margin-top: 96px;
 }
 
 .introTableTitle {
     font-size: 28px;
-    color: green;
+    color: #1A8F74;
     width: 70%;
     margin: 0px auto 24px;
 }
@@ -470,7 +574,15 @@
 }
 
 span {
-    color: green;
+    color: #1A8F74;
+}
+
+/* ETC */
+
+.pageTitle {
+    font-size: 24px;
+    margin-bottom: 24px;
+    color: #1A8F74;
 }
 
 @media (max-width: 767px) {
@@ -483,21 +595,105 @@ span {
         padding: 8px 12px;
     }
 
-    .orderSection .row {
+    /* Page: Order Page */
+
+    .orderCautionContainer {
+        border-bottom: 1px solid #f5f5f5;
+        padding: 24px 0;
+    }
+
+    .orderCautionTitle {
+        text-align: center;
+        color: #1A8F74;
+        font-size: 20px;
+        font-weight: bold;
+    }
+
+    .orderCautionContent {
+        width: 100%;
+        margin: 36px auto;
+    }
+
+    .orderCautionItem {
         flex-direction: column;
+        display: flex;
+        margin-top: 12px;
+        margin-bottom: 18px;
     }
 
-    .orderSection .row .name {
-
+    .orderCautionItemTitle {
+        width: 100%;
+        margin-bottom: 12px;
+        font-size: 16px;
+        font-weight: bold;
     }
 
-    .orderSection .box {
+    .orderCautionItemText {
+        width: 100%;
+        font-size: 14px;
+    }
+
+    .orderFormContainer {
+        padding: 24px 0px;
+    }
+
+    .orderFormTitle {
+        font-size: 20px;
+        color: #1A8F74;
+        font-weight: bold;
+        text-align: center;
+        margin-bottom: 24px;
+    }
+
+    .orderFormSection {
+        margin-bottom: 18px;
+    }
+
+    .orderFormSectionLabel {
+        font-size: 18px;
+        font-weight: bold;
+        color: #1A8F74;
+        margin-bottom: 12px;
+    }
+
+    .orderFormSectionBox {
         padding: 12px;
     }
+
+    .orderFormSectionRow {
+        flex-direction: column;
+        display: flex;
+    }
+
+    .orderFormSectionRowName {
+        width: 160px;
+        padding-right: 18px;
+        font-size: 14px;
+        font-weight: bold;
+    }
+
+    .orderFormSectionRowInput {
+        width: 100%;
+        font-size: 14px;
+        height: 80%;
+        align-items: center;
+    }
+
+    .orderFormSectionFlexRow {
+        width: 100%;
+        flex-direction: row;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        font-size: 14px;
+    }
+
+    /**/
 
     .newsContainer {
         display: grid;
         grid-template-columns: repeat(1, 100%);
+        margin: 0;
     }
 
     .newsCard {
@@ -554,6 +750,8 @@ span {
 
     .landingDoorCTA {
         flex-direction: column;
+        justify-content: space-between;
+        padding: 36px;
     }
 
     .buttonCTA {
@@ -614,7 +812,7 @@ span {
     }
 
     .landingAppealItemTitle {
-        color: green;
+        color: #1A8F74;
         font-size: 18px;
         margin: 12px 0;
     }
