@@ -1,10 +1,14 @@
+@import url(http://fonts.googleapis.com/earlyaccess/nanumgothic.css);
+
 .appContainer {
     min-height: 70vh;
-    padding-bottom: 48px;
+    word-break: keep-all;
+    font-family: 'Nanum Gothic', sans-serif;
 }
 
 .contentContainer {
-    margin: 72px 10%;
+    margin: 72px 10% 0px;
+    padding-bottom: 24px;
 }
 
 .navBarContainer {
@@ -154,17 +158,18 @@
 
 .newsContainer {
     display: grid;
-    grid-template-columns: repeat(auto-fill, 330px);
-    grid-gap: 24px;
+    grid-template-columns: repeat(auto-fill, 33%);
+    grid-gap: 0;
 }
 
 .newsCard {
     border: 1px solid lightgrey;
-    height: 300px;
+    height: 360px;
+    margin: 24px 12px;
 }
 
 .newsCardHeader {
-    height: 50%;
+    height: 55%;
     overflow: hidden;
 }
 
@@ -175,8 +180,8 @@
 }
 
 .newsCardBody {
-    height: 50%;
-    padding: 12px;
+    height: 45%;
+    padding: 18px;
 }
 
 .newsCard a:hover {
@@ -251,7 +256,7 @@
 }
 
 .carouselItem {
-    width: 80%;
+    width: 60%;
     height: 400px;
     margin: 0px auto;
     flex-direction: row;
@@ -315,7 +320,7 @@
     justify-content: center; /* Horizontal center alignment */
     text-align: center;
 
-    font-size: 40px;
+    font-size: 36px;
     color: white;
 }
 
@@ -350,12 +355,12 @@
 .landingIntroText {
     width: 50%;
     padding-right: 24px;
-    word-break: keep-all;
 }
 
 .landingIntroTextTitle {
     font-size: 28px;
     margin-bottom: 12px;
+    font-weight: bold;
 }
 
 .landingIntroTextText {
@@ -396,6 +401,10 @@
     margin: 18px 0;
 }
 
+.landingAppealItemImage {
+    width: 70%;
+}
+
 .landingAppealItemTitle {
     color: green;
     font-size: 24px;
@@ -404,7 +413,7 @@
 
 .landingAppealItemText {
     color: white;
-    font-size: 20px;
+    font-size: 18px;
 }
 
 .footer {
@@ -431,6 +440,7 @@
 
 .introTableTitle {
     font-size: 28px;
+    color: green;
     width: 70%;
     margin: 0px auto 24px;
 }
@@ -457,6 +467,10 @@
 .introTableRowText {
     width: 70%;
     font-size: 18px;
+}
+
+span {
+    color: green;
 }
 
 @media (max-width: 767px) {
@@ -486,12 +500,56 @@
         grid-template-columns: repeat(1, 100%);
     }
 
+    .newsCard {
+        border: 1px solid lightgrey;
+        height: 300px;
+        margin: 12px 0px;
+    }
+
+    .newsCardHeader {
+        height: 55%;
+        overflow: hidden;
+    }
+
+    .newsCardThumbnail {
+        display: block;
+        width: 100%;
+        overflow: hidden;
+    }
+
+    .newsCardBody {
+        height: 45%;
+        padding: 18px;
+    }
+
+    .newsCard a:hover {
+        text-decoration: none;
+    }
+
+    .newsCardTitle {
+        font-size: 16px;
+        color: black;
+        height: 30%;
+
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        overflow: hidden;
+    }
+
+    .newsCardText {
+        font-size: 12px;
+        color: grey;
+        height: 70%;
+
+        overflow: hidden;
+    }
+
     .landingDoor {
         height: 480px;
     }
 
     .landingDoorText {
-        font-size: 24px;
+        font-size: 22px;
     }
 
     .landingDoorCTA {
@@ -508,6 +566,8 @@
     .landingIntro {
         flex-direction: column;
         width: 90%;
+
+        padding: 72px 0;
     }
 
     .landingIntroText {
@@ -516,18 +576,19 @@
     }
 
     .landingIntroTextTitle {
-        font-size: 24px;
+        font-size: 18px;
         margin-bottom: 12px;
     }
 
     .landingIntroTextText {
-        font-size: 18px;
+        font-size: 16px;
         line-height: 1.8;
     }
 
     .landingIntroImage {
         width: 100%;
         height: auto;
+        margin-top: 18px;
     }
 
     .landingAppeal {
@@ -536,7 +597,7 @@
     }
 
     .landingAppealTitle {
-        font-size: 24px;
+        font-size: 20px;
     }
 
     .landingAppealItemContainer {
@@ -546,6 +607,21 @@
     .landingAppealItem {
         width: 100%;
         margin: 18px 0;
+    }
+
+    .landingAppealItemImage {
+        width: 50%;
+    }
+
+    .landingAppealItemTitle {
+        color: green;
+        font-size: 18px;
+        margin: 12px 0;
+    }
+
+    .landingAppealItemText {
+        color: white;
+        font-size: 16px;
     }
 
     .footerTitle {
@@ -562,9 +638,9 @@
     .carouselItem {
         width: 80%;
         height: 400px;
-        margin: 0px auto;
         flex-direction: column;
         display: flex;
+        justify-content: center;
     }
 
     .carouselLeft {
@@ -572,7 +648,7 @@
         height: 40%;
         display: flex;
         justify-content: center;
-        align-items: center;
+        align-items: flex-end;
         align-self: center;
     }
 
@@ -584,17 +660,16 @@
     .carouselRight {
         width: 100%;
         height: 50%;
-        display: flex;
-        flex-direction: column;
-        align-self: center;
-        justify-content: center;
         color: white;
+        flex-direction: column;
         text-align: center;
+        padding: 24px 0;
     }
 
     .carouselTitle {
-        font-size: 22px;
-        margin-bottom: 24px;
+        font-size: 18px;
+        margin-bottom: 12px;
+        font-weight: bold;
     }
 
     .carouselText {
@@ -608,7 +683,6 @@
 
     .carouselTextText {
         font-size: 14px;
-        word-break: keep-all;
     }
 
     .introTableContainer {
@@ -616,7 +690,7 @@
     }
 
     .introTableTitle {
-        font-size: 24px;
+        font-size: 20px;
         text-align: center;
     }
 
@@ -635,13 +709,13 @@
 
     .introTableRowTitle {
         width: 100%;
-        font-size: 20px;
+        font-size: 18px;
         margin-bottom: 12px;
     }
 
     .introTableRowText {
         width: 100%;
-        font-size: 18px;
+        font-size: 16px;
     }
-}
 
+}

@@ -33,13 +33,17 @@ const Index = props => {
             <div className={styles.landingIntro}>
                 <div className={styles.landingIntroText}>
                     <div className={styles.landingIntroTextTitle}>
-                        두드림퀵은...
+                        두드림퀵은
                     </div>
                     <div className={styles.landingIntroTextText}>
                         <p>
-                            만 65세 이상의 어르신이 지하철을 이용하여 저렴하고 빠르게 물품을 배송해드리는 지하철 퀵서비스입니다.
+                            <span>만 65세 이상의 어르신</span>이 지하철을 이용하여 저렴하고 빠르게 물품을 배송해드리는 지하철 퀵서비스입니다.
                         </p>
-                        <p>두드림퀵은 지역별 노인일자리 전담기관인 시니어클럽과 연계하고 있으며, 배송지와 가까운 곳에 있는 기사님을 배정하여 더욱 빠른 서비스를 제공합니다. 두드림퀵은 기사님들의 소득 향상 및 업무 환경 개선을 위해 최선을 다하고 있습니다.</p>
+                        <p>
+                            두드림퀵은 지역별 노인일자리 전담기관인 시니어클럽과 연계하고 있으며,
+                            <span>배송지와 가까운 곳에 있는 기사님을 배정</span>하여 더욱 빠른 서비스를 제공합니다.
+                            두드림퀵은 기사님들의 소득 향상 및 업무 환경 개선을 위해 최선을 다하고 있습니다.
+                        </p>
                     </div>
                 </div>
                 <div className={styles.landingIntroImage}>
@@ -51,7 +55,7 @@ const Index = props => {
                 <div className={styles.landingAppealTitle}>특별한 서비스 두드림퀵</div>
                 <div className={styles.landingAppealItemContainer}>
                     <div className={styles.landingAppealItem}>
-                        <img src={landing_coin} width="70%" alt=""/>
+                        <img className={styles.landingAppealItemImage} src={landing_coin} alt=""/>
                         <div className={styles.landingAppealItemTitle}>
                             저렴한 요금
                         </div>
@@ -63,7 +67,7 @@ const Index = props => {
                     </div>
 
                     <div className={styles.landingAppealItem}>
-                        <img src={landing_clock} width="70%" alt=""/>
+                        <img className={styles.landingAppealItemImage} src={landing_clock} alt=""/>
                         <div className={styles.landingAppealItemTitle}>
                             신속 정확한 배송
                         </div>
@@ -76,7 +80,7 @@ const Index = props => {
                     </div>
 
                     <div className={styles.landingAppealItem}>
-                        <img src={landing_pc} width="70%" alt=""/>
+                        <img className={styles.landingAppealItemImage} src={landing_pc} alt=""/>
                         <div className={styles.landingAppealItemTitle}>
                             편리한 주문접수
                         </div>
@@ -88,7 +92,7 @@ const Index = props => {
                     </div>
 
                     <div className={styles.landingAppealItem}>
-                        <img src={landing_phone} width="70%" alt=""/>
+                        <img className={styles.landingAppealItemImage} src={landing_phone} alt=""/>
                         <div className={styles.landingAppealItemTitle}>
                             배송 알림 서비스
                         </div>
