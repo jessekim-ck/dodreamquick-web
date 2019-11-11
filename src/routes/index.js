@@ -1,5 +1,6 @@
 import React from 'react'
 import styles from "../app.module.css"
+import {Helmet} from "react-helmet/es/Helmet";
 
 // redux
 import {connect} from 'react-redux'
@@ -9,6 +10,7 @@ import landing_coin from "../assets/landing_coin.png"
 import landing_clock from "../assets/landing_clock.png"
 import landing_pc from "../assets/landing_pc.png"
 import landing_phone from "../assets/landing_phone.png"
+import plus_friend_button from "../assets/plus_friend_button.png"
 
 
 const Index = props => {
@@ -17,6 +19,11 @@ const Index = props => {
 
     return (
         <div>
+            <div>
+                <Helmet>
+                    <title>두드림퀵: 저렴하고 신속한 지하철 퀵서비스</title>
+                </Helmet>
+            </div>
             <div
                 className={styles.landingDoor}
                 style={{backgroundImage: `url(${landing_door}`}}>
@@ -25,8 +32,17 @@ const Index = props => {
                     고객님의 집 앞까지 배송합니다
                 </div>
                 <div className={styles.landingDoorCTA}>
-                    <button className={styles.CTAWhite}>배송 신청하기</button>
-                    <button className={styles.CTAYellow}>문의하기</button>
+                    <button
+                        onClick={() => props.history.push("/order")}
+                        className={styles.CTAWhite}>
+                        배송 신청하기
+                    </button>
+                    <a href="https://pf.kakao.com/_jSPaj" target="_blank" rel="noopener noreferrer">
+                        <button
+                            style={{backgroundImage: `url(${plus_friend_button})`}} className={styles.CTAYellow}>
+                            문의하기
+                        </button>
+                    </a>
                 </div>
             </div>
 
@@ -59,9 +75,7 @@ const Index = props => {
                             저렴한 요금
                         </div>
                         <div className={styles.landingAppealItemText}>
-                            지하철을 이용해 배송하므로<br/>
-                            오토바이 퀵보다<br/>
-                            최대 50% 저렴합니다.
+                            지하철을 이용해 배송하므로 오토바이 퀵보다 최대 50% 저렴합니다.
                         </div>
                     </div>
 
@@ -71,10 +85,7 @@ const Index = props => {
                             신속 정확한 배송
                         </div>
                         <div className={styles.landingAppealItemText}>
-                            고객님과 가장 가까운<br/>
-                            지역에 위치한 기사님을<br/>
-                            매칭하여 신속한 배송<br/>
-                            서비스를 제공합니다.
+                            고객님과 가장 가까운 지역에 위치한 기사님을 매칭하여 신속한 배송 서비스를 제공합니다.
                         </div>
                     </div>
 
@@ -84,9 +95,7 @@ const Index = props => {
                             편리한 주문접수
                         </div>
                         <div className={styles.landingAppealItemText}>
-                            두드림퀵 홈페이지를 통해<br/>
-                            편리하게 주문접수를<br/>
-                            하실 수 있습니다.
+                            두드림퀵 홈페이지를 통해 편리하게 주문접수를 하실 수 있습니다.
                         </div>
                     </div>
 
@@ -96,8 +105,7 @@ const Index = props => {
                             배송 알림 서비스
                         </div>
                         <div className={styles.landingAppealItemText}>
-                            카카오톡 알림톡을 통해<br/>
-                            배송 상황을 알려드립니다.
+                            카카오톡 알림톡을 통해 배송 상황을 알려드립니다.
                         </div>
                     </div>
                 </div>

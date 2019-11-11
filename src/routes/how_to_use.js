@@ -5,12 +5,18 @@ import styles from '../app.module.css'
 import intro_man from "../assets/intro_man.png"
 import intro_senior from "../assets/intro_senior.png"
 import intro_together from "../assets/intro_together.png"
+import {Helmet} from "react-helmet/es/Helmet";
 
 
 const HowToUse = props => {
 
     return (
         <div>
+            <div>
+                <Helmet>
+                    <title>두드림퀵: 이용 방법</title>
+                </Helmet>
+            </div>
             <Carousel className={styles.carousel} indicators={false} interval={0}>
                 <Carousel.Item>
                     <div className={styles.carouselItem}>

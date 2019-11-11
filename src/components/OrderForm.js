@@ -1,6 +1,5 @@
 import React from 'react'
 import Form from "react-bootstrap/Form";
-import Button from "react-bootstrap/Button";
 import policies from "../policies"
 import PostCodeForm from "./PostCodeForm";
 import styles from "../app.module.css"
@@ -243,11 +242,11 @@ class OrderForm extends React.Component {
 
                             {
                                 this.props.username &&
-                                <Button
+                                <button
                                     className={styles.basicButtonGreen}
                                     onClick={() => this.open_modal("sender")} >
                                     주소지 목록
-                                </Button>
+                                </button>
                             }
                         </div>
 
@@ -322,11 +321,11 @@ class OrderForm extends React.Component {
 
                             {
                                 this.props.username &&
-                                <Button
+                                <button
                                     className={styles.basicButtonGreen}
                                     onClick={() => this.open_modal("receiver")} >
                                     주소지 목록
-                                </Button>
+                                </button>
                             }
 
                         </div>
@@ -429,7 +428,7 @@ class OrderForm extends React.Component {
                             </Form.Group>
                             {
                                 this.state.show_first_policy &&
-                                <Form.Control as="textarea" rows="5" value={policies.personal_information_collection} readOnly />
+                                <Form.Control style={{fontSize: 12, margin: 12}} as="textarea" rows="5" value={policies.personal_information_collection} readOnly />
                             }
 
                             <Form.Group className={styles.orderFormSectionFlexRow}>
@@ -445,16 +444,16 @@ class OrderForm extends React.Component {
                             </Form.Group>
                             {
                                 this.state.show_second_policy &&
-                                <Form.Control as="textarea" rows="5" value={policies.personal_information_offer} readOnly />
+                                <Form.Control style={{fontSize: 12, margin: 12}} as="textarea" rows="5" value={policies.personal_information_offer} readOnly />
                             }
                         </div>
 
                     </div>
 
                     <div className={styles.orderFormSubmit}>
-                        <Button className={styles.CTAGreen} type="submit">
+                        <button className={styles.CTAGreen} type="submit">
                             배송 신청
-                        </Button>
+                        </button>
                     </div>
                 </Form>
 

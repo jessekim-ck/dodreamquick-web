@@ -18,6 +18,10 @@ const Footer = props => {
                 <br/>
                 <div>고객센터 상담시간 : 평일 09:00~18:00 (토요일 및 공휴일 휴무)</div>
             </div>
+            <div className={styles.footerPolicy}>
+                <a href="/policy/use" className={styles.footerPolicyLink}>이용 약관</a>
+                <a href="/policy/personal_information" className={styles.footerPolicyLink}>개인정보 처리 방침</a>
+            </div>
         </div>
     )
 }

@@ -2,6 +2,7 @@ import React from 'react'
 import {addOrder, makeOrderPaid, validateIMPPayment} from "../apis/api";
 import OrderForm from "../components/OrderForm";
 import styles from "../app.module.css"
+import {Helmet} from "react-helmet/es/Helmet";
 
 
 class Order extends React.Component {
@@ -54,6 +55,11 @@ class Order extends React.Component {
     render() {
         return (
             <div className={styles.contentContainer}>
+                <div>
+                    <Helmet>
+                        <title>두드림퀵: 배송 신청</title>
+                    </Helmet>
+                </div>
                 <div className={styles.orderCautionContainer}>
                     <div className={styles.orderCautionTitle}>
                         배송 신청 전 주의사항

@@ -1,4 +1,4 @@
-@import url(http://fonts.googleapis.com/earlyaccess/nanumgothic.css);
+@import url(https://fonts.googleapis.com/earlyaccess/nanumgothic.css);
 
 .appContainer {
     min-height: 70vh;
@@ -44,13 +44,13 @@
 }
 
 .orderCautionItemTitle {
-    width: 50%;
+    width: 30%;
     font-size: 18px;
     font-weight: bold;
 }
 
 .orderCautionItemText {
-    width: 50%;
+    width: 70%;
     font-size: 18px;
 }
 
@@ -79,8 +79,9 @@
 
 .orderFormSectionBox {
     border: solid 1px #d3d3d3;
-    padding: 12px 96px 12px 18px;
+    padding: 18px 96px 18px 24px;
     width: 100%;
+    box-shadow: 0 4px 6px 0 #f5f5f5;
 }
 
 .orderFormSectionRow {
@@ -168,8 +169,10 @@
     margin: 0px 24px 0px 0px;
     background-color: #1A8F74;
     color: white;
-    border: 0px;
+    border: 1px solid #1a8f74;
     font-size: 18px;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px 0 #d3d3d3;
 }
 
 .basicButtonWhite {
@@ -179,38 +182,47 @@
     color: #1A8F74;
     border: 1px solid #1A8F74;
     font-size: 18px;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px 0 #d3d3d3;
 }
 
 .addLocationButton {
     width: 100%;
-    margin-top: 8px;
-    border: 1px solid black;
+    margin-top: 12px;
+    padding: 4px 0;
+    border: 1px solid #1a8f74;
     background-color: white;
     color: #1A8F74;
     font-weight: bold;
     font-size: 18px;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px 0 #d3d3d3;
 }
 
 .saveLocationButton {
     width: 100%;
-    margin-top: 8px;
-    border: 1px solid black;
+    margin-top: 12px;
+    padding: 4px 0;
+    border: 1px solid #1a8f74;
     background-color: #1A8F74;
     color: white;
     font-weight: bold;
     font-size: 18px;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px 0 #d3d3d3;
 }
 
-.basicButton#1A8F74:hover, basicButton#1A8F74:active, .saveLocationButton:hover, .saveLocationButton:active {
+.basicButtonGreen:hover, .basicButtonGreen:focus, .saveLocationButton:hover, .saveLocationButton:focus {
     background-color: #1A8F74;
     opacity: 0.9;
+    outline: none;
 }
 
-.basicButtonWhite:hover, .addLocationButton:hover, .basicButtonWhite:active, .addLocationButton:active {
+.basicButtonWhite:hover, .addLocationButton:hover, .basicButtonWhite:focus, .addLocationButton:focus {
     background-color: #f5f5f5;
     border: 1px solid #1A8F74;
     color: #1A8F74;
-
+    outline: none;
     opacity: 0.9;
 }
 
@@ -223,6 +235,7 @@
     font-size: 18px;
     background-color: #1A8F74;
     color: white;
+    box-shadow: 0 4px 6px 0 #d3d3d3;
 }
 
 .CTAWhite {
@@ -242,7 +255,16 @@
     height: 48px;
     margin: 0px 28px;
     font-size: 18px;
-    background-color: yellow;
+    background-size: cover;
+    padding-right: 24px;
+}
+
+.CTAGreen:focus, .CTAWhite:focus, .CTAYellow:focus {
+    outline: none;
+}
+
+.CTAGreen:hover, .CTAWhite:hover, .CTAYellow:hover {
+    opacity: 0.9;
 }
 
 /* Page: News Page */
@@ -256,12 +278,13 @@
 
 .newsCard {
     border: 1px solid lightgrey;
-    height: 360px;
+    height: 300px;
     margin: 24px 12px;
+    box-shadow: 0 2px 6px 0 #d3d3d3;
 }
 
 .newsCardHeader {
-    height: 55%;
+    height: 50%;
     overflow: hidden;
 }
 
@@ -272,8 +295,8 @@
 }
 
 .newsCardBody {
-    height: 45%;
-    padding: 18px;
+    height: 50%;
+    padding: 22px;
 }
 
 .newsCard a:hover {
@@ -321,7 +344,7 @@
     font-size: 16px;
 }
 
-/*  */
+/* Page: Post List Page */
 
 .postList {
     border-top: 2px solid black;
@@ -330,7 +353,6 @@
 
 .postItem {
     background-color: white;
-
 }
 
 .postItem .header {
@@ -410,7 +432,7 @@
 }
 
 .landingIntroTextText {
-    font-size: 20px;
+    font-size: 18px;
     line-height: 1.8;
 }
 
@@ -422,7 +444,7 @@
 }
 
 .landingAppeal {
-    background-color: #282c34;
+    background-color: #444444;
     width: 100%;
 
     color: white;
@@ -460,7 +482,7 @@
 
 .landingAppealItemText {
     color: white;
-    font-size: 16px;
+    font-size: 14px;
 }
 
 /* Component: Footer */
@@ -483,10 +505,27 @@
     margin-bottom: 4px;
 }
 
+.footerPolicy {
+    flex-direction: row;
+    display: flex;
+    justify-content: center;
+}
+
+.footerPolicyLink {
+    margin: 0px 8px;
+    font-size: 14px;
+    color: black;
+}
+
+.footerPolicyLink:hover {
+    text-decoration: underline;
+    color: black;
+}
+
 /* Page: Intro Page */
 
 .carousel {
-    background-color: grey;
+    background-color: #444444;
 }
 
 .carouselItem {
@@ -517,12 +556,12 @@
     display: flex;
     flex-direction: column;
     align-self: center;
-    justify-content: space-between;
     color: white;
 }
 
 .carouselTitle {
-    font-size: 28px;
+    font-size: 20px;
+    margin-bottom: 24px;
 }
 
 .carouselText {
@@ -530,7 +569,7 @@
 }
 
 .carouselTextTitle {
-    font-size: 20px;
+    font-size: 18px;
     margin-bottom: 8px;
 }
 
@@ -583,12 +622,13 @@ span {
     font-size: 24px;
     margin-bottom: 24px;
     color: #1A8F74;
+    font-weight: bold;
 }
 
 @media (max-width: 767px) {
 
     .contentContainer {
-        margin: 48px 24px;
+        margin: 32px 18px;
     }
 
     .navBarContainer {
@@ -688,7 +728,7 @@ span {
         font-size: 14px;
     }
 
-    /**/
+    /* news */
 
     .newsContainer {
         display: grid;
@@ -739,6 +779,18 @@ span {
 
         overflow: hidden;
     }
+
+    /* Post */
+
+    .postItem .header {
+        font-size: 14px;
+    }
+
+    .postItem .body {
+        font-size: 14px;
+    }
+
+    /* Landing */
 
     .landingDoor {
         height: 480px;
@@ -851,8 +903,8 @@ span {
     }
 
     .carouselImg {
-        width: 50%;
-        height: auto;
+        width: auto;
+        height: 100%;
     }
 
     .carouselRight {
@@ -865,9 +917,7 @@ span {
     }
 
     .carouselTitle {
-        font-size: 18px;
-        margin-bottom: 12px;
-        font-weight: bold;
+        font-size: 16px;
     }
 
     .carouselText {
@@ -875,7 +925,7 @@ span {
     }
 
     .carouselTextTitle {
-        font-size: 18px;
+        font-size: 16px;
         margin-bottom: 8px;
     }
 
@@ -915,5 +965,12 @@ span {
         width: 100%;
         font-size: 16px;
     }
+
+    /* ETC */
+
+    .pageTitle {
+        font-size: 20px;
+    }
+
 
 }

@@ -1,6 +1,5 @@
 import React from 'react'
 import Modal from 'react-bootstrap/Modal'
-import Button from 'react-bootstrap/Button'
 import Form from 'react-bootstrap/Form'
 import {
     addUserLocation,
@@ -33,16 +32,16 @@ const LocationItem = props => {
             <div className={styles.address}>상세주소: {props.location.location_detail}</div>
             <div className={styles.phone}>핸드폰 번호: {props.location.phone}</div>
             <div className={styles.buttons}>
-                <Button
+                <button
                     className={styles.basicButtonGreen}
                     onClick={() => {if (props.on_select_location) {props.on_select_location(props.location)}}}>
                     선택
-                </Button>
-                <Button
+                </button>
+                <button
                     className={styles.basicButtonWhite}
                     onClick={() => props.delete_location(props.location.id)}>
                     삭제
-                </Button>
+                </button>
             </div>
 
         </div>
@@ -66,11 +65,11 @@ class LocationListView extends React.Component {
         return (
             <div>
                 {this.location_items()}
-                <Button
+                <button
                     className={styles.addLocationButton}
                     onClick={this.props.start_add_location} >
                     + 주소지 추가
-                </Button>
+                </button>
             </div>
         )
     }
@@ -134,7 +133,7 @@ class LocationAddForm extends React.Component {
                             name="name"
                             placeholder="보내시는(받는) 분 성함"
                             value={this.state.name}
-                            className={styles.input}
+                            className={styles.orderFormSectionRowInput}
                             onChange={event => this.on_change(event)}
                             required />
                     </Form.Group>
@@ -142,7 +141,7 @@ class LocationAddForm extends React.Component {
                         <Form.Control
                             type="text"
                             placeholder="주소 (클릭하여 검색)"
-                            className={styles.input}
+                            className={styles.orderFormSectionRowInput}
                             value={this.state.location}
                             onClick={this.toggle_postcode}
                             readOnly={true}
@@ -155,7 +154,7 @@ class LocationAddForm extends React.Component {
                             type="text"
                             name="location_detail"
                             placeholder="상세 주소"
-                            className={styles.input}
+                            className={styles.orderFormSectionRowInput}
                             value={this.state.location_detail}
                             onChange={event => this.on_change(event)}
                             required />
@@ -166,28 +165,28 @@ class LocationAddForm extends React.Component {
                             name="phone"
                             placeholder="보내시는(받는) 분 핸드폰 번호"
                             value={this.state.phone}
-                            className={styles.input}
+                            className={styles.orderFormSectionRowInput}
                             onChange={event => this.on_change(event)}
                             required />
                     </Form.Group>
 
-                    <Form.Group className={styles.flexRow}>
+                    <Form.Group className={styles.orderFormSectionFlexRow}>
                         <Form.Check
-                            className={styles.input}
+                            className={styles.orderFormSectionRowInput}
                             onChange={event => this.setState({
                                 default_departure_location: event.target.checked
                             })}
                             label="기본 픽업지로 설정" />
                         <Form.Check
-                            className={styles.input}
+                            className={styles.orderFormSectionRowInput}
                             onChange={event => this.setState({
                                 default_arrival_location: event.target.checked
                             })}
                             label="기본 도착지로 설정" />
                     </Form.Group>
 
-                    <Button className={styles.saveLocationButton} type="submit">저장</Button>
-                    <Button className={styles.addLocationButton} onClick={this.props.stop_add_location}>목록 보기</Button>
+                    <button className={styles.saveLocationButton} type="submit">저장</button>
+                    <button className={styles.addLocationButton} onClick={this.props.stop_add_location}>목록 보기</button>
                 </Form>
             </div>
         )
