@@ -271,9 +271,7 @@
 /* Page: News Page */
 
 .newsContainer {
-    display: -ms-grid;
     display: grid;
-    -ms-grid-columns: 1fr 12px 1fr 12px 1fr;
     grid-template-columns: repeat(auto-fill, 33%);
     margin: 0 -12px;
 }

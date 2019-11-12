@@ -3,8 +3,11 @@ import styles from '../app.module.css'
 
 
 const NewsItem = props => {
+
+    const isIE = /*@cc_on!@*/false || !!document.documentMode;
+
     return (
-        <div className={styles.newsCard}>
+        <div className={styles.newsCard} style={isIE ? {width: 370} : {}}>
             <a href={props.news.href} target="_blank" rel="noopener noreferrer">
                 <div className={styles.newsCardHeader}>
                     <img
