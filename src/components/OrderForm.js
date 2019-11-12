@@ -34,6 +34,9 @@ class OrderForm extends React.Component {
         sender_address_finder: false,
         receiver_address_finder: false,
 
+        notificate_sender: false,
+        notificate_receiver: false,
+
         agree_all: false,
         agree_first_policy: false,
         agree_second_policy: false,
@@ -347,6 +350,30 @@ class OrderForm extends React.Component {
                             </Form.Group>
 
                             <Form.Group className={styles.orderFormSectionRow}>
+                                <Form.Label className={styles.orderFormSectionRowName}>알림톡 수신</Form.Label>
+                                <div className={styles.orderFormSectionRowInput}>
+                                    <Form.Check
+                                        inline
+                                        name="notificate_sender"
+                                        type="checkbox"
+                                        label="보내시는 분"
+                                        checked={this.state.notificate_sender}
+                                        onChange={event => this.on_toggle(event)} />
+                                    <Form.Check
+                                        inline
+                                        name="notificate_receiver"
+                                        type="checkbox"
+                                        label="받으시는 분"
+                                        checked={this.state.notificate_receiver}
+                                        onChange={event => this.on_toggle(event)} />
+                                    <Form.Text className="text-muted">
+                                        택배원 배정 안내, 픽업 완료 안내, 배송 완료 안내를 카카오톡 알림톡으로 보내드립니다.
+                                    </Form.Text>
+                                </div>
+                            </Form.Group>
+
+
+                            <Form.Group className={styles.orderFormSectionRow}>
                                 <Form.Label className={styles.orderFormSectionRowName}>추가 요청사항 (선택)</Form.Label>
                                 <div className={styles.orderFormSectionRowInput}>
                                     <Form.Control
@@ -378,13 +405,15 @@ class OrderForm extends React.Component {
 
                             <Form.Group className={styles.orderFormSectionRow}>
                                 <Form.Label className={styles.orderFormSectionRowName}>결제 방식</Form.Label>
-                                <Form.Check
-                                    inline
-                                    name="credit_card"
-                                    type="radio"
-                                    label="카드 결제 / 카카오페이"
-                                    checked={this.state.credit_card}
-                                    onChange={event => this.on_toggle(event)} />
+                                <div className={styles.orderFormSectionRowInput}>
+                                    <Form.Check
+                                        inline
+                                        name="credit_card"
+                                        type="radio"
+                                        label="카드 결제 / 카카오페이"
+                                        checked={this.state.credit_card}
+                                        onChange={event => this.on_toggle(event)} />
+                                </div>
                             </Form.Group>
                         </div>
                     </div>
