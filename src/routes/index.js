@@ -5,17 +5,13 @@ import {Helmet} from "react-helmet/es/Helmet";
 // redux
 import {connect} from 'react-redux'
 
-import landing_schema from "../assets/landing_schema.png"
 import landing_coin from "../assets/landing_coin.png"
 import landing_clock from "../assets/landing_clock.png"
 import landing_pc from "../assets/landing_pc.png"
 import landing_phone from "../assets/landing_phone.png"
-import plus_friend_button from "../assets/plus_friend_button.png"
 
 
 const Index = props => {
-
-    const landing_door = require("../assets/landing_door.png")
 
     return (
         <div>
@@ -24,9 +20,7 @@ const Index = props => {
                     <title>두드림퀵: 저렴하고 신속한 지하철 퀵서비스</title>
                 </Helmet>
             </div>
-            <div
-                className={styles.landingDoor}
-                style={{backgroundImage: `url(${landing_door}`}}>
+            <div className={styles.landingDoor}>
                 <div className={styles.landingDoorText}>
                     서울 전 지역 6,000원부터!<br/>
                     고객님의 집 앞까지 배송합니다
@@ -38,8 +32,7 @@ const Index = props => {
                         배송 신청하기
                     </button>
                     <a href="https://pf.kakao.com/_jSPaj" target="_blank" rel="noopener noreferrer">
-                        <button
-                            style={{backgroundImage: `url(${plus_friend_button})`}} className={styles.CTAYellow}>
+                        <button className={styles.CTAYellow}>
                             문의하기
                         </button>
                     </a>
@@ -61,9 +54,9 @@ const Index = props => {
                         </p>
                     </div>
                 </div>
-                <div className={styles.landingIntroImage}>
-                    <img src={landing_schema} width="100%" height="" alt=""/>
-                </div>
+                {/*<div className={styles.landingIntroImage}>*/}
+                {/*    <img src={landing_schema} width="100%" height="" alt=""/>*/}
+                {/*</div>*/}
             </div>
 
             <div className={styles.landingAppeal}>

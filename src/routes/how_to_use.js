@@ -8,7 +8,7 @@ import intro_together from "../assets/intro_together.png"
 import {Helmet} from "react-helmet/es/Helmet";
 
 
-const HowToUse = props => {
+const HowToUse = () => {
 
     return (
         <div>
@@ -20,11 +20,12 @@ const HowToUse = props => {
             <Carousel className={styles.carousel} indicators={false} interval={0}>
                 <Carousel.Item>
                     <div className={styles.carouselItem}>
+                        <div className={styles.carouselTitleMobile}>두드림퀵 이용 방법</div>
                         <div className={styles.carouselLeft}>
                             <img className={styles.carouselImg} src={intro_man} alt=""/>
                         </div>
                         <div className={styles.carouselRight}>
-                            <div className={styles.carouselTitle}>두드림퀵 이용 방법</div>
+                            <div className={styles.carouselTitleDesktop}>두드림퀵 이용 방법</div>
                             <div className={styles.carouselText}>
                                 <div className={styles.carouselTextTitle}>1. 배송 신청</div>
                                 <div className={styles.carouselTextText}>
@@ -38,11 +39,12 @@ const HowToUse = props => {
 
                 <Carousel.Item>
                     <div className={styles.carouselItem}>
+                        <div className={styles.carouselTitleMobile}>두드림퀵 이용 방법</div>
                         <div className={styles.carouselLeft}>
                             <img className={styles.carouselImg} src={intro_senior} alt=""/>
                         </div>
                         <div className={styles.carouselRight}>
-                            <div className={styles.carouselTitle}>두드림퀵 이용 방법</div>
+                            <div className={styles.carouselTitleDesktop}>두드림퀵 이용 방법</div>
                             <div className={styles.carouselText}>
                                 <div className={styles.carouselTextTitle}>2. 물품 픽업</div>
                                 <div className={styles.carouselTextText}>
@@ -56,11 +58,12 @@ const HowToUse = props => {
 
                 <Carousel.Item>
                     <div className={styles.carouselItem}>
+                        <div className={styles.carouselTitleMobile}>두드림퀵 이용 방법</div>
                         <div className={styles.carouselLeft}>
                             <img className={styles.carouselImg} src={intro_together} alt=""/>
                         </div>
                         <div className={styles.carouselRight}>
-                            <div className={styles.carouselTitle}>두드림퀵 이용 방법</div>
+                            <div className={styles.carouselTitleDesktop}>두드림퀵 이용 방법</div>
                             <div className={styles.carouselText}>
                                 <div className={styles.carouselTextTitle}>3. 배송 완료</div>
                                 <div className={styles.carouselTextText}>

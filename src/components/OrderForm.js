@@ -187,7 +187,6 @@ class OrderForm extends React.Component {
                                     <Form.Control
                                         type="text"
                                         name="sender_name"
-                                        className={styles.orderFormSection}
                                         value={this.state.sender_name}
                                         onChange={event => this.on_change(event)}
                                         placeholder="예: 홍길동" required />
@@ -200,7 +199,6 @@ class OrderForm extends React.Component {
                                     <Form.Control
                                         type="text"
                                         name="sender_phone"
-                                        className={styles.orderFormSectionRowInput}
                                         value={this.state.sender_phone}
                                         onChange={event => this.on_change(event)}
                                         placeholder="01012345678" required />
@@ -216,7 +214,6 @@ class OrderForm extends React.Component {
                                     <Form.Control
                                         id="sender_address"
                                         type="text"
-                                        className={styles.orderFormSectionRowInput}
                                         placeholder="주소 (클릭하여 검색)"
                                         value={this.state.sender_address}
                                         onChange={event => this.on_change(event)}
@@ -230,7 +227,6 @@ class OrderForm extends React.Component {
                                         id="sender_address_detail"
                                         type="text"
                                         name="sender_address_detail"
-                                        className={styles.orderFormSectionRowInput}
                                         value={this.state.sender_address_detail}
                                         onChange={event => this.on_change(event)}
                                         placeholder="상세 주소 입력" required />
@@ -266,7 +262,6 @@ class OrderForm extends React.Component {
                                     <Form.Control
                                         type="text"
                                         name="receiver_name"
-                                        className={styles.orderFormSectionRowInput}
                                         value={this.state.receiver_name}
                                         onChange={event => this.on_change(event)}
                                         placeholder="예: 홍길동" required />
@@ -279,7 +274,6 @@ class OrderForm extends React.Component {
                                     <Form.Control
                                         type="text"
                                         name="receiver_phone"
-                                        className={styles.orderFormSectionRowInput}
                                         value={this.state.receiver_phone}
                                         onChange={event => this.on_change(event)}
                                         placeholder="01012345678" required />
@@ -295,7 +289,6 @@ class OrderForm extends React.Component {
                                     <Form.Control
                                         id="receiver_address"
                                         type="text"
-                                        className={styles.orderFormSectionRowInput}
                                         placeholder="주소 (클릭하여 검색)"
                                         value={this.state.receiver_address}
                                         onChange={event => this.on_change(event)}
@@ -309,7 +302,6 @@ class OrderForm extends React.Component {
                                         id="receiver_address_detail"
                                         type="text"
                                         name="receiver_address_detail"
-                                        className={styles.orderFormSectionRowInput}
                                         value={this.state.receiver_address_detail}
                                         onChange={event => this.on_change(event)}
                                         placeholder="상세 주소 입력" required />
@@ -347,7 +339,6 @@ class OrderForm extends React.Component {
                                         required
                                         type="text"
                                         name="carry_item"
-                                        className={styles.orderFormSectionRowInput}
                                         value={this.state.carry_item}
                                         onChange={event => this.on_change(event)}
                                         placeholder="예: 꽃 바구니"/>
@@ -361,7 +352,6 @@ class OrderForm extends React.Component {
                                     <Form.Control
                                         type="text"
                                         name="memo"
-                                        className={styles.orderFormSectionRowInput}
                                         value={this.state.memo}
                                         onChange={event => this.on_change(event)} />
                                 </div>
@@ -394,7 +384,6 @@ class OrderForm extends React.Component {
                                     type="radio"
                                     label="카드 결제 / 카카오페이"
                                     checked={this.state.credit_card}
-                                    className={styles.orderFormSectionRowInput}
                                     onChange={event => this.on_toggle(event)} />
                             </Form.Group>
                         </div>

@@ -33,7 +33,7 @@
 }
 
 .orderCautionContent {
-    width: 60%;
+    width: 65%;
     margin: 36px auto;
 }
 
@@ -44,13 +44,12 @@
 }
 
 .orderCautionItemTitle {
-    width: 30%;
     font-size: 18px;
     font-weight: bold;
+    min-width: 240px;
 }
 
 .orderCautionItemText {
-    width: 70%;
     font-size: 18px;
 }
 
@@ -99,7 +98,7 @@
 
 .orderFormSectionRowInput {
     width: 100%;
-    font-size: 16px;
+    font-size: 16px !important;
     height: 80%;
     align-items: center;
 }
@@ -249,6 +248,8 @@
 }
 
 .CTAYellow {
+    background-image: url("https://dodreamquick.com/kakao_button.png");
+    background-color: #fae100;
     border: 0px;
     border-radius: 24px;
     width: 168px;
@@ -270,9 +271,10 @@
 /* Page: News Page */
 
 .newsContainer {
+    display: -ms-grid;
     display: grid;
+    -ms-grid-columns: 1fr 12px 1fr 12px 1fr;
     grid-template-columns: repeat(auto-fill, 33%);
-    grid-gap: 0;
     margin: 0 -12px;
 }
 
@@ -383,6 +385,13 @@
 /* Page: Landing Page */
 
 .landingDoor {
+    background-image: url('https://dodreamquick.com/landing_door_desktop.jpeg');
+    filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(
+            src='https://dodreamquick.com/landing_door_desktop.jpeg',
+            sizingMethod=scale);
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
     background-size: cover;
     background-repeat: no-repeat;
     background-position: center;
@@ -400,6 +409,7 @@
 
     font-size: 36px;
     color: white;
+    font-weight: bold;
 }
 
 .landingDoorCTA {
@@ -411,17 +421,23 @@
 }
 
 .landingIntro {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
+    background-image: url('https://dodreamquick.com/landing_intro.png');
+    filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(
+            src='https://dodreamquick.com/landing_intro.png',
+            sizingMethod=scale);
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
 
-    width: 80%;
-    padding: 120px 0;
-    margin: 0 auto;
+    margin: 96px auto;
 }
 
 .landingIntroText {
     width: 50%;
+    padding-left: 10%;
     padding-right: 24px;
 }
 
@@ -436,15 +452,8 @@
     line-height: 1.8;
 }
 
-.landingIntroImage {
-    width: 45%;
-    height: auto;
-
-    margin: auto 0;
-}
-
 .landingAppeal {
-    background-color: #444444;
+    background-color: #2a2a2a;
     width: 100%;
 
     color: white;
@@ -455,6 +464,7 @@
     font-size: 24px;
     text-align: center;
     margin: 18px 0;
+    font-weight: bold;
 }
 
 .landingAppealItemContainer {
@@ -478,6 +488,7 @@
     color: #1A8F74;
     font-size: 20px;
     margin: 12px 0;
+    font-weight: bold;
 }
 
 .landingAppealItemText {
@@ -525,7 +536,7 @@
 /* Page: Intro Page */
 
 .carousel {
-    background-color: #444444;
+    background-color: #2a2a2a;
 }
 
 .carouselItem {
@@ -537,7 +548,7 @@
 }
 
 .carouselLeft {
-    width: 60%;
+    width: 30%;
     height: 80%;
     display: flex;
     justify-content: center;
@@ -551,7 +562,7 @@
 }
 
 .carouselRight {
-    width: 40%;
+    width: 50%;
     height: 40%;
     display: flex;
     flex-direction: column;
@@ -559,16 +570,25 @@
     color: white;
 }
 
-.carouselTitle {
+.carouselTitleDesktop {
     font-size: 20px;
+    margin-left: 48px;
     margin-bottom: 24px;
+    font-weight: bold;
+}
+
+.carouselTitleMobile {
+    visibility: hidden;
+    font-weight: bold;
 }
 
 .carouselText {
-
+    margin-left: 48px;
+    width: 80%;
 }
 
 .carouselTextTitle {
+    font-weight: bold;
     font-size: 18px;
     margin-bottom: 8px;
 }
@@ -583,6 +603,7 @@
 
 .introTableTitle {
     font-size: 28px;
+    font-weight: bold;
     color: #1A8F74;
     width: 70%;
     margin: 0px auto 24px;
@@ -793,10 +814,15 @@ span {
     /* Landing */
 
     .landingDoor {
+        background-image: url('https://dodreamquick.com/landing_door_mobile.jpeg');
+        filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(
+                src='https://dodreamquick.com/landing_door_mobile.jpeg',
+                sizingMethod=scale);
         height: 480px;
     }
 
     .landingDoorText {
+        height: 45%;
         font-size: 22px;
     }
 
@@ -814,15 +840,16 @@ span {
     }
 
     .landingIntro {
-        flex-direction: column;
-        width: 90%;
-
-        padding: 72px 0;
+        background-image: none;
+        filter: none;
+        padding: 0px 12px;
+        margin: 72px 0;
     }
 
     .landingIntroText {
         width: 100%;
-        padding-right: 12px;
+        padding: 0 12px;
+        margin: auto;
     }
 
     .landingIntroTextTitle {
@@ -833,12 +860,6 @@ span {
     .landingIntroTextText {
         font-size: 16px;
         line-height: 1.8;
-    }
-
-    .landingIntroImage {
-        width: 100%;
-        height: auto;
-        margin-top: 18px;
     }
 
     .landingAppeal {
@@ -913,15 +934,25 @@ span {
         color: white;
         flex-direction: column;
         text-align: center;
-        padding: 24px 0;
+        padding: 0;
     }
 
-    .carouselTitle {
-        font-size: 16px;
+    .carouselTitleDesktop {
+        height: 0;
+        visibility: hidden;
+
+    }
+
+    .carouselTitleMobile {
+        font-size: 18px;
+        text-align: center;
+        color: white;
+        margin: 24px 0;
+        visibility: visible;
     }
 
     .carouselText {
-
+        margin: 0 auto;
     }
 
     .carouselTextTitle {

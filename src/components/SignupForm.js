@@ -38,7 +38,9 @@ class SignupForm extends React.Component {
     render() {
         return (
             <div>
-                <Modal.Header>두드림퀵에 오신 것을 환영합니다!</Modal.Header>
+                <Modal.Header closeButton>
+                    <Modal.Title>두드림퀵에 오신 것을 환영합니다!</Modal.Title>
+                </Modal.Header>
                 <Modal.Body>
                     <Form onSubmit={event => this.on_submit(event)}>
                         <Form.Group>

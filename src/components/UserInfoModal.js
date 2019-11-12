@@ -50,7 +50,11 @@ class UserInfoModal extends React.Component {
     render() {
         return (
             <Modal show={this.props.show_modal} onHide={this.props.close_modal}>
-                <Modal.Header>회원 정보 변경</Modal.Header>
+                <Modal.Header closeButton>
+                    <Modal.Title>
+                        회원 정보 변경
+                    </Modal.Title>
+                </Modal.Header>
                 <Modal.Body>
                     <Form onSubmit={event => this.on_submit(event)}>
                         <Form.Group>

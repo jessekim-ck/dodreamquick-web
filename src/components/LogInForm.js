@@ -38,7 +38,9 @@ class LoginForm extends React.Component {
     render() {
         return (
             <div>
-                <Modal.Header>로그인</Modal.Header>
+                <Modal.Header closeButton>
+                    <Modal.Title>로그인</Modal.Title>
+                </Modal.Header>
                 <Modal.Body>
                     <Form onSubmit={event => this.on_submit(event)}>
                         <Form.Group>

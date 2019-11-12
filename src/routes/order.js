@@ -4,6 +4,9 @@ import OrderForm from "../components/OrderForm";
 import styles from "../app.module.css"
 import {Helmet} from "react-helmet/es/Helmet";
 
+const caution_calendar = require("../assets/caution_calendar.png");
+const caution_clock = require("../assets/caution_clock.png");
+
 
 class Order extends React.Component {
 
@@ -65,8 +68,10 @@ class Order extends React.Component {
                         배송 신청 전 주의사항
                     </div>
                     <div className={styles.orderCautionContent}>
+
                         <div className={styles.orderCautionItem}>
                             <div className={styles.orderCautionItemTitle}>
+                                <img src={caution_calendar} width="30" height="30" style={{marginRight: 8}} alt=""/>
                                 예약 주문 불가
                             </div>
                             <div className={styles.orderCautionItemText}>
@@ -76,10 +81,11 @@ class Order extends React.Component {
 
                         <div className={styles.orderCautionItem}>
                             <div className={styles.orderCautionItemTitle}>
+                                <img src={caution_clock} width="30" height="30" style={{marginRight: 8}} alt=""/>
                                 주문 접수 가능 시간
                             </div>
                             <div className={styles.orderCautionItemText}>
-                                주문 접수 가능 시간은 <span>월-금요일 오전 9시-오후 6시</span>입니다. (토, 일요일/공휴일 휴무)
+                                주문 접수 가능 시간은 <span>월-금요일 오전 9시<br/>-오후 6시</span>입니다. (주말 및 공휴일 휴무)
                             </div>
                         </div>
                     </div>
