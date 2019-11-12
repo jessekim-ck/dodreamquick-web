@@ -34,7 +34,7 @@ class OrderForm extends React.Component {
         sender_address_finder: false,
         receiver_address_finder: false,
 
-        notificate_sender: false,
+        notificate_sender: true,
         notificate_receiver: false,
 
         agree_all: false,

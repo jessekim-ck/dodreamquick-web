@@ -633,6 +633,28 @@
     font-size: 18px;
 }
 
+/* Order Complete Page */
+
+.orderComplete {
+    text-align: center;
+    margin: 0 auto;
+    width: 420px;
+}
+
+.orderCompleteTitle {
+    font-size: 24px;
+    font-weight: bold;
+}
+
+.orderCompleteText {
+    font-size: 18px;
+    margin-top: 24px;
+}
+
+.orderCompleteCTA {
+    margin-top: 48px;
+}
+
 span {
     color: #1A8F74;
 }
@@ -995,6 +1017,25 @@ span {
     .introTableRowText {
         width: 100%;
         font-size: 16px;
+    }
+
+    /* Order Complete Page */
+
+    .orderComplete {
+        text-align: center;
+        width: 100%;
+    }
+
+    .orderCompleteTitle {
+        font-size: 18px;
+    }
+
+    .orderCompleteText {
+        font-size: 16px;
+    }
+
+    .orderCompleteCTA {
+        margin-top: 32px;
     }
 
     /* ETC */

@@ -1,8 +1,9 @@
 import React from 'react'
-import {addOrder, makeOrderPaid, validateIMPPayment} from "../apis/api";
+import {addOrder, completeOrderPayment, validateIMPPayment} from "../apis/api";
 import OrderForm from "../components/OrderForm";
 import styles from "../app.module.css"
 import {Helmet} from "react-helmet/es/Helmet";
+import {connect} from "react-redux";
 
 const caution_calendar = require("../assets/caution_calendar.png");
 const caution_clock = require("../assets/caution_clock.png");
@@ -11,21 +12,24 @@ const caution_clock = require("../assets/caution_clock.png");
 class Order extends React.Component {
 
     make_order = async order_data => {
-        await this.request_pay(order_data)
+        const order = await addOrder({...order_data})
+        if (order) {
+            await this.request_pay(order_data, order)
+        }
     }
 
-    request_pay = order_data => {
+    request_pay = (order_data, order) => {
         let IMP = window.IMP
         IMP.init('imp38282929') // 가맹점 식별코드
         IMP.request_pay({
             pg : 'html5_inicis',
             pay_method : 'card',
             merchant_uid : 'merchant_' + new Date().getTime(),
-            name : '두드림퀵 배송 주문',
+            name : '두드림퀵 배송 주문 (' + order.id + ')',
             amount : order_data.price,
-            buyer_name : order_data.sender_name, // TODO: or username
-            buyer_tel : order_data.sender_phone, // TODO: or user phone
-            buyer_email: ''
+            buyer_name : order_data.sender_name,
+            buyer_tel : order_data.sender_phone,
+            buyer_email: this.props.username
         }, async response => {
             if (response.success) {
                 const validated = await validateIMPPayment(response.imp_uid, order_data.price)
@@ -37,11 +41,12 @@ class Order extends React.Component {
                     return -1
                 } else if (validated === 1) {
                     if (true) {
-                        const order = await addOrder({...order_data})
-                        await makeOrderPaid(order.id)
+                        await completeOrderPayment(order.id, order_data.price)
+                        alert("결제가 완료되었습니다!")
                         this.props.history.push("/order/complete")
                     } else {
                         // TODO: Add amount to the user's deposit
+                        alert("Invalid access!")
                         return 1
                     }
                 } else {
@@ -99,4 +104,6 @@ class Order extends React.Component {
     }
 }
 
-export default Order
+const mapStateToProps = state => state.user
+
+export default connect(mapStateToProps)(Order)
