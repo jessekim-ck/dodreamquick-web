@@ -2,7 +2,7 @@ import React from 'react'
 import Navbar from 'react-bootstrap/Navbar'
 import Nav from 'react-bootstrap/Nav'
 import NavDropdown from 'react-bootstrap/NavDropdown'
-import Logo from '../assets/favicon.png'
+import logo from '../assets/logo.png'
 import styles from '../app.module.css'
 import {isMobile} from 'react-device-detect'
 
@@ -54,8 +54,8 @@ class NavigationBar extends React.Component {
             <Navbar expand="lg" className={styles.navBarContainer}>
                 <Navbar.Brand href="/">
                     <img
-                        src={Logo}
-                        height="35"
+                        src={logo}
+                        height="40"
                         alt="두드림퀵"/>
                 </Navbar.Brand>
                 <Navbar.Toggle aria-controls="basic-navbar-nav"/>
