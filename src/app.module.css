@@ -34,7 +34,7 @@
 }
 
 .orderCautionContent {
-    width: 65%;
+    width: 60%;
     margin: 36px auto;
 }
 
@@ -47,11 +47,12 @@
 .orderCautionItemTitle {
     font-size: 18px;
     font-weight: bold;
-    min-width: 240px;
+    flex: 2;
 }
 
 .orderCautionItemText {
     font-size: 18px;
+    flex: 4;
 }
 
 .orderFormContainer {
@@ -363,10 +364,27 @@
 
     flex-direction: row;
     display: flex;
+    justify-content: space-between;
+}
+
+.postItem .header .left {
+    flex-direction: row;
+    display: flex;
+    flex: 1;
+}
+
+.postItem .header .right {
+    flex-direction: row;
+    display: flex;
+    color: gray;
+    justify-content: flex-end;
+    align-content: center;
+    align-items: center;
+    font-size: 14px;
 }
 
 .postItem .header .index {
-    margin-right: 8%;
+    margin-right: 6%;
 }
 
 .postItem .body {
@@ -702,6 +720,7 @@ span {
         display: flex;
         margin-top: 12px;
         margin-bottom: 18px;
+        text-align: center;
     }
 
     .orderCautionItemTitle {
@@ -829,6 +848,10 @@ span {
         font-size: 14px;
     }
 
+    .postItem .header .right {
+        font-size: 12px;
+    }
+    
     .postItem .body {
         font-size: 14px;
     }

@@ -12,7 +12,7 @@ const SelectLocationForm = props => {
 
     return (
         <select onChange={event => props.select_location(event.target.value)}>
-            <option value="default" key={0}>주소 선택!</option>
+            <option value="default" key={0}>주소 선택</option>
             {options}
         </select>
     )
@@ -30,7 +30,11 @@ class SearchCostForm extends React.Component {
 
     async componentDidMount() {
         const location_list = await getLocationList()
-        this.setState({location_list})
+        const location_list_sorted = location_list.sort(
+            (a, b) => (a.id < b.id) ? -1 : 1
+        )
+        this.setState({location_list: location_list_sorted})
+        console.log(this.state.location_list)
     }
 
     async componentDidUpdate(prevProps, prevState, snapshot) {
@@ -62,7 +66,7 @@ class SearchCostForm extends React.Component {
                             배송 요금 조회
                         </div>
                         <div className={styles.searchCostFormLabelDescription}>
-                            픽업지와 배송지의 지역구를 선택하신 후 [계산하기] 버튼을 클릭하여 주시기 바랍니다.
+                            픽업지와 배송지의 지역구를 선택해주세요.
                         </div>
                     </div>
 

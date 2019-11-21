@@ -9,8 +9,10 @@ const ListItem = props => {
     return (
         <Accordion className={styles.postItem}>
             <Accordion.Toggle className={styles.header} as={Card.Header} eventKey={props.FAQ.id}>
-                <div className={styles.index}>{props.FAQ.id}</div>
-                <div>{props.FAQ.title}</div>
+                <div className={styles.left}>
+                    <div className={styles.index}>{props.FAQ.id}</div>
+                    <div>{props.FAQ.title}</div>
+                </div>
             </Accordion.Toggle>
             <Accordion.Collapse className={styles.body} eventKey={props.FAQ.id}>
                 <Card.Body>{props.FAQ.text}</Card.Body>

@@ -32,25 +32,25 @@ class Order extends React.Component {
             buyer_email: this.props.username
         }, async response => {
             if (response.success) {
+                // Validate IMP payment: it should be "paid" and the amount should be consistent
                 const validated = await validateIMPPayment(response.imp_uid, order_data.price)
+
+                // IMP payment status is not "paid"
                 if (validated === -2) {
-                    alert("결제 승인 상태 확인에 실패했습니다. 두드림퀵 팀에 문의해주세요.")
+                    alert("결제 승인이 완료되지 않았습니다. 두드림퀵 팀에 문의해주세요.")
                     return -1
+                // IMP payment amount is not consistent
                 } else if (validated === -1) {
                     alert("결제 요청 금액과 실 결제 금액이 일치하지 않습니다. 두드림퀵 팀에 문의해주세요.")
                     return -1
+                // Validation success
                 } else if (validated === 1) {
-                    if (true) {
-                        await completeOrderPayment(order.id, order_data.price)
-                        alert("결제가 완료되었습니다!")
-                        this.props.history.push("/order/complete")
-                    } else {
-                        // TODO: Add amount to the user's deposit
-                        alert("Invalid access!")
-                        return 1
-                    }
+                    await completeOrderPayment(order.id, order_data.price)
+                    alert("결제가 완료되었습니다!")
+                    this.props.history.push("/order/complete")
+                // Unknown error
                 } else {
-                    alert("오류가 발생했습니다.")
+                    alert("오류가 발생했습니다. 두드림퀵 팀에 문의해주세요.")
                     return -1
                 }
             } else {
@@ -87,10 +87,12 @@ class Order extends React.Component {
                         <div className={styles.orderCautionItem}>
                             <div className={styles.orderCautionItemTitle}>
                                 <img src={caution_clock} width="30" height="30" style={{marginRight: 8}} alt=""/>
-                                주문 접수 가능 시간
+                                주문 가능 시간
                             </div>
                             <div className={styles.orderCautionItemText}>
-                                주문 접수 가능 시간은 <span>월-금요일 오전 9시<br/>-오후 6시</span>입니다. (주말 및 공휴일 휴무)
+                                주문 가능 시간은 <span>월-금요일 오전 9시~오후 6시</span>입니다.
+                                <br/> 
+                                (주말 및 공휴일 휴무)
                             </div>
                         </div>
                     </div>

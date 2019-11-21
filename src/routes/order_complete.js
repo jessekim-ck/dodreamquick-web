@@ -21,8 +21,8 @@ const OrderComplete = () => {
                 </div>
                 <div className={styles.orderCompleteCTA}>
                     <a href="https://pf.kakao.com/_jSPaj" target="_blank" rel="noopener noreferrer">
-                        <button className={styles.CTAYellow}>
-                            문의하기
+                        <button className={styles.CTAGreen}>
+                            홈으로
                         </button>
                     </a>
                 </div>

@@ -206,7 +206,7 @@ class OrderForm extends React.Component {
                                         onChange={event => this.on_change(event)}
                                         placeholder="01012345678" required />
                                     <Form.Text className="text-muted">
-                                        "-"를 제외하고 입력해주세요. 입력해 주신 핸드폰 번호로 배송 알림 문자를 보내드립니다.
+                                        "-"를 제외하고 입력해주세요. 입력해 주신 핸드폰 번호로 배송 알림톡을 보내드립니다.
                                     </Form.Text>
                                 </div>
                             </Form.Group>
@@ -234,7 +234,7 @@ class OrderForm extends React.Component {
                                         onChange={event => this.on_change(event)}
                                         placeholder="상세 주소 입력" required />
                                     <Form.Text className="text-muted">
-                                        택배원이 배송 물품을 수령할 주소를 입력해주세요. 입력된 주소로 택배원이 물품을 가지러 갑니다.
+                                        주소 검색을 통해 시, 구가 포함된 정확한 주소를 입력해주세요. 입력된 주소로 택배원이 물품을 가지러 갑니다.
                                     </Form.Text>
                                 </div>
                             </Form.Group>
@@ -281,7 +281,7 @@ class OrderForm extends React.Component {
                                         onChange={event => this.on_change(event)}
                                         placeholder="01012345678" required />
                                     <Form.Text className="text-muted">
-                                        "-"를 제외하고 입력해주세요. 입력해 주신 핸드폰 번호로 배송 알림 문자를 보내드립니다.
+                                        "-"를 제외하고 입력해주세요. 입력해 주신 핸드폰 번호로 배송 알림톡을 보내드립니다.
                                     </Form.Text>
                                 </div>
                             </Form.Group>
@@ -345,7 +345,16 @@ class OrderForm extends React.Component {
                                         value={this.state.carry_item}
                                         onChange={event => this.on_change(event)}
                                         placeholder="예: 꽃 바구니"/>
+                                </div>
+                            </Form.Group>
+
+                            <Form.Group className={styles.orderFormSectionRow}>
+                                <Form.Label className={styles.orderFormSectionRowName}>배송 무게 제한</Form.Label>
+                                <div className={styles.orderFormSectionRowInput}>
                                     <Form.Check label="배송 물품의 무게가 5kg 이하입니다" required/>
+                                    <Form.Text className="text-muted">
+                                        배송 물품의 무게가 5kg 이상일 시 배송이 취소될 수 있습니다.
+                                    </Form.Text>
                                 </div>
                             </Form.Group>
 
@@ -410,7 +419,7 @@ class OrderForm extends React.Component {
                                         inline
                                         name="credit_card"
                                         type="radio"
-                                        label="카드 결제 / 카카오페이"
+                                        label="카드 결제"
                                         checked={this.state.credit_card}
                                         onChange={event => this.on_toggle(event)} />
                                 </div>

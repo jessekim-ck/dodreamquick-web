@@ -65,7 +65,8 @@ class UserInfoModal extends React.Component {
                                 className={styles.input}
                                 value={this.state.username}
                                 onChange={event => this.on_change(event)}
-                                placeholder={this.props.username} />
+                                placeholder={this.props.username}
+                                readOnly />
                         </Form.Group>
 
                         <Form.Group>
@@ -76,14 +77,14 @@ class UserInfoModal extends React.Component {
                                 className={styles.input}
                                 value={this.state.password}
                                 onChange={event => this.on_change(event)}
-                                placeholder="비밀번호를 변경하려면 입력해주세요" />
+                                placeholder="새 비밀번호 입력" />
                             <Form.Control
                                 type="password"
                                 name="password_check"
                                 className={styles.input}
                                 value={this.state.password_check}
                                 onChange={event => this.on_change(event)}
-                                placeholder="비밀번호를 다시 입력해주세요" />
+                                placeholder="새 비밀번호 확인" />
                         </Form.Group>
 
                         <Button className={styles.basicButtonGreen} type="submit">
