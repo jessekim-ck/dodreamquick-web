@@ -313,3 +313,13 @@ export const editUserInfo = async (username, password) => {
         alert(err)
     }
 }
+
+export const getNoticeModal = async () => {
+    try {
+        const response = await api.get('api/getNoticeModal/')
+        const result = response.data
+        return result
+    } catch (err) {
+        console.log(err)
+    }
+}

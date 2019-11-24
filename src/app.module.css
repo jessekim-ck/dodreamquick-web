@@ -3,7 +3,7 @@
 .appContainer {
     min-height: 70vh;
     word-break: keep-all;
-    font-family: 'NanumSquare', sans-serif;
+    font-family: 'NanumSquare', sans-serif !important;
 }
 
 .contentContainer {
@@ -449,7 +449,8 @@
     background-repeat: no-repeat;
     background-position: center;
 
-    margin: 96px auto;
+    margin: 0 auto;
+    padding: 96px 0;
 }
 
 .landingIntroText {
@@ -686,6 +687,12 @@ span {
     font-weight: bold;
 }
 
+.noticeModalFooter {
+    font-size: 14px;
+    text-align: right;
+    padding: 4px 12px;
+}
+
 @media (max-width: 767px) {
 
     .contentContainer {
@@ -888,7 +895,7 @@ span {
         background-image: none;
         filter: none;
         padding: 0px 12px;
-        margin: 72px 0;
+        margin: 60px 0;
     }
 
     .landingIntroText {
@@ -903,7 +910,7 @@ span {
     }
 
     .landingIntroTextText {
-        font-size: 16px;
+        font-size: 14px;
         line-height: 1.8;
     }
 
