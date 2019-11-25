@@ -18,5 +18,3 @@ export const api = axios.create({
 
 // api.interceptors.request.use(axios_logger.requestLogger, axios_logger.errorLogger)
 // api.interceptors.response.use(axios_logger.responseLogger, axios_logger.errorLogger)
-
-

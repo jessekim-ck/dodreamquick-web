@@ -20,7 +20,7 @@ const OrderComplete = () => {
                     배송 현황은 카카오톡 알림톡으로 전달드립니다.
                 </div>
                 <div className={styles.orderCompleteCTA}>
-                    <a href="https://pf.kakao.com/_jSPaj" target="_blank" rel="noopener noreferrer">
+                    <a href="/">
                         <button className={styles.CTAGreen}>
                             홈으로
                         </button>
