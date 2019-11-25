@@ -8,7 +8,6 @@ const NoticeModal = props => {
     return (
         <Modal 
             className={styles.noticeModal}
-            size="lg"
             show={props.show_modal} 
             onHide={props.close_modal}>
                 <div>
