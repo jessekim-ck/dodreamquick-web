@@ -38,6 +38,10 @@ class Index extends React.Component {
                 <div>
                     <Helmet>
                         <title>두드림퀵: 저렴하고 신속한 지하철 퀵서비스</title>
+                        <meta 
+                            name="description"
+                            content="행복을 전하는 지하철 퀵서비스 두드림퀵" />
+                        <link rel="canonical" href="https://dodreamquick.com" />
                     </Helmet>
                 </div>
                 <div className={styles.landingDoor}>
@@ -74,16 +78,13 @@ class Index extends React.Component {
                             </p>
                         </div>
                     </div>
-                    {/*<div className={styles.landingIntroImage}>*/}
-                    {/*    <img src={landing_schema} width="100%" height="" alt=""/>*/}
-                    {/*</div>*/}
                 </div>
 
                 <div className={styles.landingAppeal}>
                     <div className={styles.landingAppealTitle}>특별한 서비스 두드림퀵</div>
                     <div className={styles.landingAppealItemContainer}>
                         <div className={styles.landingAppealItem}>
-                            <img className={styles.landingAppealItemImage} src={landing_coin} alt=""/>
+                            <img className={styles.landingAppealItemImage} src={landing_coin} alt="두드림퀵 지하철 퀵서비스, 저렴한 요금"/>
                             <div className={styles.landingAppealItemTitle}>
                                 저렴한 요금
                             </div>
@@ -93,7 +94,7 @@ class Index extends React.Component {
                         </div>
 
                         <div className={styles.landingAppealItem}>
-                            <img className={styles.landingAppealItemImage} src={landing_clock} alt=""/>
+                            <img className={styles.landingAppealItemImage} src={landing_clock} alt="두드림퀵 지하철 퀵서비스, 신속 정확한 배송"/>
                             <div className={styles.landingAppealItemTitle}>
                                 신속 정확한 배송
                             </div>
@@ -103,7 +104,7 @@ class Index extends React.Component {
                         </div>
 
                         <div className={styles.landingAppealItem}>
-                            <img className={styles.landingAppealItemImage} src={landing_pc} alt=""/>
+                            <img className={styles.landingAppealItemImage} src={landing_pc} alt="두드림퀵 지하철 퀵서비스, 편리한 주문접수"/>
                             <div className={styles.landingAppealItemTitle}>
                                 편리한 주문접수
                             </div>
@@ -113,7 +114,7 @@ class Index extends React.Component {
                         </div>
 
                         <div className={styles.landingAppealItem}>
-                            <img className={styles.landingAppealItemImage} src={landing_phone} alt=""/>
+                            <img className={styles.landingAppealItemImage} src={landing_phone} alt="두드림퀵 지하철 퀵서비스, 배송 알림 서비스"/>
                             <div className={styles.landingAppealItemTitle}>
                                 배송 알림 서비스
                             </div>

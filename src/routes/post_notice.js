@@ -22,6 +22,10 @@ class PostNotice extends React.Component {
                 <div>
                     <Helmet>
                         <title>두드림퀵: 공지사항</title>
+                        <meta 
+                            name="description"
+                            content="두드림퀵 지하철 퀵서비스 공지사항" />
+                        <link rel="canonical" href="https://dodreamquick.com/post/notice" />
                     </Helmet>
                 </div>
                 <div className={styles.pageTitle}>공지사항</div>

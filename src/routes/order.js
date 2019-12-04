@@ -29,7 +29,8 @@ class Order extends React.Component {
             amount : order_data.price,
             buyer_name : order_data.sender_name,
             buyer_tel : order_data.sender_phone,
-            buyer_email: this.props.username
+            buyer_email: this.props.username,
+            m_redirect_url: `https://dodreamquick.com/order/complete/${order.id}/${order_data.price}`
         }, async response => {
             if (response.success) {
                 // Validate IMP payment: it should be "paid" and the amount should be consistent
@@ -66,6 +67,10 @@ class Order extends React.Component {
                 <div>
                     <Helmet>
                         <title>두드림퀵: 배송 신청</title>
+                        <meta 
+                            name="description"
+                            content="두드림퀵 지하철 퀵서비스 배송 신청" />
+                        <link rel="canonical" href="https://dodreamquick.com/order" />
                     </Helmet>
                 </div>
                 <div className={styles.orderCautionContainer}>

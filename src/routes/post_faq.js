@@ -22,6 +22,10 @@ class PostFAQ extends React.Component {
                 <div>
                     <Helmet>
                         <title>두드림퀵: 자주 묻는 질문</title>
+                        <meta 
+                            name="description"
+                            content="두드림퀵 지하철 퀵서비스 자주 묻는 질문" />
+                        <link rel="canonical" href="https://dodreamquick.com/post/faq" />
                     </Helmet>
                 </div>
                 <div className={styles.pageTitle}>자주 묻는 질문</div>

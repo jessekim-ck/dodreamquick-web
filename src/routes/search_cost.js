@@ -10,6 +10,10 @@ const SearchCost = () => {
             <div>
                 <Helmet>
                     <title>두드림퀵: 배송 요금 조회</title>
+                    <meta 
+                            name="description"
+                            content="두드림퀵 지하철 퀵서비스 배송 요금 조회" />
+                    <link rel="canonical" href="https://dodreamquick.com/search_cost" />
                 </Helmet>
             </div>
             <SearchCostForm />

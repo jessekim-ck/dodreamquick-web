@@ -15,6 +15,10 @@ const HowToUse = () => {
             <div>
                 <Helmet>
                     <title>두드림퀵: 이용 방법</title>
+                    <meta 
+                        name="description"
+                        content="두드림퀵 지하철 퀵서비스 이용 방법" />
+                    <link rel="canonical" href="https://dodreamquick.com/how_to_use" />
                 </Helmet>
             </div>
             <Carousel className={styles.carousel} indicators={false} interval={0}>
@@ -22,7 +26,7 @@ const HowToUse = () => {
                     <div className={styles.carouselItem}>
                         <div className={styles.carouselTitleMobile}>두드림퀵 이용 방법</div>
                         <div className={styles.carouselLeft}>
-                            <img className={styles.carouselImg} src={intro_man} alt=""/>
+                            <img className={styles.carouselImg} src={intro_man} alt="두드림퀵 지하철 퀵서비스 이용 방법 1"/>
                         </div>
                         <div className={styles.carouselRight}>
                             <div className={styles.carouselTitleDesktop}>두드림퀵 이용 방법</div>
@@ -41,7 +45,7 @@ const HowToUse = () => {
                     <div className={styles.carouselItem}>
                         <div className={styles.carouselTitleMobile}>두드림퀵 이용 방법</div>
                         <div className={styles.carouselLeft}>
-                            <img className={styles.carouselImg} src={intro_senior} alt=""/>
+                            <img className={styles.carouselImg} src={intro_senior} alt="두드림퀵 지하철 퀵서비스 이용 방법 2"/>
                         </div>
                         <div className={styles.carouselRight}>
                             <div className={styles.carouselTitleDesktop}>두드림퀵 이용 방법</div>
@@ -60,7 +64,7 @@ const HowToUse = () => {
                     <div className={styles.carouselItem}>
                         <div className={styles.carouselTitleMobile}>두드림퀵 이용 방법</div>
                         <div className={styles.carouselLeft}>
-                            <img className={styles.carouselImg} src={intro_together} alt=""/>
+                            <img className={styles.carouselImg} src={intro_together} alt="두드림퀵 지하철 퀵서비스 이용 방법 3"/>
                         </div>
                         <div className={styles.carouselRight}>
                             <div className={styles.carouselTitleDesktop}>두드림퀵 이용 방법</div>

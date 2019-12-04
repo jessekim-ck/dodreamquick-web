@@ -22,6 +22,10 @@ class PostNews extends React.Component {
                 <div>
                     <Helmet>
                         <title>두드림퀵: 언론 보도</title>
+                        <meta 
+                            name="description"
+                            content="두드림퀵 지하철 퀵서비스 언론 보도" />
+                        <link rel="canonical" href="https://dodreamquick.com/post/news" />
                     </Helmet>
                 </div>
                 <div className={styles.pageTitle}>DODREAM NEWS</div>

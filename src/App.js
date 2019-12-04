@@ -100,8 +100,6 @@ class App extends React.Component {
             <Router>
                 <div className="application">
                     <Helmet>
-                        <meta charSet="utf-8"/>
-                        <title>두드림퀵</title>
                         <link rel="shortcut icon" href={favicon}/>
                     </Helmet>
                 </div>
@@ -114,6 +112,7 @@ class App extends React.Component {
                     <div className={styles.appContainer}>
                         <Switch>
                             <Route exact path="/" component={Index}/>
+                            <Route path="/order/complete/:id/:price" component={OrderComplete}/>
                             <Route path="/order/complete" component={OrderComplete}/>
                             <Route path="/order" component={Order}/>
                             <Route path="/search_cost" component={SearchCost}/>
