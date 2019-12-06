@@ -22,28 +22,26 @@ export const authenticate_user = async (username, password) => {
             {username, password}
         )
         const result = await response.data
-        await localStorage.setItem('token', result.token)
+        localStorage.setItem('token', result.token)
         return result
     } catch (err) {
         console.log(err)
-        await localStorage.removeItem('token')
         throw err
     }
 }
 
 export const refresh_token = async () => {
     try {
-        const token = await localStorage.getItem('token')
+        const token = localStorage.getItem('token')
         const response = await api.post(
             'token-refresh/',
             {token}
         )
         const result = await response.data
-        await localStorage.setItem('token', result.token)
+        localStorage.setItem('token', result.token)
         return result
     } catch (err) {
         console.log(err)
-        await localStorage.removeItem('token')
         throw err
     }
 }
@@ -59,7 +57,6 @@ export const get_current_user = async () => {
         return result
     } catch (err) {
         console.log(err)
-        await localStorage.removeItem('token')
         throw err
     }
 }

@@ -35,10 +35,8 @@ class App extends React.Component {
     }
 
     async componentDidMount() {
-        const token = await localStorage.getItem('token')
-        if (!token || token === 'undefined') {
-            await localStorage.removeItem('token')
-        } else {
+        const token = localStorage.getItem('token')
+        if (token) {
             await refresh_token()
             const current_user = await get_current_user()
             await this.props.dispatch(log_in(current_user))
@@ -58,7 +56,7 @@ class App extends React.Component {
             await authenticate_user(username, password)
             const current_user = await get_current_user()
             await this.props.dispatch(log_in(current_user))
-            await this.close_modal('login')
+            this.close_modal('login')
         } catch (err) {
             if (err.toString().includes('400')) {
                 alert("회원 정보를 찾을 수 없습니다! 오타를 확인해주세요.")
@@ -74,7 +72,7 @@ class App extends React.Component {
             const result = await sign_up(username, password)
             if (result) {
                 await this.authenticate(username, password)
-                await this.close_modal('signup')
+                this.close_modal('signup')
             } else {
                 alert("회원가입할 수 없습니다!")
             }
