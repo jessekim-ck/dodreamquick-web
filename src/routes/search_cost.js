@@ -13,7 +13,7 @@ const SearchCost = () => {
                     <meta 
                             name="description"
                             content="두드림퀵 지하철 퀵서비스 배송 요금 조회" />
-                    <link rel="canonical" href="https://dodreamquick.com/search_cost" />
+                    <link rel="canonical" href="https://dodreamquick.com/price" />
                 </Helmet>
             </div>
             <SearchCostForm />

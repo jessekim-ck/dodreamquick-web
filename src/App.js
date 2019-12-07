@@ -113,7 +113,7 @@ class App extends React.Component {
                             <Route path="/order/complete/:id/:price" component={OrderComplete}/>
                             <Route path="/order/complete" component={OrderComplete}/>
                             <Route path="/order" component={Order}/>
-                            <Route path="/search_cost" component={SearchCost}/>
+                            <Route path="/price" component={SearchCost}/>
                             <Route path="/post/notice" component={PostNotice}/>
                             <Route path="/post/faq" component={PostFAQ}/>
                             <Route path="/post/news" component={PostNews}/>
