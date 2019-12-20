@@ -11,10 +11,19 @@ const caution_clock = require("../assets/caution_clock.png");
 
 class Order extends React.Component {
 
+    componentDidMount() {
+        const now = new Date();
+        const current_hour = now.getHours();
+        if (current_hour < 9 || current_hour > 16) {
+            alert("주문 불가능한 시간입니다! 두드림퀵 배송 신청은 오전 9시부터 오후 5시까지입니다.");
+            this.props.history.push("/");
+        }
+    }
+
     make_order = async order_data => {
         const order = await addOrder({...order_data})
         if (order) {
-            await this.request_pay(order_data, order)
+            this.request_pay(order_data, order)
         }
     }
 
@@ -64,15 +73,13 @@ class Order extends React.Component {
     render() {
         return (
             <div className={styles.contentContainer}>
-                <div>
-                    <Helmet>
-                        <title>두드림퀵: 배송 신청</title>
-                        <meta 
-                            name="description"
-                            content="두드림퀵 지하철 퀵서비스 배송 신청" />
-                        <link rel="canonical" href="https://dodreamquick.com/order" />
-                    </Helmet>
-                </div>
+                <Helmet>
+                    <title>두드림퀵: 배송 신청</title>
+                    <meta 
+                        name="description"
+                        content="두드림퀵 지하철 퀵서비스 배송 신청" />
+                    <link rel="canonical" href="https://dodreamquick.com/order" />
+                </Helmet>
                 <div className={styles.orderCautionContainer}>
                     <div className={styles.orderCautionTitle}>
                         배송 신청 전 주의사항
@@ -95,7 +102,7 @@ class Order extends React.Component {
                                 주문 가능 시간
                             </div>
                             <div className={styles.orderCautionItemText}>
-                                주문 가능 시간은 <span>월-금요일 오전 9시~오후 6시</span>입니다.
+                                주문 가능 시간은 <span>월-금요일 오전 9시~오후 5시</span>입니다.
                                 <br/> 
                                 (주말 및 공휴일 휴무)
                             </div>
