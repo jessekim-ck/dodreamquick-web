@@ -309,7 +309,7 @@ class OrderForm extends React.Component {
                                         onChange={event => this.on_change(event)}
                                         placeholder="상세 주소 입력" required />
                                     <Form.Text className="text-muted">
-                                        택배원이 배송 물품을 배송할 주소를 입력해주세요. 입력된 주소로 택배원이 물품을 전달합니다.
+                                        주소 검색을 통해 시, 구가 포함된 정확한 주소를 입력해주세요. 입력된 주소로 택배원이 물품을 전달합니다.
                                     </Form.Text>
                                 </div>
                             </Form.Group>

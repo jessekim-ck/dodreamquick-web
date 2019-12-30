@@ -14,10 +14,15 @@ class Order extends React.Component {
     componentDidMount() {
         const now = new Date();
         const current_hour = now.getHours();
-        if (current_hour < 9 || current_hour > 16) {
+        const current_day = now.getDay();
+
+        if (current_day === 6 || current_day === 0) {
+            alert("공휴일 및 주말에는 주문이 불가능합니다 :) 평일에 찾아주세요!");
+            this.props.history.push("/");
+        } else if (current_hour < 9 || current_hour > 16) {
             alert("주문 불가능한 시간입니다! 두드림퀵 배송 신청은 오전 9시부터 오후 5시까지입니다.");
             this.props.history.push("/");
-        }
+        } 
     }
 
     make_order = async order_data => {

@@ -15,7 +15,7 @@ const Footer = () => {
                 <div>통신판매번호: 제2019-서울금천-1887호</div>
                 <div>본사 : 서울특별시 금천구 가산디지털2로 98, 롯데IT캐슬 2동 1107호</div>
                 <br/>
-                <div>고객센터 상담시간 : 평일 09:00~18:00(주말 및 공휴일 휴무)</div>
+                <div>고객센터 상담시간 : 평일 09:00~17:00(주말 및 공휴일 휴무)</div>
             </div>
             <div className={styles.footerPolicy}>
                 <a href="/policy/use" className={styles.footerPolicyLink}>이용 약관</a>
