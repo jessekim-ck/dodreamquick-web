@@ -320,3 +320,13 @@ export const getNoticeModal = async () => {
         console.log(err)
     }
 }
+
+export const getPolicy = async () => {
+    try {
+        const response = await api.get("api/getPolicy/")
+        const result = response.data
+        return result
+    } catch (err) {
+        console.log(err)
+    }
+}
