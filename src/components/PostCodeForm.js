@@ -22,15 +22,13 @@ const PostCodeForm = props => {
                 extra_address += (extra_address !== '' ? ', ' + data.buildingName : data.buildingName);
             }
             if (extra_address !== '') {
-                extra_address += ' (' + extra_address + ')'
+                address += ' (' + extra_address + ')'
             }
         } else {
             extra_address = ''
         }
 
-        const full_address = address + extra_address
-
-        on_complete(full_address)
+        on_complete(address)
     }
 
     return (
