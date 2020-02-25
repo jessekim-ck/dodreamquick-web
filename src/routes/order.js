@@ -5,7 +5,7 @@ import styles from "../app.module.css"
 import {Helmet} from "react-helmet/es/Helmet";
 import {connect} from "react-redux";
 
-import {PageView, initGA} from './components/Tracking';
+import {PageView, initGA} from '../components/Tracking';
 
 const caution_calendar = require("../assets/caution_calendar.png");
 const caution_clock = require("../assets/caution_clock.png");
