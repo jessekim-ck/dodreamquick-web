@@ -20,10 +20,9 @@ class Order extends React.Component {
         const current_hour = now.getHours();
         const current_day = now.getDay();
         
-        if ( true ) {
-            alert("코로나 바이러스 확산으로 인해 퀵서비스 운영을 잠시 중단합니다. 불편을 드려 죄송합니다.");
+        alert("코로나 바이러스 확산으로 인해 퀵서비스 운영을 잠시 중단합니다. 불편을 드려 죄송합니다.");
             this.props.history.push("/");
-        }
+        
 
         // if (current_day === 6 || current_day === 0) {
         //     alert("공휴일 및 주말에는 주문이 불가능합니다 :) 평일에 찾아주세요!");
