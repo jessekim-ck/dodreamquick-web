@@ -21,7 +21,7 @@ class Order extends React.Component {
         const current_day = now.getDay();
         
         if ( true ) {
-            alert("코로나 바이러스 확산으로 인해 퀵서비스 운영을 잠시 중단합니다. 불편을 드려 죄송합니다.")
+            alert("코로나 바이러스 확산으로 인해 퀵서비스 운영을 잠시 중단합니다. 불편을 드려 죄송합니다.");
             this.props.history.push("/");
         }
 
