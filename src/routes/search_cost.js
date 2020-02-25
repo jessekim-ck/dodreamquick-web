@@ -2,6 +2,7 @@ import React from 'react'
 import SearchCostForm from '../components/SearchCostForm'
 import styles from "../app.module.css"
 import {Helmet} from "react-helmet/es/Helmet";
+import ReactGA from "react-ga";
 
 
 const SearchCost = () => {

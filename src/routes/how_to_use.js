@@ -112,7 +112,7 @@ const HowToUse = () => {
                                 주문 접수 가능 시간
                             </div>
                             <div className={styles.introTableRowText}>
-                                주문 접수 가능 시간은 <span>월-금요일 오전 9시-오후 6시</span>입니다.
+                                주문 접수 가능 시간은 <span>월-금요일 오전 9시-오후 5시</span>입니다.
                                 (토, 일요일/공휴일 휴무) 해당 시간 이외에 주문하시는 경우 접수되지 않으니 유의해주세요.
                             </div>
                         </div>

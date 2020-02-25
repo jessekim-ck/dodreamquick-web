@@ -13,6 +13,7 @@ import landing_phone from "../assets/landing_phone.png"
 import {getNoticeModal} from "../apis/api"
 import NoticeModal from "../components/NoticeModal"
 
+import { Event } from "../components/Tracking";
 
 class Index extends React.Component {
 
@@ -56,7 +57,9 @@ class Index extends React.Component {
                             배송 신청하기
                         </button>
                         <a href="https://pf.kakao.com/_jSPaj" target="_blank" rel="noopener noreferrer">
-                            <button className={styles.CTAYellow}>
+                            <button className={styles.CTAYellow}
+                                onClick={()=> 
+                                    Event("버튼", "문의하기")}>
                                 문의하기
                             </button>
                         </a>

@@ -26,6 +26,9 @@ import AuthModal from "./components/AuthModal";
 import UserInfoModal from "./components/UserInfoModal";
 import Footer from "./components/Footer";
 
+import {PageView, initGA} from './components/Tracking';
+
+
 
 class App extends React.Component {
 
@@ -35,6 +38,8 @@ class App extends React.Component {
     }
 
     async componentDidMount() {
+        initGA('UA-158814088-1'); //
+        PageView(); //
         const token = localStorage.getItem('token')
         if (token) {
             await refresh_token()
