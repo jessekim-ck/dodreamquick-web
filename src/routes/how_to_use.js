@@ -106,7 +106,7 @@ const HowToUse = () => {
                                 <span>인천 및 경기 지역</span>의 경우 <span>택배원 배정 후 4시간 내외</span>입니다.
                             </div>
                         </div>
-
+ 
                         <div className={styles.introTableRow}>
                             <div className={styles.introTableRowTitle}>
                                 주문 접수 가능 시간

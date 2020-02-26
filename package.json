@@ -29,8 +29,8 @@
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "deploy": "aws2 s3 sync ./build s3://dodreamquick-web --profile=dodreamquick-admin",
-    "invalidate": "aws2 cloudfront create-invalidation --profile=dodreamquick-admin --distribution-id ED6A97K2XX0RB --paths / /index.html /error.html /service-worker.js /manifest.json /favicon.ico /robots.txt /sitemap.xml /kakao_button.png; aws2 cloudfront create-invalidation --profile=dodreamquick-admin --distribution-id E1YYLFSVHX3W3Y --paths / /index.html /error.html /service-worker.js /manifest.json /favicon.ico /robots.txt /sitemap.xml /kakao_button.png;"
+    "deploy": "aws s3 sync ./build s3://dodreamquick-web --profile=dodreamquick-admin",
+    "invalidate": "aws cloudfront create-invalidation --profile=dodreamquick-admin --distribution-id ED6A97K2XX0RB --paths /*;"
   },
   "eslintConfig": {
     "extends": "react-app"
