@@ -3,6 +3,7 @@ import {getFAQList} from "../apis/api";
 import styles from '../app.module.css'
 import FAQListView from "../components/FAQListView";
 import {Helmet} from "react-helmet/es/Helmet";
+import { connect } from 'react-redux';
 
 
 class PostFAQ extends React.Component {
@@ -17,6 +18,7 @@ class PostFAQ extends React.Component {
     }
 
     render() {
+        console.log(this.props.id)
         return (
             <div className={styles.contentContainer}>
                 <div>
@@ -36,4 +38,7 @@ class PostFAQ extends React.Component {
     }
 }
 
-export default PostFAQ
+
+const mapStateToProps = state => state.user
+
+export default connect(mapStateToProps)(PostFAQ)

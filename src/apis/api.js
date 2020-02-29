@@ -98,7 +98,7 @@ export const completeOrderPayment = async (order_id, paid_amount) => {
         const result = await response.data
         return result
     } catch (err) {
-        alert("결제가 완료되었으나, 주문 승인에 실패했습니다! 두드림퀵 카카오 플러스친구로 문의해주세요.\n에러 메시지: " + err.toString())
+        alert("결제가 완료되었으나, 주문 승인에 실패했습니다! 두드림퀵 카카오 채널로 문의해주세요.\n에러 메시지: " + err.toString())
         throw err
     }
 }

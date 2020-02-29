@@ -14,10 +14,11 @@ export const initGA = (trackingID) => {
   ReactGA.initialize(trackingID); 
 }
  
-export const Event = (category, action) => {
+export const Event = (category, action, label) => {
     ReactGA.event({
       category: category,
-      action: action
+      action: action,
+      label:label
     });
   };
 

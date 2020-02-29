@@ -38,15 +38,23 @@ class App extends React.Component {
     }
 
     async componentDidMount() {
-        initGA('UA-158814088-1'); //
-        PageView(); //
         const token = localStorage.getItem('token')
         if (token) {
+            initGA('UA-158814088-1'); //
+            PageView("/"); //
+            PageView("/order")
+            PageView("/price")
+            PageView("/how_to_use")
+            PageView("/post/news")
+            PageView("/order/complete")
+            PageView("/policy/use")
+            PageView("/policy/personal_information")
             await refresh_token()
             const current_user = await get_current_user()
             await this.props.dispatch(log_in(current_user))
         }
     }
+
 
     open_modal = key => {
         this.setState({[`show_${key}_modal`]: true})

@@ -6,6 +6,9 @@ import styles from "../app.module.css";
 
 const ListItem = props => {
 
+    
+
+
     return (
         <Accordion className={styles.postItem}>
             <Accordion.Toggle className={styles.header} as={Card.Header} eventKey={props.FAQ.id}>
@@ -14,7 +17,7 @@ const ListItem = props => {
                     <div>{props.FAQ.title}</div>
                 </div>
             </Accordion.Toggle>
-            <Accordion.Collapse className={styles.body} eventKey={props.FAQ.id}>
+            <Accordion.Collapse  className={styles.body} eventKey={props.FAQ.id}>
                 <Card.Body>{props.FAQ.text}</Card.Body>
             </Accordion.Collapse>
         </Accordion>
