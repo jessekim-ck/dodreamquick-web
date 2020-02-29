@@ -53,7 +53,7 @@ class Index extends React.Component {
                     </div>
                     <div className={styles.landingDoorCTA}>
                         <button
-                            onClick={() => this.props.history.push("/order")}
+                            onClick={() => {this.props.history.push("/order"); Event("배송신청버튼", "배송신청하기","배송신청하기");}}
                             className={styles.CTAWhite}>
                             배송 신청하기
                         </button>
