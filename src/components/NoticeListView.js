@@ -5,9 +5,11 @@ import styles from '../app.module.css'
 
 
 const ListItem = props => {
+    const React = require('react')
+    const ReactMarkdown = require('react-markdown')
 
     const regex = new RegExp("\\d+-\\d+-\\d+");
-
+    
     return (
         <Accordion className={styles.postItem}>
             <Accordion.Toggle className={styles.header} as={Card.Header} eventKey={props.notice.id}>
@@ -20,7 +22,7 @@ const ListItem = props => {
                 </div>
             </Accordion.Toggle>
             <Accordion.Collapse className={styles.body} eventKey={props.notice.id}>
-                <Card.Body>{props.notice.text}</Card.Body>
+                <Card.Body><ReactMarkdown source={props.notice.text}/></Card.Body>
             </Accordion.Collapse>
         </Accordion>
     )
