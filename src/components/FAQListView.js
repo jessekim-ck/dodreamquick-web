@@ -5,9 +5,9 @@ import styles from "../app.module.css";
 
 
 const ListItem = props => {
-
     
-
+    const React = require('react')
+    const ReactMarkdown = require('react-markdown')
 
     return (
         <Accordion className={styles.postItem}>
@@ -18,7 +18,7 @@ const ListItem = props => {
                 </div>
             </Accordion.Toggle>
             <Accordion.Collapse  className={styles.body} eventKey={props.FAQ.id}>
-                <Card.Body>{props.FAQ.text}</Card.Body>
+                <Card.Body><ReactMarkdown source={props.FAQ.text}/></Card.Body>
             </Accordion.Collapse>
         </Accordion>
     )

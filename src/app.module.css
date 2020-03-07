@@ -1,5 +1,6 @@
 @import url(https://cdn.jsdelivr.net/gh/moonspam/NanumSquare@1.0/nanumsquare.css);
 
+
 .appContainer {
     min-height: 70vh;
     word-break: keep-all;
@@ -264,11 +265,14 @@
 
 .CTAGreen:focus, .CTAWhite:focus, .CTAYellow:focus {
     outline: none;
+
 }
 
 .CTAGreen:hover, .CTAWhite:hover, .CTAYellow:hover {
+    transition:0.1s;
     opacity: 0.9;
 }
+
 
 /* Page: News Page */
 
@@ -283,6 +287,11 @@
     height: 300px;
     margin: 24px 12px;
     box-shadow: 0 2px 6px 0 #d3d3d3;
+}
+
+.newsCard:hover {
+    transition:0.3s;
+    opacity:0.7;
 }
 
 .newsCardHeader {
@@ -812,6 +821,10 @@ span {
         margin: 12px 0px;
     }
 
+    .newsCard a:hover{
+        opacity:0.3;
+    }
+
     .newsCardHeader {
         height: 55%;
         overflow: hidden;
@@ -821,6 +834,7 @@ span {
         display: block;
         width: 100%;
         overflow: hidden;
+        transition: .5s ease;
     }
 
     .newsCardBody {
@@ -936,6 +950,23 @@ span {
     .landingAppealItemImage {
         width: 50%;
     }
+
+    .landingAppealItemImage:hover, .landingAppealItemImage:focus, .landingAppealItemImage:active {
+        animation-name:pulse;
+        animation-duration:1.5s;
+        animation-iteration-count: 1; 
+    }
+
+    @keyframes pulse {
+        0% {
+          transform: scale(.3);
+          box-shadow: 0 0 0 0 rgba(20, 158, 128, 0.7);      
+        }
+        100% {
+          transform: scale(1.5);
+          box-shadow: 0 0 0 0 rgba(20, 158, 128, 0);
+        }
+      }
 
     .landingAppealItemTitle {
         color: #1A8F74;
