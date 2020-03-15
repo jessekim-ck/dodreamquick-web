@@ -13,7 +13,7 @@ const ListItem = props => {
         <Accordion className={styles.postItem}>
             <Accordion.Toggle className={styles.header} as={Card.Header} eventKey={props.FAQ.id}>
                 <div className={styles.left}>
-                    <div className={styles.index}>{props.FAQ.id}</div>
+                    <div className={styles.index}>*</div>
                     <div>{props.FAQ.title}</div>
                 </div>
             </Accordion.Toggle>

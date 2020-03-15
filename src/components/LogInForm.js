@@ -52,7 +52,7 @@ class LoginForm extends React.Component {
                                 className={styles.input}
                                 value={this.state.username}
                                 onChange={event => this.on_change(event)}
-                                placeholder="test@test.com" />
+                                placeholder="example@example.com" />
                         </Form.Group>
 
                         <Form.Group>

@@ -1089,8 +1089,11 @@ span {
         font-size: 18px;
     }
 
-    .orderCompleteText {
+    .orderCompleteSubtitle{
         font-size: 16px;
+    }
+    .orderCompleteText {
+        font-size: 14px;
     }
 
     .orderCompleteCTA {

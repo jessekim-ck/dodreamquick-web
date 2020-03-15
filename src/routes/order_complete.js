@@ -55,8 +55,9 @@ class OrderComplete extends React.Component {
                         배송 접수가 완료되었습니다.
                     </div>
                     <div className={styles.orderCompleteText}>
-                        고객님의 물품을 신속하고 안전하게 배달하겠습니다.
-                        배송 현황은 카카오톡 알림톡으로 전달드립니다.
+                        <p>고객님의 물품을 신속하고 안전하게 배달하겠습니다.</p>
+                        <p>배송 현황은 카카오톡 알림톡으로 전달드립니다.</p>
+                        <p>주문 확인 및 변경을 원하실 경우 두드림퀵 카카오채널로 문의 부탁드립니다.</p>
                     </div>
                     <div className={styles.orderCompleteCTA}>
                         <a href="/">
