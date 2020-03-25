@@ -22,7 +22,8 @@ export const Event = (category, action, label) => {
     });
   };
 
-export const PageView = () => {  
-  ReactGA.pageview(window.location.pathname +  
-                   window.location.search); 
+export const PageView = (url) => {  
+  window.gtag('config', 'UA-158814088-1', {
+    page_location:url
+  })
 }

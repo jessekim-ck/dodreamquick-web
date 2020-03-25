@@ -27,7 +27,7 @@ import UserInfoModal from "./components/UserInfoModal";
 import Footer from "./components/Footer";
 
 import {PageView, initGA} from './components/Tracking';
-
+import ReactGA from 'react-ga';
 
 
 class App extends React.Component {
@@ -41,6 +41,9 @@ class App extends React.Component {
         const token = localStorage.getItem('token')
         if (token) {
             initGA('UA-158814088-1'); //
+            ReactGA.plugin.require('displayfeatures');
+            ReactGA.plugin.require('linkid');
+            ReactGA.plugin.require('ec');
             PageView("/"); //
             PageView("/order")
             PageView("/price")
