@@ -14,14 +14,12 @@ const caution_clock = require("../assets/caution_clock.png");
 class Order extends React.Component {
 
     componentDidMount() {
-        initGA('UA-158814088-1'); //
-        PageView(); //
         const now = new Date();
         const current_hour = now.getHours();
         const current_day = now.getDay();
         
-        alert("코로나 바이러스 확산으로 인해 퀵서비스 운영을 잠시 중단합니다. 불편을 드려 죄송합니다.");
-            this.props.history.push("/");
+        // alert("코로나 바이러스 확산으로 인해 퀵서비스 운영을 잠시 중단합니다. 불편을 드려 죄송합니다.");
+        // this.props.history.push("/");
         
 
         // if (current_day === 6 || current_day === 0) {
@@ -32,6 +30,7 @@ class Order extends React.Component {
         //     this.props.history.push("/");
         // } 
     }
+
 
     make_order = async order_data => {
         const order = await addOrder({...order_data})

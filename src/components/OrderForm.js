@@ -10,6 +10,11 @@ import {connect} from "react-redux";
 
 class OrderForm extends React.Component {
 
+    alert_cake = (event) => {
+        if (event.target.value=="케이크") {
+            alert("케이크가 고정되어 있지 않은 경우 배송이 제한될 수 있으니 확인 부탁드리겠습니다!")} 
+         }
+
     state = {
         sender_name: '',
         sender_phone: '',
@@ -343,7 +348,7 @@ class OrderForm extends React.Component {
                                         type="text"
                                         name="carry_item"
                                         value={this.state.carry_item}
-                                        onChange={event => this.on_change(event)}
+                                        onChange={event => this.on_change(event) && this.alert_cake(event)}
                                         placeholder="예: 꽃 바구니"/>
                                 </div>
                             </Form.Group>
@@ -389,7 +394,7 @@ class OrderForm extends React.Component {
                                         type="text"
                                         name="memo"
                                         value={this.state.memo}
-                                        onChange={event => this.on_change(event)} />
+                                        onChange={event => this.on_change(event)  } />
                                 </div>
                             </Form.Group>
 
