@@ -101,10 +101,10 @@ class Order extends React.Component {
                         <div className={styles.orderCautionItem}>
                             <div className={styles.orderCautionItemTitle}>
                                 <img src={caution_calendar} width="30" height="30" style={{marginRight: 8}} alt=""/>
-                                예약 주문 불가
+                                예약 주문 관련 안내
                             </div>
                             <div className={styles.orderCautionItemText}>
-                                두드림퀵은 <span>예약 주문을 받지 않습니다.</span>
+                                픽업 예약은 반드시 <span>사전 문의 바랍니다.</span>
                             </div>
                         </div>
 
