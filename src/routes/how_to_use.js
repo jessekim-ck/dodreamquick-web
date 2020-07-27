@@ -145,7 +145,7 @@ const HowToUse = () => {
                             <div className={styles.introTableRowText}>
                                 전화 문의가 불가능합니다.
                                 택배원 현 위치 등이 궁금하시면 <span>알림톡에 안내된 택배원 또는 시니어클럽 전화번호</span>로 문의해주세요.
-                                또한, 배송 예약은 받지 않습니다.
+                                또한, 배송 예약은 반드시 사전 문의 바랍니다.
                             </div>
                         </div>
                     </div>
