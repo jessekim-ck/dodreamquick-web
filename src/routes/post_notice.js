@@ -3,7 +3,7 @@ import {getNoticeList} from "../apis/api";
 import NoticeListView from "../components/NoticeListView";
 import styles from '../app.module.css'
 import {Helmet} from "react-helmet/es/Helmet";
-
+const ReactGA = require('react-ga');
 
 class PostNotice extends React.Component {
 
@@ -12,6 +12,9 @@ class PostNotice extends React.Component {
     }
 
     async componentDidMount() {
+        ReactGA.initialize('UA-158814088-1'); 
+        ReactGA.pageview(window.location.pathname+window.location.search);
+        
         const notice_list = await getNoticeList()
         this.setState({notice_list})
     }

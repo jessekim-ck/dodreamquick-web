@@ -21,7 +21,7 @@ const HowToUse = () => {
                     <link rel="canonical" href="https://dodreamquick.com/how_to_use" />
                 </Helmet>
             </div>
-            <Carousel className={styles.carousel} indicators={false} interval={0}>
+            <Carousel className={styles.carousel} indicators={true} wrap={false} interval={null}>
                 <Carousel.Item>
                     <div className={styles.carouselItem}>
                         <div className={styles.carouselTitleMobile}>두드림퀵 이용 방법</div>

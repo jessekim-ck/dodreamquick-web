@@ -5,8 +5,9 @@ import styles from "../app.module.css"
 import {Helmet} from "react-helmet/es/Helmet";
 import {connect} from "react-redux";
 
-import {PageView, initGA} from '../components/Tracking';
 
+
+const ReactGA = require('react-ga');
 const caution_calendar = require("../assets/caution_calendar.png");
 const caution_clock = require("../assets/caution_clock.png");
 
@@ -14,21 +15,24 @@ const caution_clock = require("../assets/caution_clock.png");
 class Order extends React.Component {
 
     componentDidMount() {
+
+        ReactGA.initialize('UA-158814088-1'); 
+        ReactGA.pageview(window.location.pathname+window.location.search);
         const now = new Date();
         const current_hour = now.getHours();
         const current_day = now.getDay();
         
-        // alert("코로나 바이러스 확산으로 인해 퀵서비스 운영을 잠시 중단합니다. 불편을 드려 죄송합니다.");
+        // alert("배송 가능한 택배원이 많지 않아 부득이하게 주문을 닫습니다. 정말 죄송합니다.");
         // this.props.history.push("/");
-        
-
-        // if (current_day === 6 || current_day === 0) {
-        //     alert("공휴일 및 주말에는 주문이 불가능합니다 :) 평일에 찾아주세요!");
-        //     this.props.history.push("/");
-        // } else if (current_hour < 9 || current_hour > 16) {
-        //     alert("주문 불가능한 시간입니다! 두드림퀵 배송 신청은 오전 9시부터 오후 5시까지입니다.");
-        //     this.props.history.push("/");
-        // } 
+        //alert("죄송합니다. 시스템 오류로 인해 잠시 주문접수를 중단합니다.")    
+        //this.props.history.push("/");
+        if (current_day === 6 || current_day === 0) {
+            alert("공휴일 및 주말에는 주문이 불가능합니다 :) 평일에 찾아주세요!");
+            this.props.history.push("/");
+        }  else if (current_hour < 9 || current_hour > 17) {
+            alert("주문 불가능한 시간입니다! 두드림퀵 배송 신청은 오전 9시부터 오후 5시까지입니다.");
+            this.props.history.push("/");
+        } 
     }
 
 

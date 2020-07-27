@@ -13,7 +13,7 @@ export const get_header = async () => {
 
 export const api = axios.create({
     baseURL: 'https://api.dodreamquick.com/',
-    timeout: 5000,
+    timeout: 15000,
 })
 
 // api.interceptors.request.use(axios_logger.requestLogger, axios_logger.errorLogger)

@@ -4,7 +4,7 @@ import styles from '../app.module.css'
 import FAQListView from "../components/FAQListView";
 import {Helmet} from "react-helmet/es/Helmet";
 import { connect } from 'react-redux';
-
+const ReactGA = require('react-ga');
 
 class PostFAQ extends React.Component {
 
@@ -13,6 +13,9 @@ class PostFAQ extends React.Component {
     }
 
     async componentDidMount() {
+        ReactGA.initialize('UA-158814088-1'); 
+        ReactGA.pageview(window.location.pathname+window.location.search);
+        
         const FAQ_list = await getFAQList()
         this.setState({FAQ_list})
     }

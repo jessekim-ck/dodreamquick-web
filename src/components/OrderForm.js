@@ -6,12 +6,14 @@ import styles from "../app.module.css"
 import {getOrderPrice, getUserDefaultLocations} from "../apis/api";
 import ManageLocationModal from "./ManageLocationModal";
 import {connect} from "react-redux";
+import { REACT_TAG_MAP } from 'react-helmet/es/HelmetConstants';
 
+const ReactGA = require('react-ga');
 
 class OrderForm extends React.Component {
 
     alert_cake = (event) => {
-        if (event.target.value=="케이크") {
+        if (event.target.value=="케이크" || event.target.value=="케익") {
             alert("케이크가 고정되어 있지 않은 경우 배송이 제한될 수 있으니 확인 부탁드리겠습니다!")} 
          }
 
@@ -27,6 +29,7 @@ class OrderForm extends React.Component {
         receiver_address_detail: '',
 
         depositor: '',
+        coupon_code: '',
 
         pickup_time: '즉시 배송',
         carry_item: '',
@@ -58,6 +61,7 @@ class OrderForm extends React.Component {
     }
     
     async componentDidMount() {
+
         const default_locations = await getUserDefaultLocations()
 
         if (default_locations) {
@@ -394,8 +398,27 @@ class OrderForm extends React.Component {
                                         type="text"
                                         name="memo"
                                         value={this.state.memo}
-                                        onChange={event => this.on_change(event)  } />
+                                        onChange={event => this.on_change(event)} />
+                                    <Form.Text className="text-muted">
+                                        보내시는/받으시는 분이 부재중이실 예정인 경우 물건을 찾을/둘 위치를 꼭 기입해주세요.
+                                    </Form.Text>
                                 </div>
+                                
+                            </Form.Group>
+                            
+                            <Form.Group className={styles.orderFormSectionRow}>
+                                <Form.Label className={styles.orderFormSectionRowName}>쿠폰코드 (선택)</Form.Label>
+                                <div className={styles.orderFormSectionRowInput}>
+                                    <Form.Control
+                                        type="text"
+                                        name="coupon_code"
+                                        value={this.state.coupon_code}
+                                        onChange={event => this.on_change(event)} />
+                                    <Form.Text className="text-muted">
+                                        받으신 쿠폰 코드를 기입해주시면 결제 완료 이후 쿠폰에 해당하는 금액을 환급해드립니다.
+                                    </Form.Text>
+                                </div>
+                                
                             </Form.Group>
 
                         </div>
@@ -483,7 +506,7 @@ class OrderForm extends React.Component {
                     </div>
 
                     <div className={styles.orderFormSubmit}>
-                        <button className={styles.CTAGreen} type="submit">
+                        <button className={styles.CTAGreen} type="submit" onClick={()=>ReactGA.ga('send','event','transaction','transaction','transaction')}>
                             배송 신청
                         </button>
                     </div>

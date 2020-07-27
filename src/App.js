@@ -26,7 +26,6 @@ import AuthModal from "./components/AuthModal";
 import UserInfoModal from "./components/UserInfoModal";
 import Footer from "./components/Footer";
 
-import {PageView, initGA} from './components/Tracking';
 import ReactGA from 'react-ga';
 
 
@@ -40,18 +39,6 @@ class App extends React.Component {
     async componentDidMount() {
         const token = localStorage.getItem('token')
         if (token) {
-            initGA('UA-158814088-1'); //
-            ReactGA.plugin.require('displayfeatures');
-            ReactGA.plugin.require('linkid');
-            ReactGA.plugin.require('ec');
-            PageView("/"); //
-            PageView("/order")
-            PageView("/price")
-            PageView("/how_to_use")
-            PageView("/post/news")
-            PageView("/order/complete")
-            PageView("/policy/use")
-            PageView("/policy/personal_information")
             await refresh_token()
             const current_user = await get_current_user()
             await this.props.dispatch(log_in(current_user))

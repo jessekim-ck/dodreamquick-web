@@ -3,6 +3,7 @@ import {getLocationList, getOrderPrice} from "../apis/api";
 import Table from 'react-bootstrap/Table'
 import styles from '../app.module.css'
 
+const ReactGA = require('react-ga');
 
 const SelectLocationForm = props => {
 
@@ -29,6 +30,10 @@ class SearchCostForm extends React.Component {
     }
 
     async componentDidMount() {
+
+        ReactGA.initialize('UA-158814088-1'); 
+        ReactGA.pageview(window.location.pathname+window.location.search);
+        
         const location_list = await getLocationList()
         const location_list_sorted = location_list.sort(
             (a, b) => (a.id < b.id) ? -1 : 1

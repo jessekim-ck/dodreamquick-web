@@ -13,7 +13,7 @@ import landing_phone from "../assets/landing_phone.png"
 import {getNoticeModal} from "../apis/api"
 import NoticeModal from "../components/NoticeModal"
 
-import {Event} from '../components/Tracking';
+const ReactGA = require('react-ga');
 
 class Index extends React.Component {
 
@@ -23,6 +23,9 @@ class Index extends React.Component {
     }
 
     async componentDidMount() {
+        
+        ReactGA.initialize('UA-158814088-1'); 
+        ReactGA.pageview(window.location.pathname+window.location.search);
         
         const notice_modal = await getNoticeModal()
         if (notice_modal) {
@@ -59,8 +62,7 @@ class Index extends React.Component {
                         </button>
                         <a href="https://pf.kakao.com/_jSPaj" target="_blank" rel="noopener noreferrer">
                             <button className={styles.CTAYellow}
-                                onClick={()=> 
-                                    Event("문의버튼", "문의하기","문의하기")}>
+                                onClick={()=>ReactGA.ga('send','event','ask','ask','ask')}>
                                 문의하기
                             </button>
                         </a>

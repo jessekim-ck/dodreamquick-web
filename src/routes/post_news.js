@@ -4,6 +4,7 @@ import NewsListView from "../components/NewsListView";
 import styles from '../app.module.css'
 import {Helmet} from "react-helmet/es/Helmet";
 
+const ReactGA = require('react-ga');
 
 class PostNews extends React.Component {
 
@@ -12,6 +13,11 @@ class PostNews extends React.Component {
     }
 
     async componentDidMount() {
+
+        ReactGA.initialize('UA-158814088-1'); 
+        ReactGA.pageview(window.location.pathname+window.location.search);
+        
+
         const news_list = await getNews()
         this.setState({news_list})
     }
