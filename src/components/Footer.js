@@ -21,6 +21,10 @@ const Footer = () => {
                 <a href="/policy/use" className={styles.footerPolicyLink}>이용 약관</a>
                 <a href="/policy/personal_information" className={styles.footerPolicyLink}>개인정보 처리 방침</a>
             </div>
+            <div className={styles.footerText}>
+                <br/>
+                <div>두드림퀵은 통신판매중개자이며 통신판매의 당사자가 아닙니다.</div>
+            </div>
         </div>
     )
 }

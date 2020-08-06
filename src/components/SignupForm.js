@@ -67,7 +67,7 @@ class SignupForm extends React.Component {
 
                         <Form.Group>
                             <Form.Text>
-                                두드림퀵의 <a href="/policy/use" target="_blank">이용 약관</a> 및 <a href="/policy/personal_information" target="_blank">개인정보 취급 방침</a>에 동의합니다.
+                                회원가입 버튼 클릭 시 두드림퀵의 <a href="/policy/use" target="_blank">이용 약관</a> 및 <a href="/policy/personal_information" target="_blank">개인정보 취급 방침</a>에 동의하는 것으로 취급하오니 회원가입 전에 확인 부탁드립니다.
                             </Form.Text>
                         </Form.Group>
 
