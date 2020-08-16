@@ -16,22 +16,22 @@ class Order extends React.Component {
 
     componentDidMount() {
 
-        ReactGA.initialize('UA-158814088-1'); 
+        ReactGA.initialize('UA-158814088-1');
         ReactGA.pageview(window.location.pathname+window.location.search);
         const now = new Date();
         const current_hour = now.getHours();
         const current_day = now.getDay();
-        
+
         // alert("배송 가능한 택배원이 많지 않아 부득이하게 주문을 닫습니다. 정말 죄송합니다.");
         // this.props.history.push("/");
-        //alert("죄송합니다. 시스템 오류로 인해 잠시 주문접수를 중단합니다.")    
-        if (current_day === 6 || current_day === 0) {
+        //alert("죄송합니다. 시스템 오류로 인해 잠시 주문접수를 중단합니다.")
+        if (current_day === 6 || current_day === 0 || current_day === 1) {
             alert("공휴일 및 주말에는 주문이 불가능합니다 :) 평일에 찾아주세요!");
             this.props.history.push("/");
         }  else if (current_hour < 9 || current_hour > 17) {
             alert("주문 불가능한 시간입니다! 두드림퀵 배송 신청은 오전 9시부터 오후 5시까지입니다.");
             this.props.history.push("/");
-        } 
+        }
     }
 
 
@@ -90,7 +90,7 @@ class Order extends React.Component {
             <div className={styles.contentContainer}>
                 <Helmet>
                     <title>두드림퀵: 배송 신청</title>
-                    <meta 
+                    <meta
                         name="description"
                         content="두드림퀵 지하철 퀵서비스 배송 신청" />
                     <link rel="canonical" href="https://dodreamquick.com/order" />
@@ -118,7 +118,7 @@ class Order extends React.Component {
                             </div>
                             <div className={styles.orderCautionItemText}>
                                 주문 가능 시간은 <span>월-금요일 오전 9시~오후 5시</span>입니다.
-                                <br/> 
+                                <br/>
                                 (주말 및 공휴일 휴무)
                             </div>
                         </div>
