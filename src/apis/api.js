@@ -1,6 +1,20 @@
 import {api, get_header} from './config'
 
-
+export const delete_user = async(username) => {
+    try {
+        const header = await get_header()
+        const response = await api.post(
+            'api/deleteUser/',
+                {username},
+                {headers: header}
+                )
+                const result = response.data
+                return result
+            } catch (err) {
+                alert(err)
+            }
+}
+          
 export const sign_up = async (username, password) => {
     try {
         const response = await api.post(

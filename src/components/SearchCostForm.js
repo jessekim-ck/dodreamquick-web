@@ -109,7 +109,7 @@ class SearchCostForm extends React.Component {
                             계산 결과
                         </div>
                         <div className={styles.searchCostFormLabelDescription}>
-                            픽업지에서 배송지까지의 요금은
+                            픽업지에서 배송지까지의 요금은 다음과 같습니다.
                         </div>
                     </div>
 

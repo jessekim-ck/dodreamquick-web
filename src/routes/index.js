@@ -51,8 +51,8 @@ class Index extends React.Component {
                 </div>
                 <div className={styles.landingDoor}>
                     <div className={styles.landingDoorText}>
-                        서울 전 지역 6,000원부터!<br/>
-                        고객님의 집 앞까지 배송합니다
+                        서울 전 지역 7,000원부터!<br/>
+                        고객님의 집 앞까지 배송합니다!
                     </div>
                     <div className={styles.landingDoorCTA}>
                         <button

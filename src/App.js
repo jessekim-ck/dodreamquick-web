@@ -25,6 +25,7 @@ import HowToUse from './routes/how_to_use'
 import AuthModal from "./components/AuthModal";
 import UserInfoModal from "./components/UserInfoModal";
 import Footer from "./components/Footer";
+import DeleteUserModal from "./components/DeleteUserModal"
 
 import ReactGA from 'react-ga';
 
@@ -34,6 +35,7 @@ class App extends React.Component {
     state = {
         show_auth_modal: false,
         show_user_info_modal: false,
+        show_delete_user_modal:false
     }
 
     async componentDidMount() {
@@ -142,7 +144,8 @@ class App extends React.Component {
                         open_auth_modal={() => this.open_modal('auth')}
                         close_modal={() => this.close_modal('user_info')}
                         authenticate={this.authenticate}
-                        edit_user_info={this.edit_user_info} />
+                        edit_user_info={this.edit_user_info}
+                        log_out={this.log_out} />
                 </div>
             </Router>
         )

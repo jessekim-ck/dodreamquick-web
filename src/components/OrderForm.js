@@ -450,6 +450,9 @@ class OrderForm extends React.Component {
                                         label="카드 결제"
                                         checked={this.state.credit_card}
                                         onChange={event => this.on_toggle(event)} />
+                                    <Form.Text className="text-muted">
+                                        계좌이체를 원하시는 분은 배송신청을 누르신 후 두드림퀵 카카오 채널로 연락 주세요.
+                                    </Form.Text>
                                 </div>
                             </Form.Group>
                         </div>
@@ -506,7 +509,7 @@ class OrderForm extends React.Component {
                     </div>
 
                     <div className={styles.orderFormSubmit}>
-                        <button className={styles.CTAGreen} type="submit" onClick={()=>ReactGA.ga('send','event','transaction','transaction','transaction')}>
+                        <button className={styles.CTAGreen} type="submit">
                             배송 신청
                         </button>
                     </div>

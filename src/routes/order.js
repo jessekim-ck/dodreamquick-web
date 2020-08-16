@@ -25,7 +25,6 @@ class Order extends React.Component {
         // alert("배송 가능한 택배원이 많지 않아 부득이하게 주문을 닫습니다. 정말 죄송합니다.");
         // this.props.history.push("/");
         //alert("죄송합니다. 시스템 오류로 인해 잠시 주문접수를 중단합니다.")    
-        //this.props.history.push("/");
         if (current_day === 6 || current_day === 0) {
             alert("공휴일 및 주말에는 주문이 불가능합니다 :) 평일에 찾아주세요!");
             this.props.history.push("/");
@@ -108,7 +107,7 @@ class Order extends React.Component {
                                 예약 주문 관련 안내
                             </div>
                             <div className={styles.orderCautionItemText}>
-                                픽업 예약은 반드시 <span>사전 문의 바랍니다.</span>
+                                즉시 배송이 아니라 픽업 시간을 지정하시고 싶으신 경우 반드시 <span>사전 문의 바랍니다.</span>
                             </div>
                         </div>
 

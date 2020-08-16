@@ -35,12 +35,6 @@ class ResetPasswordForm extends React.Component {
         }
     }
 
-    reset_password = async () => {
-        const reset_complete = await resetPassword(this.state.searched_username)
-        if (reset_complete === 1) {
-            alert("해당 이메일 주소로 임시 비밀번호가 전송되었습니다!")
-        }
-    }
 
     render() {
         if (this.state.searched_username) {

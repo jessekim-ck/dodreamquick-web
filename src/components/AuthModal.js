@@ -4,7 +4,6 @@ import LoginForm from "./LogInForm";
 import SignupForm from "./SignupForm";
 import ResetPasswordForm from "./ResetPasswordForm";
 
-
 class AuthModal extends React.Component {
 
     state = {
@@ -36,6 +35,7 @@ class AuthModal extends React.Component {
                 return <ResetPasswordForm />
             default:
                 return <div></div>
+
         }
     }
 

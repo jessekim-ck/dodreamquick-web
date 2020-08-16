@@ -402,6 +402,15 @@
     word-wrap : break-word;
 }
 
+.modalAdditionalButton {
+    flex-direction: row;
+    display: flex;
+    justify-content: flex-end;
+    margin-top: 5px;
+    margin-bottom: 10px;
+    color:darkgray;
+}
+
 .modalAdditionalButtons {
     flex-direction: row;
     display: flex;
