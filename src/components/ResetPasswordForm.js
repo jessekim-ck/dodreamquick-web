@@ -3,7 +3,7 @@ import Form from 'react-bootstrap/Form'
 import Modal from 'react-bootstrap/Modal'
 import Button from 'react-bootstrap/Button'
 import styles from '../app.module.css'
-import {findUsername, resetPassword} from "../apis/api";
+import {findUsername} from "../apis/api";
 
 
 class ResetPasswordForm extends React.Component {
@@ -69,7 +69,7 @@ class ResetPasswordForm extends React.Component {
                                     className={styles.input}
                                     value={this.state.username}
                                     onChange={event => this.on_change(event)}
-                                    placeholder="test@test.com" />
+                                    placeholder="test@test.com"/>
                             </Form.Group>
 
                             <Button className={styles.basicButtonGreen} type="submit">

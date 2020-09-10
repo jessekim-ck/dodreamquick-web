@@ -6,16 +6,19 @@ import styles from "../app.module.css"
 import {getOrderPrice, getUserDefaultLocations} from "../apis/api";
 import ManageLocationModal from "./ManageLocationModal";
 import {connect} from "react-redux";
-import { REACT_TAG_MAP } from 'react-helmet/es/HelmetConstants';
-
-const ReactGA = require('react-ga');
 
 class OrderForm extends React.Component {
 
     alert_cake = (event) => {
-        if (event.target.value=="케이크" || event.target.value=="케익") {
-            alert("케이크가 고정되어 있지 않은 경우 배송이 제한될 수 있으니 확인 부탁드리겠습니다!")} 
-         }
+        if (event.target.value === "케이크" || event.target.value === "케익") {
+            alert("케이크가 고정되어 있지 않은 경우 배송이 제한될 수 있으니 확인 부탁드리겠습니다!")
+        }
+    }
+
+    receiver_request_messages = [
+        '부재 시, 문 앞에 맡겨주세요.',
+        '부재 시, 옆집에 맡겨주세요.'
+    ]
 
     state = {
         sender_name: '',
@@ -27,9 +30,9 @@ class OrderForm extends React.Component {
         receiver_phone: '',
         receiver_address: '',
         receiver_address_detail: '',
+        receiver_request_message: this.receiver_request_messages[0],
 
         depositor: '',
-        coupon_code: '',
 
         pickup_time: '즉시 배송',
         carry_item: '',
@@ -59,9 +62,8 @@ class OrderForm extends React.Component {
 
         price: 0,
     }
-    
-    async componentDidMount() {
 
+    async componentDidMount() {
         const default_locations = await getUserDefaultLocations()
 
         if (default_locations) {
@@ -82,6 +84,7 @@ class OrderForm extends React.Component {
                     receiver_name: default_arrival_location.name || "",
                     receiver_address: default_arrival_location.location || "",
                     receiver_address_detail: default_arrival_location.location_detail || "",
+                    receiver_request_message: default_arrival_location.message || this.receiver_request_messages[0],
                     receiver_phone: default_arrival_location.phone || "",
                 })
             }
@@ -127,6 +130,14 @@ class OrderForm extends React.Component {
         this.setState(prevState => ({
             ...prevState,
             [name]: value
+        }))
+    }
+
+    on_change_receiver_request_message = async event => {
+        const value = event.target.value
+        this.setState(prevState => ({
+            ...prevState,
+            receiver_request_message: value
         }))
     }
 
@@ -177,8 +188,8 @@ class OrderForm extends React.Component {
         this.setState({show_modal: false})
     }
 
-    render () {
-
+    render() {
+        const receiver_request_message_select_value = this.receiver_request_messages.includes(this.state.receiver_request_message) ? this.state.receiver_request_message : ''
         return (
             <div>
                 <Form onSubmit={this.on_submit_order}>
@@ -201,7 +212,7 @@ class OrderForm extends React.Component {
                                         name="sender_name"
                                         value={this.state.sender_name}
                                         onChange={event => this.on_change(event)}
-                                        placeholder="예: 홍길동" required />
+                                        placeholder="예: 홍길동" required/>
                                 </div>
                             </Form.Group>
 
@@ -213,7 +224,7 @@ class OrderForm extends React.Component {
                                         name="sender_phone"
                                         value={this.state.sender_phone}
                                         onChange={event => this.on_change(event)}
-                                        placeholder="01012345678" required />
+                                        placeholder="01012345678" required/>
                                     <Form.Text className="text-muted">
                                         "-"를 제외하고 입력해주세요. 입력해 주신 핸드폰 번호로 배송 알림톡을 보내드립니다.
                                     </Form.Text>
@@ -230,7 +241,7 @@ class OrderForm extends React.Component {
                                         value={this.state.sender_address}
                                         onChange={event => this.on_change(event)}
                                         onClick={() => this.setState(prevState => ({sender_address_finder: !prevState.sender_address_finder}))}
-                                        readOnly required />
+                                        readOnly required/>
                                     {
                                         this.state.sender_address_finder &&
                                         <PostCodeForm on_complete={this.on_complete_search('sender_address')}/>
@@ -241,9 +252,9 @@ class OrderForm extends React.Component {
                                         name="sender_address_detail"
                                         value={this.state.sender_address_detail}
                                         onChange={event => this.on_change(event)}
-                                        placeholder="상세 주소 입력" required />
+                                        placeholder="상세 주소 입력" required/>
                                     <Form.Text className="text-muted">
-                                        주소 검색을 통해 시, 구가 포함된 정확한 주소를 입력해주세요. 입력된 주소로 택배원이 물품을 가지러 갑니다.
+                                        주소 검색을 통해 시, 구가 포함된 정확한 주소를 입력해주세요. 입력된 주소로 택배원이 물품을 가지러 갑니다.
                                     </Form.Text>
                                 </div>
                             </Form.Group>
@@ -252,7 +263,7 @@ class OrderForm extends React.Component {
                                 this.props.username &&
                                 <button
                                     className={styles.basicButtonGreen}
-                                    onClick={() => this.open_modal("sender")} >
+                                    onClick={() => this.open_modal("sender")}>
                                     주소지 목록
                                 </button>
                             }
@@ -276,7 +287,7 @@ class OrderForm extends React.Component {
                                         name="receiver_name"
                                         value={this.state.receiver_name}
                                         onChange={event => this.on_change(event)}
-                                        placeholder="예: 홍길동" required />
+                                        placeholder="예: 홍길동" required/>
                                 </div>
                             </Form.Group>
 
@@ -288,7 +299,7 @@ class OrderForm extends React.Component {
                                         name="receiver_phone"
                                         value={this.state.receiver_phone}
                                         onChange={event => this.on_change(event)}
-                                        placeholder="01012345678" required />
+                                        placeholder="01012345678" required/>
                                     <Form.Text className="text-muted">
                                         "-"를 제외하고 입력해주세요. 입력해 주신 핸드폰 번호로 배송 알림톡을 보내드립니다.
                                     </Form.Text>
@@ -305,7 +316,7 @@ class OrderForm extends React.Component {
                                         value={this.state.receiver_address}
                                         onChange={event => this.on_change(event)}
                                         onClick={() => this.setState(prevState => ({receiver_address_finder: !prevState.receiver_address_finder}))}
-                                        readOnly required />
+                                        readOnly required/>
                                     {
                                         this.state.receiver_address_finder &&
                                         <PostCodeForm on_complete={this.on_complete_search('receiver_address')}/>
@@ -316,9 +327,9 @@ class OrderForm extends React.Component {
                                         name="receiver_address_detail"
                                         value={this.state.receiver_address_detail}
                                         onChange={event => this.on_change(event)}
-                                        placeholder="상세 주소 입력" required />
+                                        placeholder="상세 주소 입력" required/>
                                     <Form.Text className="text-muted">
-                                        주소 검색을 통해 시, 구가 포함된 정확한 주소를 입력해주세요. 입력된 주소로 택배원이 물품을 전달합니다.
+                                        주소 검색을 통해 시, 구가 포함된 정확한 주소를 입력해주세요. 입력된 주소로 택배원이 물품을 전달합니다.
                                     </Form.Text>
                                 </div>
                             </Form.Group>
@@ -327,10 +338,37 @@ class OrderForm extends React.Component {
                                 this.props.username &&
                                 <button
                                     className={styles.basicButtonGreen}
-                                    onClick={() => this.open_modal("receiver")} >
+                                    onClick={() => this.open_modal("receiver")}>
                                     주소지 목록
                                 </button>
                             }
+
+                            <Form.Group className={styles.orderFormSectionRow}>
+                                <Form.Label className={styles.orderFormSectionRowName}>배송 시 요청사항</Form.Label>
+                                <div className={styles.orderFormSectionRowInput}>
+                                    <Form.Control
+                                        as="select"
+                                        value={receiver_request_message_select_value}
+                                        onChange={event => this.on_change_receiver_request_message(event)}
+                                    >
+                                        {this.receiver_request_messages.map(msg => (
+                                            <option key={msg}>{msg}</option>
+                                        ))}
+                                        <option value=''>직접입력</option>
+                                    </Form.Control>
+                                    { receiver_request_message_select_value === ''
+                                        ? (
+                                            <Form.Control
+                                                type="text"
+                                                id="receiver_request_message"
+                                                name="receiver_request_message"
+                                                value={this.state.receiver_request_message}
+                                                onChange={event => this.on_change(event)}
+                                                placeholder="요청사항 입력" required/>
+                                        )
+                                        : null }
+                                </div>
+                            </Form.Group>
 
                         </div>
 
@@ -362,7 +400,7 @@ class OrderForm extends React.Component {
                                 <div className={styles.orderFormSectionRowInput}>
                                     <Form.Check label="배송 물품의 무게가 5kg 이하입니다" required/>
                                     <Form.Text className="text-muted">
-                                        배송 물품의 무게가 5kg 이상일 시 배송이 취소됩니다.
+                                        배송 물품의 무게가 5kg 이상일 시 배송이 취소됩니다.
                                     </Form.Text>
                                 </div>
                             </Form.Group>
@@ -376,14 +414,14 @@ class OrderForm extends React.Component {
                                         type="checkbox"
                                         label="보내시는 분"
                                         checked={this.state.notificate_sender}
-                                        onChange={event => this.on_toggle(event)} />
+                                        onChange={event => this.on_toggle(event)}/>
                                     <Form.Check
                                         inline
                                         name="notificate_receiver"
                                         type="checkbox"
                                         label="받으시는 분"
                                         checked={this.state.notificate_receiver}
-                                        onChange={event => this.on_toggle(event)} />
+                                        onChange={event => this.on_toggle(event)}/>
                                     <Form.Text className="text-muted">
                                         택배원 배정 안내, 픽업 완료 안내, 배송 완료 안내를 카카오톡 알림톡으로 보내드립니다.
                                     </Form.Text>
@@ -398,14 +436,14 @@ class OrderForm extends React.Component {
                                         type="text"
                                         name="memo"
                                         value={this.state.memo}
-                                        onChange={event => this.on_change(event)} />
+                                        onChange={event => this.on_change(event)}/>
                                     <Form.Text className="text-muted">
                                         보내시는/받으시는 분이 부재중이실 예정인 경우 물건을 찾을/둘 위치를 꼭 기입해주세요.
                                     </Form.Text>
                                 </div>
-                                
+
                             </Form.Group>
-                            
+
                             <Form.Group className={styles.orderFormSectionRow}>
                                 <Form.Label className={styles.orderFormSectionRowName}>쿠폰코드 (선택)</Form.Label>
                                 <div className={styles.orderFormSectionRowInput}>
@@ -413,12 +451,12 @@ class OrderForm extends React.Component {
                                         type="text"
                                         name="coupon_code"
                                         value={this.state.coupon_code}
-                                        onChange={event => this.on_change(event)} />
+                                        onChange={event => this.on_change(event)}/>
                                     <Form.Text className="text-muted">
                                         받으신 쿠폰 코드를 기입해주시면 결제 완료 이후 쿠폰에 해당하는 금액을 환급해드립니다.
                                     </Form.Text>
                                 </div>
-                                
+
                             </Form.Group>
 
                         </div>
@@ -449,7 +487,7 @@ class OrderForm extends React.Component {
                                         type="radio"
                                         label="카드 결제"
                                         checked={this.state.credit_card}
-                                        onChange={event => this.on_toggle(event)} />
+                                        onChange={event => this.on_toggle(event)}/>
                                     <Form.Text className="text-muted">
                                         계좌이체를 원하시는 분은 배송신청을 누르신 후 두드림퀵 카카오 채널로 연락 주세요.
                                     </Form.Text>
@@ -470,7 +508,7 @@ class OrderForm extends React.Component {
                                     name="agree_all"
                                     checked={this.state.agree_all}
                                     onChange={event => this.on_toggle(event)}
-                                    label="전체 동의" />
+                                    label="전체 동의"/>
                             </Form.Group>
 
                             <Form.Group className={styles.orderFormSectionFlexRow}>
@@ -478,7 +516,7 @@ class OrderForm extends React.Component {
                                     name="agree_first_policy"
                                     checked={this.state.agree_first_policy}
                                     onChange={event => this.on_toggle(event)}
-                                    label="개인 정보 수집 및 이용 동의" required />
+                                    label="개인 정보 수집 및 이용 동의" required/>
                                 <div
                                     onClick={() => this.setState(prevState => ({show_first_policy: !prevState.show_first_policy}))}>
                                     [내용 보기]
@@ -486,7 +524,8 @@ class OrderForm extends React.Component {
                             </Form.Group>
                             {
                                 this.state.show_first_policy &&
-                                <Form.Control style={{fontSize: 12, margin: 12}} as="textarea" rows="5" value={policies.personal_information_collection} readOnly />
+                                <Form.Control style={{fontSize: 12, margin: 12}} as="textarea" rows="5"
+                                              value={policies.personal_information_collection} readOnly/>
                             }
 
                             <Form.Group className={styles.orderFormSectionFlexRow}>
@@ -494,7 +533,7 @@ class OrderForm extends React.Component {
                                     name="agree_second_policy"
                                     checked={this.state.agree_second_policy}
                                     onChange={event => this.on_toggle(event)}
-                                    label="개인 정보 제 3자 제공 동의" required />
+                                    label="개인 정보 제 3자 제공 동의" required/>
                                 <div
                                     onClick={() => this.setState(prevState => ({show_second_policy: !prevState.show_second_policy}))}>
                                     [내용 보기]
@@ -502,7 +541,8 @@ class OrderForm extends React.Component {
                             </Form.Group>
                             {
                                 this.state.show_second_policy &&
-                                <Form.Control style={{fontSize: 12, margin: 12}} as="textarea" rows="5" value={policies.personal_information_offer} readOnly />
+                                <Form.Control style={{fontSize: 12, margin: 12}} as="textarea" rows="5"
+                                              value={policies.personal_information_offer} readOnly/>
                             }
                         </div>
 
@@ -520,7 +560,7 @@ class OrderForm extends React.Component {
                     <ManageLocationModal
                         show_modal={this.state.show_modal}
                         close_modal={this.close_modal}
-                        on_select_location={this.on_select_location(this.state.modal_target)} />
+                        on_select_location={this.on_select_location(this.state.modal_target)}/>
                 }
 
             </div>

@@ -1,6 +1,5 @@
 import React from 'react';
-import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
-import NavigationBar from './components/NavigationBar'
+import {BrowserRouter as Router, Route, Switch} from "react-router-dom";
 import {authenticate_user, editUserInfo, get_current_user, refresh_token, sign_up} from "./apis/api";
 import styles from './app.module.css'
 import favicon from './assets/favicon.ico'
@@ -12,6 +11,7 @@ import {log_in, log_out} from './redux/actions/user_actions'
 
 // Routes
 import Index from './routes/index'
+import About from './routes/about'
 import Order from './routes/order'
 import OrderComplete from './routes/order_complete'
 import SearchCost from './routes/search_cost'
@@ -22,12 +22,13 @@ import PolicyOfUse from './routes/policy_of_use'
 import PolicyOfPersonalInformation from './routes/policy_of_personal_information'
 import HowToUse from './routes/how_to_use'
 
+import NavigationBar from './components/NavigationBar'
+import MenuBar from './components/MenuBar'
 import AuthModal from "./components/AuthModal";
 import UserInfoModal from "./components/UserInfoModal";
 import Footer from "./components/Footer";
-import DeleteUserModal from "./components/DeleteUserModal"
-
-import ReactGA from 'react-ga';
+import logo from "./assets/logo.png";
+import Navbar from "react-bootstrap/Navbar";
 
 
 class App extends React.Component {
@@ -35,7 +36,7 @@ class App extends React.Component {
     state = {
         show_auth_modal: false,
         show_user_info_modal: false,
-        show_delete_user_modal:false
+        show_delete_user_modal: false
     }
 
     async componentDidMount() {
@@ -112,15 +113,23 @@ class App extends React.Component {
                         open_modal={this.open_modal}
                         close_modal={this.close_modal}
                         log_out={this.log_out}/>
+                    <div className={styles.mainLogo}>
+                        <Navbar.Brand href="/">
+                            <img
+                                src={logo}
+                                alt="두드림퀵"/>
+                        </Navbar.Brand>
+                    </div>
+                    <MenuBar />
                     <div className={styles.appContainer}>
                         <Switch>
                             <Route exact path="/" component={Index}/>
+                            <Route path="/about" component={About}/>
                             <Route path="/order/complete/:id/:price" component={OrderComplete}/>
                             <Route path="/order/complete" component={OrderComplete}/>
                             <Route path="/order" component={Order}/>
                             <Route path="/price" component={SearchCost}/>
                             <Route path="/post/notice" component={PostNotice}/>
-                            <Route path="/post/faq" component={PostFAQ}/>
                             <Route path="/post/news" component={PostNews}/>
                             <Route path="/policy/use" component={PolicyOfUse}/>
                             <Route path="/policy/personal_information" component={PolicyOfPersonalInformation}/>
@@ -136,7 +145,7 @@ class App extends React.Component {
                         show_modal={this.state.show_auth_modal}
                         close_modal={() => this.close_modal('auth')}
                         authenticate={this.authenticate}
-                        sign_up={this.sign_up} />
+                        sign_up={this.sign_up}/>
                 </div>
                 <div>
                     <UserInfoModal
@@ -145,7 +154,7 @@ class App extends React.Component {
                         close_modal={() => this.close_modal('user_info')}
                         authenticate={this.authenticate}
                         edit_user_info={this.edit_user_info}
-                        log_out={this.log_out} />
+                        log_out={this.log_out}/>
                 </div>
             </Router>
         )

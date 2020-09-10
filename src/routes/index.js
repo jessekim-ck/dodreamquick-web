@@ -23,10 +23,10 @@ class Index extends React.Component {
     }
 
     async componentDidMount() {
-        
-        ReactGA.initialize('UA-158814088-1'); 
+
+        ReactGA.initialize('UA-158814088-1');
         ReactGA.pageview(window.location.pathname+window.location.search);
-        
+
         const notice_modal = await getNoticeModal()
         if (notice_modal) {
             this.setState({notice_modal})
@@ -43,7 +43,7 @@ class Index extends React.Component {
                 <div>
                     <Helmet>
                         <title>두드림퀵: 저렴하고 신속한 지하철 퀵서비스</title>
-                        <meta 
+                        <meta
                             name="description"
                             content="행복을 전하는 지하철 퀵서비스 두드림퀵" />
                         <link rel="canonical" href="https://dodreamquick.com" />
@@ -54,19 +54,19 @@ class Index extends React.Component {
                         서울 전 지역 7,000원부터!<br/>
                         고객님의 집 앞까지 배송합니다!
                     </div>
-                    <div className={styles.landingDoorCTA}>
-                        <button
-                            onClick={() => {this.props.history.push("/order"); Event("배송신청버튼", "배송신청하기","배송신청하기");}}
-                            className={styles.CTAWhite}>
-                            배송 신청하기
-                        </button>
-                        <a href="https://pf.kakao.com/_jSPaj" target="_blank" rel="noopener noreferrer">
-                            <button className={styles.CTAYellow}
-                                onClick={()=>ReactGA.ga('send','event','ask','ask','ask')}>
-                                문의하기
-                            </button>
-                        </a>
-                    </div>
+                    {/*<div className={styles.landingDoorCTA}>*/}
+                    {/*    <button*/}
+                    {/*        onClick={() => {this.props.history.push("/order"); Event("배송신청버튼", "배송신청하기","배송신청하기");}}*/}
+                    {/*        className={styles.CTAWhite}>*/}
+                    {/*        배송 신청하기*/}
+                    {/*    </button>*/}
+                    {/*    <a href="https://pf.kakao.com/_jSPaj" target="_blank" rel="noopener noreferrer">*/}
+                    {/*        <button className={styles.CTAYellow}*/}
+                    {/*            onClick={()=>ReactGA.ga('send','event','ask','ask','ask')}>*/}
+                    {/*            문의하기*/}
+                    {/*        </button>*/}
+                    {/*    </a>*/}
+                    {/*</div>*/}
                 </div>
 
                 <div className={styles.landingIntro}>
@@ -133,7 +133,7 @@ class Index extends React.Component {
 
                 {
                     this.state.notice_modal &&
-                    <NoticeModal 
+                    <NoticeModal
                         show_modal={this.state.show_notice_modal}
                         close_modal={this.close_notice_modal}
                         notice_modal={this.state.notice_modal}/>
