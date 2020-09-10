@@ -1,14 +1,12 @@
 import React from 'react'
 import Navbar from 'react-bootstrap/Navbar'
 import Nav from 'react-bootstrap/Nav'
-import NavDropdown from 'react-bootstrap/NavDropdown'
 import styles from '../app.module.css'
 import {isMobile} from 'react-device-detect'
 
 // redux
 import {connect} from 'react-redux'
 import {log_out} from "../redux/actions/user_actions";
-import logo from "../assets/logo.png";
 
 
 class NavigationBar extends React.Component {
@@ -56,19 +54,19 @@ class NavigationBar extends React.Component {
                 <Navbar.Collapse id="basic-navbar-nav">
                     <Nav className={["mr-auto", styles.quickMenu]}>
                         <Nav.Link href="/post/notice">공지사항</Nav.Link>
-                        <Nav.Link href="/post/notice" target="_blank">
+                        <Nav.Link href="https://blog.naver.com/dodream-enactus" target="_blank">
                             <img
                                 src="/ic_naver_blog.png"
                                 height="28"
                                 alt="두드림퀵"/>
                         </Nav.Link>
-                        <Nav.Link href="/post/notice" target="_blank">
+                        <Nav.Link href="https://pf.kakao.com/_jSPaj" target="_blank">
                             <img
-                                src="/ic_naver_post.png"
+                                src="/ic_kakao_channel.png"
                                 height="28"
                                 alt="두드림퀵"/>
                         </Nav.Link>
-                        <Nav.Link href="/post/notice" target="_blank">
+                        <Nav.Link href="https://www.instagram.com/dodream_tale/?hl=ko" target="_blank">
                             <img
                                 src="/ic_instagram.png"
                                 height="28"

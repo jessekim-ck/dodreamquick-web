@@ -16,7 +16,6 @@ import Order from './routes/order'
 import OrderComplete from './routes/order_complete'
 import SearchCost from './routes/search_cost'
 import PostNotice from './routes/post_notice'
-import PostFAQ from './routes/post_faq'
 import PostNews from './routes/post_news'
 import PolicyOfUse from './routes/policy_of_use'
 import PolicyOfPersonalInformation from './routes/policy_of_personal_information'
@@ -27,7 +26,7 @@ import MenuBar from './components/MenuBar'
 import AuthModal from "./components/AuthModal";
 import UserInfoModal from "./components/UserInfoModal";
 import Footer from "./components/Footer";
-import logo from "./assets/logo.png";
+import logo from "./assets/logo.svg";
 import Navbar from "react-bootstrap/Navbar";
 
 

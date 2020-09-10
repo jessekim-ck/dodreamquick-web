@@ -49,7 +49,7 @@
     background-color: white;
     display: flex;
     justify-content: center;
-    padding: 0 10%;
+    padding: 0 10% 25px 10%;
 }
 
 .mainLogo img {
@@ -67,7 +67,7 @@
 
 .menuBarContainer .menuBarNav {
     position: relative;
-    font-size: 18px;
+    font-size: 20px;
     margin: 0 auto;
     border-top: 4px solid transparent;
     border-bottom: 4px solid transparent;

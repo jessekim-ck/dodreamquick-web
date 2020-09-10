@@ -21,7 +21,7 @@ const Footer = () => {
                     </div>
                 </div>
                 <div className={[styles.footerInfoBox, "text-center"].join(' ')}>
-                    <Nav.Link href="/post/notice" target="_blank">
+                    <Nav.Link href="https://pf.kakao.com/_jSPaj" target="_blank">
                         <img
                             src="/ic_kakao_channel.png"
                             height="80"
