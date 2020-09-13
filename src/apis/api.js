@@ -14,7 +14,7 @@ export const delete_user = async(username) => {
                 alert(err)
             }
 }
-          
+
 export const sign_up = async (username, password) => {
     try {
         const response = await api.post(
@@ -267,6 +267,89 @@ export const setDefaultLocation = async (target, location_id) => {
     }
 }
 
+export const getUserMemoList = async () => {
+    try {
+        const header = await get_header()
+        const response = await api.post(
+            'api/getUserMemoList/',
+            {},
+            {headers: header}
+        )
+        const result = await response.data
+        return result
+    } catch (err) {
+        console.log(err)
+        throw err
+    }
+}
+
+export const getUserDefaultMemos = async () => {
+    try {
+        const header = await get_header()
+        if (header.Authorization) {
+            const response = await api.post(
+                'api/getUserDefaultMemos/',
+                {},
+                {headers: header}
+            )
+            const result = await response.data
+            return result
+        } else {
+            return null
+        }
+    } catch (err) {
+        console.log(err)
+    }
+}
+
+export const addUserMemo = async memo => {
+    try {
+        const header = await get_header()
+        const response = await api.post(
+            'api/addUserMemo/',
+            {memo},
+            {headers: header}
+        )
+        const result = await response.data
+        return result
+    } catch (err) {
+        console.log(err)
+        throw err
+    }
+}
+
+export const deleteUserMemo = async memo_id => {
+    try {
+        const header = await get_header()
+        const response = await api.post(
+            'api/deleteUserMemo/',
+            {memo_id},
+            {headers: header}
+        )
+        const result = await response.data
+        return result
+    } catch (err) {
+        console.log(err)
+        throw err
+    }
+}
+
+export const setDefaultMemo = async memo_id => {
+    try {
+        const header = await get_header()
+        const response = await api.post(
+            'api/setDefaultMemo/',
+            {memo_id},
+            {headers: header}
+        )
+        const result = await response.data
+        return result
+    } catch (err) {
+        console.log(err)
+        throw err
+    }
+}
+
 export const getNews = async () => {
     try {
         const response = await api.get(
@@ -338,6 +421,19 @@ export const getNoticeModal = async () => {
 export const getPolicy = async () => {
     try {
         const response = await api.get("api/getPolicy/")
+        const result = response.data
+        return result
+    } catch (err) {
+        console.log(err)
+    }
+}
+
+export const getResource = async resource_id => {
+    try {
+        const response = await api.post(
+            'api/getResource/',
+            {resource_id}
+        )
         const result = response.data
         return result
     } catch (err) {

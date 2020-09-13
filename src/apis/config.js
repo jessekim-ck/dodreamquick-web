@@ -1,6 +1,7 @@
 import axios from 'axios'
 // import * as axios_logger from 'axios-logger'
 
+export const baseURL = 'https://api.dodreamquick.com/'
 
 export const get_header = async () => {
     let header = await {}
@@ -12,7 +13,7 @@ export const get_header = async () => {
 }
 
 export const api = axios.create({
-    baseURL: 'https://api.dodreamquick.com/',
+    baseURL: baseURL,
     timeout: 15000,
 })
 

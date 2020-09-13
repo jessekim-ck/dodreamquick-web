@@ -8,6 +8,9 @@ class OrderComplete extends React.Component {
 
     async componentDidMount() {
 
+        setTimeout(() => {
+            window.scrollTo({ top: 0 });
+        }, 300)
         if (this.props.match.params.id) {
             const order_id = this.props.match.params.id
             const order_price = this.props.match.params.price

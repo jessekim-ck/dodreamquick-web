@@ -25,27 +25,38 @@ class Order extends React.Component {
         // alert("배송 가능한 택배원이 많지 않아 부득이하게 주문을 닫습니다. 정말 죄송합니다.");
         // this.props.history.push("/");
         //alert("죄송합니다. 시스템 오류로 인해 잠시 주문접수를 중단합니다.")
-        if (current_day === 6 || current_day === 0) {
-            alert("공휴일 및 주말에는 주문이 불가능합니다 :) 내일 찾아주세요!");
-            this.props.history.push("/");
-        }  else if (current_hour < 9 || current_hour > 17) {
-            alert("주문 불가능한 시간입니다! 두드림퀵 배송 신청은 오전 9시부터 오후 5시까지입니다.");
-            this.props.history.push("/");
-        }
+        // if (current_day === 6 || current_day === 0) {
+        //     alert("공휴일 및 주말에는 주문이 불가능합니다 :) 내일 찾아주세요!");
+        //     this.props.history.push("/");
+        // }  else if (current_hour < 9 || current_hour > 16) {
+        //     alert("주문 불가능한 시간입니다! 두드림퀵 배송 신청은 오전 9시부터 오후 5시까지입니다.");
+        //     this.props.history.push("/");
+        // }
     }
 
 
     make_order = async order_data => {
+        const is_company_user = this.props.role === 'CO'
+        if (is_company_user) {
+            if (!window.confirm('배송을 신청하시겠습니까?')) {
+                return 0;
+            }
+        }
         const order = await addOrder({...order_data})
         if (order) {
-            this.request_pay(order_data, order)
+            if (is_company_user) {
+                this.props.history.push("/order/complete");
+            } else {
+                await this.request_pay(order_data, order)
+                return 1;
+            }
         }
     }
 
-    request_pay = (order_data, order) => {
+    request_pay = async (order_data, order) => {
         let IMP = window.IMP
         IMP.init('imp38282929') // 가맹점 식별코드
-        IMP.request_pay({
+        await IMP.request_pay({
             pg : 'html5_inicis',
             pay_method : 'card',
             merchant_uid : 'merchant_' + new Date().getTime(),
@@ -79,7 +90,7 @@ class Order extends React.Component {
                     return -1
                 }
             } else {
-                alert("결제에 실패했습니다. 오류 메시지: " + response.error_msg)
+                alert("결제에 실패했습니다.\n오류 메시지: " + response.error_msg)
                 return -1
             }
         })

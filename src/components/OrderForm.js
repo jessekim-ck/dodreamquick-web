@@ -5,6 +5,7 @@ import PostCodeForm from "./PostCodeForm";
 import styles from "../app.module.css"
 import {getOrderPrice, getUserDefaultLocations} from "../apis/api";
 import ManageLocationModal from "./ManageLocationModal";
+import ManageMemoModal from "./ManageMemoModal";
 import {connect} from "react-redux";
 
 class OrderForm extends React.Component {
@@ -61,6 +62,8 @@ class OrderForm extends React.Component {
         modal_target: "",
 
         price: 0,
+
+        isSubmitting: false
     }
 
     async componentDidMount() {
@@ -108,18 +111,28 @@ class OrderForm extends React.Component {
     }
 
     on_submit_order = async event => {
+        this.setState({ isSubmitting: true });
         await event.preventDefault();
         await event.stopPropagation();
 
         if (!this.state.price) {
             alert("주문할 수 없는 지역입니다! 두드림퀵 카카오톡 플러스친구로 문의해주세요.")
+            this.setState({ isSubmitting: false });
             return 0
         }
         const make_order = await this.props.make_order({
             ...this.state,
             sender_address: this.state.sender_address + ' ' + this.state.sender_address_detail,
             receiver_address: this.state.receiver_address + ' ' + this.state.receiver_address_detail,
+            ...(this.props.role === 'CO' ? { is_paid: true } : {}),
         })
+        if (make_order) {
+            setTimeout(() => {
+                this.setState({ isSubmitting: false });
+            }, 3000);
+        } else {
+            this.setState({ isSubmitting: false });
+        }
         return make_order
     }
 
@@ -173,6 +186,13 @@ class OrderForm extends React.Component {
             [`${key}_address`]: user_location.location,
             [`${key}_address_detail`]: user_location.location_detail,
             [`${key}_phone`]: user_location.phone
+        })
+        this.close_modal()
+    }
+
+    on_select_memo = key => user_memo => {
+        this.setState({
+            memo: user_memo,
         })
         this.close_modal()
     }
@@ -262,6 +282,7 @@ class OrderForm extends React.Component {
                             {
                                 this.props.username &&
                                 <button
+                                    type="button"
                                     className={styles.basicButtonGreen}
                                     onClick={() => this.open_modal("sender")}>
                                     주소지 목록
@@ -337,6 +358,7 @@ class OrderForm extends React.Component {
                             {
                                 this.props.username &&
                                 <button
+                                    type="button"
                                     className={styles.basicButtonGreen}
                                     onClick={() => this.open_modal("receiver")}>
                                     주소지 목록
@@ -356,7 +378,7 @@ class OrderForm extends React.Component {
                                         ))}
                                         <option value=''>직접입력</option>
                                     </Form.Control>
-                                    { receiver_request_message_select_value === ''
+                                    {receiver_request_message_select_value === ''
                                         ? (
                                             <Form.Control
                                                 type="text"
@@ -364,9 +386,10 @@ class OrderForm extends React.Component {
                                                 name="receiver_request_message"
                                                 value={this.state.receiver_request_message}
                                                 onChange={event => this.on_change(event)}
+                                                maxLength={200}
                                                 placeholder="요청사항 입력" required/>
                                         )
-                                        : null }
+                                        : null}
                                 </div>
                             </Form.Group>
 
@@ -398,7 +421,7 @@ class OrderForm extends React.Component {
                             <Form.Group className={styles.orderFormSectionRow}>
                                 <Form.Label className={styles.orderFormSectionRowName}>배송 무게 제한</Form.Label>
                                 <div className={styles.orderFormSectionRowInput}>
-                                    <Form.Check label="배송 물품의 무게가 5kg 이하입니다" required/>
+                                    <Form.Check id="agree_weight" label="배송 물품의 무게가 5kg 이하입니다" required/>
                                     <Form.Text className="text-muted">
                                         배송 물품의 무게가 5kg 이상일 시 배송이 취소됩니다.
                                     </Form.Text>
@@ -410,6 +433,7 @@ class OrderForm extends React.Component {
                                 <div className={styles.orderFormSectionRowInput}>
                                     <Form.Check
                                         inline
+                                        id="notificate_sender"
                                         name="notificate_sender"
                                         type="checkbox"
                                         label="보내시는 분"
@@ -417,6 +441,7 @@ class OrderForm extends React.Component {
                                         onChange={event => this.on_toggle(event)}/>
                                     <Form.Check
                                         inline
+                                        id="notificate_receiver"
                                         name="notificate_receiver"
                                         type="checkbox"
                                         label="받으시는 분"
@@ -443,6 +468,16 @@ class OrderForm extends React.Component {
                                 </div>
 
                             </Form.Group>
+
+                            {
+                                this.props.username &&
+                                <button
+                                    type="button"
+                                    className={styles.basicButtonGreen}
+                                    onClick={() => this.open_modal("memo")}>
+                                    요청사항 목록
+                                </button>
+                            }
 
                             <Form.Group className={styles.orderFormSectionRow}>
                                 <Form.Label className={styles.orderFormSectionRowName}>쿠폰코드 (선택)</Form.Label>
@@ -505,6 +540,7 @@ class OrderForm extends React.Component {
                         <div className={styles.orderFormSectionBox}>
                             <Form.Group className={styles.orderFormSectionFlexRow}>
                                 <Form.Check
+                                    id="agree_all"
                                     name="agree_all"
                                     checked={this.state.agree_all}
                                     onChange={event => this.on_toggle(event)}
@@ -513,6 +549,7 @@ class OrderForm extends React.Component {
 
                             <Form.Group className={styles.orderFormSectionFlexRow}>
                                 <Form.Check
+                                    id="agree_first_policy"
                                     name="agree_first_policy"
                                     checked={this.state.agree_first_policy}
                                     onChange={event => this.on_toggle(event)}
@@ -530,6 +567,7 @@ class OrderForm extends React.Component {
 
                             <Form.Group className={styles.orderFormSectionFlexRow}>
                                 <Form.Check
+                                    id="agree_second_policy"
                                     name="agree_second_policy"
                                     checked={this.state.agree_second_policy}
                                     onChange={event => this.on_toggle(event)}
@@ -549,18 +587,38 @@ class OrderForm extends React.Component {
                     </div>
 
                     <div className={styles.orderFormSubmit}>
-                        <button className={styles.CTAGreen} type="submit">
-                            배송 신청
-                        </button>
+                        {
+                            this.state.isSubmitting
+                                ? (
+                                    <button className={[styles.CTAGreen, styles.loading].join(' ')} type="button">
+                                        잠시만 기다려주세요...
+                                    </button>
+                                )
+                                : (
+                                    <button className={styles.CTAGreen} type="submit">
+                                        배송 신청
+                                    </button>
+                                )
+                        }
                     </div>
                 </Form>
 
                 {
-                    this.props.username &&
-                    <ManageLocationModal
-                        show_modal={this.state.show_modal}
-                        close_modal={this.close_modal}
-                        on_select_location={this.on_select_location(this.state.modal_target)}/>
+                    this.props.username && (
+                        this.state.modal_target === 'memo'
+                            ? (
+                                <ManageMemoModal
+                                    show_modal={this.state.show_modal}
+                                    close_modal={this.close_modal}
+                                    on_select_memo={this.on_select_memo(this.state.modal_target)}/>
+                            )
+                            : (
+                                <ManageLocationModal
+                                    show_modal={this.state.show_modal}
+                                    close_modal={this.close_modal}
+                                    on_select_location={this.on_select_location(this.state.modal_target)}/>
+                            )
+                    )
                 }
 
             </div>

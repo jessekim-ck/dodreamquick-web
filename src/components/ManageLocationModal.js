@@ -172,12 +172,14 @@ class LocationAddForm extends React.Component {
 
                     <Form.Group className={styles.orderFormSectionFlexRow}>
                         <Form.Check
+                            id="default_departure_location"
                             className={styles.orderFormSectionRowInput}
                             onChange={event => this.setState({
                                 default_departure_location: event.target.checked
                             })}
                             label="기본 픽업지로 설정" />
                         <Form.Check
+                            id="default_arrival_location"
                             className={styles.orderFormSectionRowInput}
                             onChange={event => this.setState({
                                 default_arrival_location: event.target.checked
