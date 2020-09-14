@@ -17,8 +17,9 @@ class OrderForm extends React.Component {
     }
 
     receiver_request_messages = [
-        '부재 시, 문 앞에 맡겨주세요.',
-        '부재 시, 옆집에 맡겨주세요.'
+        '없습니다.',
+        '부재 시 문 앞에 놔주세요.',
+        '부재 시 경비실에 맡겨 주세요.'
     ]
 
     state = {
@@ -87,7 +88,6 @@ class OrderForm extends React.Component {
                     receiver_name: default_arrival_location.name || "",
                     receiver_address: default_arrival_location.location || "",
                     receiver_address_detail: default_arrival_location.location_detail || "",
-                    receiver_request_message: default_arrival_location.message || this.receiver_request_messages[0],
                     receiver_phone: default_arrival_location.phone || "",
                 })
             }
@@ -124,6 +124,8 @@ class OrderForm extends React.Component {
             ...this.state,
             sender_address: this.state.sender_address + ' ' + this.state.sender_address_detail,
             receiver_address: this.state.receiver_address + ' ' + this.state.receiver_address_detail,
+            memo: `${this.state.memo}${this.state.receiver_request_message === '없습니다.' ? '' : ' / ' + this.state.receiver_request_message}`,
+            price: this.state.coupon_code === '신속배송' ? this.state.price * 0.9 : this.state.price,
             ...(this.props.role === 'CO' ? { is_paid: true } : {}),
         })
         if (make_order) {
@@ -366,7 +368,7 @@ class OrderForm extends React.Component {
                             }
 
                             <Form.Group className={styles.orderFormSectionRow}>
-                                <Form.Label className={styles.orderFormSectionRowName}>배송 시 요청사항</Form.Label>
+                                <Form.Label className={styles.orderFormSectionRowName}>물품 수령자<br />부재 시 요청 사항</Form.Label>
                                 <div className={styles.orderFormSectionRowInput}>
                                     <Form.Control
                                         as="select"
@@ -376,7 +378,7 @@ class OrderForm extends React.Component {
                                         {this.receiver_request_messages.map(msg => (
                                             <option key={msg}>{msg}</option>
                                         ))}
-                                        <option value=''>직접입력</option>
+                                        <option value=''>기타 - 직접입력</option>
                                     </Form.Control>
                                     {receiver_request_message_select_value === ''
                                         ? (
@@ -488,7 +490,7 @@ class OrderForm extends React.Component {
                                         value={this.state.coupon_code}
                                         onChange={event => this.on_change(event)}/>
                                     <Form.Text className="text-muted">
-                                        받으신 쿠폰 코드를 기입해주시면 결제 완료 이후 쿠폰에 해당하는 금액을 환급해드립니다.
+                                        받으신 쿠폰 코드를 기입해주시면 결제 시 쿠폰에 해당하는 금액을 할인해드립니다.
                                     </Form.Text>
                                 </div>
 
@@ -508,8 +510,9 @@ class OrderForm extends React.Component {
                                 <Form.Label className={styles.orderFormSectionRowName}>
                                     결제 금액
                                 </Form.Label>
-                                <Form.Label className={styles.orderFormSectionRowInput}>
-                                    {this.state.price} 원
+                                <Form.Label className={[styles.orderFormSectionRowInput, styles.priceRow].join(' ')}>
+                                    <p className={this.state.coupon_code === '신속배송' ? styles.prevPrice : ''}>{this.state.price} 원</p>
+                                    { this.state.coupon_code === '신속배송' ? (<p>{this.state.price * 0.9} 원</p>) : '' }
                                 </Form.Label>
                             </Form.Group>
 

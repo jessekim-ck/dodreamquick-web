@@ -39,10 +39,16 @@
     font-family: 'NanumSquare', sans-serif !important;
 }
 
+.navBarContainer .quickMenu {
+    flex-direction: row;
+}
+
 .navBarContainer .quickMenu a {
     justify-content: center;
     align-items: center;
     display: flex;
+    padding-right: .5rem;
+    padding-left: .5rem;
 }
 
 .mainLogo {
@@ -255,6 +261,21 @@
     text-align: center;
 }
 
+.priceRow {
+    display: flex;
+}
+
+.priceRow p {
+    margin: 0;
+    padding: 0;
+}
+
+.priceRow .prevPrice {
+    color: #999;
+    margin-right: 10px;
+    text-decoration: line-through;
+}
+
 /* Component: Manage Location Modal */
 
 .manageLocationModal {
@@ -320,6 +341,7 @@
 
 .memoItem .name {
     font-weight: bold;
+    word-break: break-word;
 }
 
 .memoItem .name .sticker {
