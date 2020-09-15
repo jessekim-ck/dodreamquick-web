@@ -29,7 +29,7 @@ class MenuBar extends React.Component {
                         <Nav.Link href="/how_to_use">이용방법</Nav.Link>
                     </Nav>
                     <Nav className={[styles.menuBarNav]}>
-                        <Nav.Link href="https://dodreamquick.com/mall" target="_blank">두드림몰</Nav.Link>
+                        <Nav.Link href="https://dodreamall.modoo.at/" target="_blank">두드림몰</Nav.Link>
                     </Nav>
                 </Navbar.Collapse>
             </Navbar>
