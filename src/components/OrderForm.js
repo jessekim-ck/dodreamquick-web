@@ -17,7 +17,7 @@ class OrderForm extends React.Component {
     }
 
     receiver_request_messages = [
-        '없습니다.',
+        '수령자 부재 시 전화 주세요.',
         '부재 시 문 앞에 놔주세요.',
         '부재 시 경비실에 맡겨 주세요.'
     ]
