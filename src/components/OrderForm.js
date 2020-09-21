@@ -1,9 +1,8 @@
 import React from 'react'
 import Form from "react-bootstrap/Form";
-import policies from "../policies"
 import PostCodeForm from "./PostCodeForm";
 import styles from "../app.module.css"
-import {getOrderPrice, getUserDefaultLocations} from "../apis/api";
+import {getOrderPrice, getPolicy, getUserDefaultLocations} from "../apis/api";
 import ManageLocationModal from "./ManageLocationModal";
 import ManageMemoModal from "./ManageMemoModal";
 import {connect} from "react-redux";
@@ -38,6 +37,7 @@ class OrderForm extends React.Component {
 
         pickup_time: '즉시 배송',
         carry_item: '',
+        carry_item_price: null,
         memo: '',
         coupon_code: '',
 
@@ -53,9 +53,11 @@ class OrderForm extends React.Component {
         agree_all: false,
         agree_first_policy: false,
         agree_second_policy: false,
+        agree_third_policy: false,
 
         credit_card: true,
 
+        policies: [],
         show_first_policy: false,
         show_second_policy: false,
 
@@ -94,6 +96,8 @@ class OrderForm extends React.Component {
 
             await this.update_order_price()
         }
+        const policies = await getPolicy()
+        this.setState({policies})
     }
 
     async componentDidUpdate(prevProps, prevState, snapshot) {
@@ -165,6 +169,7 @@ class OrderForm extends React.Component {
                 agree_all: checked,
                 agree_first_policy: checked,
                 agree_second_policy: checked,
+                agree_third_policy: checked
             })
             return 1
         }
@@ -242,7 +247,7 @@ class OrderForm extends React.Component {
                                 <Form.Label className={styles.orderFormSectionRowName}>핸드폰 번호</Form.Label>
                                 <div className={styles.orderFormSectionRowInput}>
                                     <Form.Control
-                                        type="text"
+                                        type="tel"
                                         name="sender_phone"
                                         value={this.state.sender_phone}
                                         onChange={event => this.on_change(event)}
@@ -318,7 +323,7 @@ class OrderForm extends React.Component {
                                 <Form.Label className={styles.orderFormSectionRowName}>핸드폰 번호</Form.Label>
                                 <div className={styles.orderFormSectionRowInput}>
                                     <Form.Control
-                                        type="text"
+                                        type="tel"
                                         name="receiver_phone"
                                         value={this.state.receiver_phone}
                                         onChange={event => this.on_change(event)}
@@ -421,6 +426,18 @@ class OrderForm extends React.Component {
                             </Form.Group>
 
                             <Form.Group className={styles.orderFormSectionRow}>
+                                <Form.Label className={styles.orderFormSectionRowName}>물품가액 (선택)</Form.Label>
+                                <div className={styles.orderFormSectionRowInput}>
+                                    <Form.Control
+                                        type="number"
+                                        name="carry_item_price"
+                                        value={this.state.carry_item_price}
+                                        onChange={event => this.on_change(event)}
+                                        placeholder="예: 50000"/>
+                                </div>
+                            </Form.Group>
+
+                            <Form.Group className={styles.orderFormSectionRow}>
                                 <Form.Label className={styles.orderFormSectionRowName}>배송 무게 제한</Form.Label>
                                 <div className={styles.orderFormSectionRowInput}>
                                     <Form.Check id="agree_weight" label="배송 물품의 무게가 5kg 이하입니다" required/>
@@ -429,6 +446,7 @@ class OrderForm extends React.Component {
                                     </Form.Text>
                                 </div>
                             </Form.Group>
+
 
                             <Form.Group className={styles.orderFormSectionRow}>
                                 <Form.Label className={styles.orderFormSectionRowName}>알림톡 수신</Form.Label>
@@ -556,8 +574,9 @@ class OrderForm extends React.Component {
                                     name="agree_first_policy"
                                     checked={this.state.agree_first_policy}
                                     onChange={event => this.on_toggle(event)}
-                                    label="개인 정보 수집 및 이용 동의" required/>
+                                    label="두드림퀵의 이용 약관에 동의합니다." required/>
                                 <div
+                                    style={{cursor: 'pointer'}}
                                     onClick={() => this.setState(prevState => ({show_first_policy: !prevState.show_first_policy}))}>
                                     [내용 보기]
                                 </div>
@@ -565,7 +584,7 @@ class OrderForm extends React.Component {
                             {
                                 this.state.show_first_policy &&
                                 <Form.Control style={{fontSize: 12, margin: 12}} as="textarea" rows="5"
-                                              value={policies.personal_information_collection} readOnly/>
+                                              value={this.state.policies.terms_of_use} readOnly/>
                             }
 
                             <Form.Group className={styles.orderFormSectionFlexRow}>
@@ -574,8 +593,9 @@ class OrderForm extends React.Component {
                                     name="agree_second_policy"
                                     checked={this.state.agree_second_policy}
                                     onChange={event => this.on_toggle(event)}
-                                    label="개인 정보 제 3자 제공 동의" required/>
+                                    label="개인정보 처리 방침 및 개인정보 제 3자 제공에 동의합니다." required/>
                                 <div
+                                    style={{cursor: 'pointer'}}
                                     onClick={() => this.setState(prevState => ({show_second_policy: !prevState.show_second_policy}))}>
                                     [내용 보기]
                                 </div>
@@ -583,8 +603,19 @@ class OrderForm extends React.Component {
                             {
                                 this.state.show_second_policy &&
                                 <Form.Control style={{fontSize: 12, margin: 12}} as="textarea" rows="5"
-                                              value={policies.personal_information_offer} readOnly/>
+                                              value={this.state.policies.personal_information} readOnly/>
                             }
+
+                            <Form.Group className={styles.orderFormSectionFlexRow}>
+                                <Form.Check
+                                    required
+                                    id="agree_third_policy"
+                                    name="agree_third_policy"
+                                    checked={this.state.agree_third_policy}
+                                    onChange={event => this.on_toggle(event)}
+                                    label="물품가액을 신고하지 않은 화물의 멸실, 훼손, 연착 배상액은 100,000원을 넘을 수 없음을 확인합니다."
+                                />
+                            </Form.Group>
                         </div>
 
                     </div>

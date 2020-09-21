@@ -16,7 +16,6 @@ import Order from './routes/order'
 import OrderComplete from './routes/order_complete'
 import SearchCost from './routes/search_cost'
 import PostNotice from './routes/post_notice'
-import PostNews from './routes/post_news'
 import PolicyOfUse from './routes/policy_of_use'
 import PolicyOfPersonalInformation from './routes/policy_of_personal_information'
 import HowToUse from './routes/how_to_use'
@@ -129,7 +128,6 @@ class App extends React.Component {
                             <Route path="/order" component={Order}/>
                             <Route path="/price" component={SearchCost}/>
                             <Route path="/post/notice" component={PostNotice}/>
-                            <Route path="/post/news" component={PostNews}/>
                             <Route path="/policy/use" component={PolicyOfUse}/>
                             <Route path="/policy/personal_information" component={PolicyOfPersonalInformation}/>
                             <Route path="/how_to_use" component={HowToUse}/>
