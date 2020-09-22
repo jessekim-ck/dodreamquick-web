@@ -129,8 +129,7 @@ class OrderForm extends React.Component {
             sender_address: this.state.sender_address + ' ' + this.state.sender_address_detail,
             receiver_address: this.state.receiver_address + ' ' + this.state.receiver_address_detail,
             memo: `${this.state.memo}${this.state.receiver_request_message === '없습니다.' ? '' : ' / ' + this.state.receiver_request_message}`,
-            price: this.state.coupon_code === '신속배송' ? this.state.price * 0.9 : this.state.price,
-            ...(this.props.role === 'CO' ? { is_paid: true } : {}),
+            price: this.state.coupon_code === '신속배송' ? this.state.price * 0.9 : this.state.price
         })
         if (make_order) {
             setTimeout(() => {

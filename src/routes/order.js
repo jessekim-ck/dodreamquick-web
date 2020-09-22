@@ -45,6 +45,7 @@ class Order extends React.Component {
         const order = await addOrder({...order_data})
         if (order) {
             if (is_company_user) {
+                await completeOrderPayment(order.id, order_data.price)
                 this.props.history.push("/order/complete");
             } else {
                 await this.request_pay(order_data, order)
