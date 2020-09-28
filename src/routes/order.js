@@ -22,8 +22,8 @@ class Order extends React.Component {
         const current_hour = now.getHours();
         const current_day = now.getDay();
 
-        // alert("배송 가능한 택배원이 많지 않아 부득이하게 주문을 닫습니다. 정말 죄송합니다.");
-        // this.props.history.push("/");
+        alert("배송 가능한 택배원이 많지 않아 부득이하게 주문을 닫습니다. 정말 죄송합니다.");
+        this.props.history.push("/");
         //alert("죄송합니다. 시스템 오류로 인해 잠시 주문접수를 중단합니다.")
         if (current_day === 6 || current_day === 0) {
             alert("공휴일 및 주말에는 주문이 불가능합니다 :) 평일에 찾아주세요!");
