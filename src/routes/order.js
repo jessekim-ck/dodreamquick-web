@@ -25,11 +25,11 @@ class Order extends React.Component {
         //alert("배송 가능한 택배원이 많지 않아 부득이하게 주문을 닫습니다. 정말 죄송합니다.");
         //this.props.history.push("/");
         //alert("죄송합니다. 시스템 오류로 인해 잠시 주문접수를 중단합니다.")
-        if (current_day === 6 || current_day === 0 || current_day === 1 || current_day === 3 || current_day === 4 || current_day === 5) {
-            alert("추석 연휴로 인하여 9월 29일 오후 1시부터 10월 4일까지 잠시 쉬어갑니다. 행복하고 풍성한 한가위 되세요 :)");
+        if (current_day === 6) {
+            alert("공휴일 및 주말에는 주문이 불가능합니다 :) 평일에 찾아주세요!");
             this.props.history.push("/");
-        }  else if (current_hour < 9 || current_hour > 12) {
-            alert("추석 연휴로 인하여 9월 29일 오후 1시부터 10월 4일까지 잠시 쉬어갑니다. 행복하고 풍성한 한가위 되세요 :)");
+        }  else if (current_hour < 9 || current_hour > 16) {
+            alert("주문이 불가능한 시간입니다!두드림퀵 배송 신청은 오전 9시부터 오후 5시까지입니다.");
             this.props.history.push("/");
         }
     }
