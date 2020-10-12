@@ -27,7 +27,7 @@ class About extends React.Component {
         ReactGA.initialize('UA-158814088-1');
         ReactGA.pageview(window.location.pathname + window.location.search);
 
-        const resource = await getResource(1)
+        const resource = await getResource(9)
         this.setState({resource})
 
         const news_list = await getNews()

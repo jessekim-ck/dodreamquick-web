@@ -282,6 +282,9 @@ class OrderForm extends React.Component {
                                     <Form.Text className="text-muted">
                                         주소 검색을 통해 시, 구가 포함된 정확한 주소를 입력해주세요. 입력된 주소로 택배원이 물품을 가지러 갑니다.
                                     </Form.Text>
+                                    <Form.Text className="text-muted">
+                                        버스 또는 도보 이동 경로가 지나치게 긴 경우 원칙적으로 주문 접수가 취소될 수 있습니다.
+                                    </Form.Text>
                                 </div>
                             </Form.Group>
 
@@ -358,6 +361,9 @@ class OrderForm extends React.Component {
                                     <Form.Text className="text-muted">
                                         주소 검색을 통해 시, 구가 포함된 정확한 주소를 입력해주세요. 입력된 주소로 택배원이 물품을 전달합니다.
                                     </Form.Text>
+                                    <Form.Text className="text-muted">
+                                        버스 또는 도보 이동 경로가 지나치게 긴 경우 원칙적으로 주문 접수가 취소될 수 있습니다.
+                                    </Form.Text>
                                 </div>
                             </Form.Group>
 
@@ -396,6 +402,9 @@ class OrderForm extends React.Component {
                                                 placeholder="요청사항 입력" required/>
                                         )
                                         : null}
+                                    <Form.Text className="text-muted">
+                                        예 : 픽업지 도착 10분 전 전화 주세요. / 배송지에 부재 시 연락 주세요.
+                                    </Form.Text>
                                 </div>
                             </Form.Group>
 
