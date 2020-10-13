@@ -402,9 +402,6 @@ class OrderForm extends React.Component {
                                                 placeholder="요청사항 입력" required/>
                                         )
                                         : null}
-                                    <Form.Text className="text-muted">
-                                        예 : 픽업지 도착 10분 전 전화 주세요. / 배송지에 부재 시 연락 주세요.
-                                    </Form.Text>
                                 </div>
                             </Form.Group>
 
@@ -495,6 +492,9 @@ class OrderForm extends React.Component {
                                         onChange={event => this.on_change(event)}/>
                                     <Form.Text className="text-muted">
                                         보내시는/받으시는 분이 부재중이실 예정인 경우 물건을 찾을/둘 위치를 꼭 기입해주세요.
+                                    </Form.Text>
+                                    <Form.Text className="text-muted">
+                                        예 : 픽업지 도착 10분 전 전화 주세요. / 배송지에 부재 시 현관문 앞에 놔 주세요. 
                                     </Form.Text>
                                 </div>
 
