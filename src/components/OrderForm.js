@@ -1,8 +1,9 @@
 import React from 'react'
 import Form from "react-bootstrap/Form";
+import {isMobile} from 'react-device-detect'
 import PostCodeForm from "./PostCodeForm";
 import styles from "../app.module.css"
-import {getOrderPrice, getPolicy, getUserDefaultLocations} from "../apis/api";
+import {getDiscountPrice, getOrderPrice, getPolicy, getUserDefaultLocations} from "../apis/api";
 import ManageLocationModal from "./ManageLocationModal";
 import ManageMemoModal from "./ManageMemoModal";
 import {connect} from "react-redux";
@@ -50,12 +51,15 @@ class OrderForm extends React.Component {
         notificate_sender: true,
         notificate_receiver: false,
 
+        pickup_reservation: false,
+        pickup_reservation_time: '',
+
         agree_all: false,
         agree_first_policy: false,
         agree_second_policy: false,
         agree_third_policy: false,
 
-        credit_card: true,
+        pay_method: 'card',
 
         policies: [],
         show_first_policy: false,
@@ -65,6 +69,7 @@ class OrderForm extends React.Component {
         modal_target: "",
 
         price: 0,
+        price_discount: 0,
 
         isSubmitting: false
     }
@@ -111,32 +116,34 @@ class OrderForm extends React.Component {
 
     update_order_price = async () => {
         const price = await getOrderPrice(this.state.sender_address, this.state.receiver_address)
-        this.setState({price})
+        const price_discount = await getDiscountPrice(price, this.state.coupon_code)
+        this.setState({price, price_discount: parseInt(price_discount)})
     }
 
     on_submit_order = async event => {
-        this.setState({ isSubmitting: true });
+        this.setState({isSubmitting: true});
         await event.preventDefault();
         await event.stopPropagation();
 
         if (!this.state.price) {
             alert("주문할 수 없는 지역입니다! 두드림퀵 카카오톡 플러스친구로 문의해주세요.")
-            this.setState({ isSubmitting: false });
+            this.setState({isSubmitting: false});
             return 0
         }
         const make_order = await this.props.make_order({
             ...this.state,
             sender_address: this.state.sender_address + ' ' + this.state.sender_address_detail,
             receiver_address: this.state.receiver_address + ' ' + this.state.receiver_address_detail,
-            memo: `${this.state.memo}${this.state.receiver_request_message === '없습니다.' ? '' : ' / ' + this.state.receiver_request_message}`,
-            price: this.state.coupon_code === '신속배송' ? this.state.price * 0.9 : this.state.price
+            memo: `${this.state.pickup_reservation_time === '' ? '' : this.state.pickup_reservation_time + " / "}${this.state.memo}/${this.state.receiver_request_message}`,
+            price: this.state.price_discount || this.state.price,
+            ...(this.state.pickup_reservation ? {is_failed: true, reservation: true} : {}),
         })
         if (make_order) {
             setTimeout(() => {
-                this.setState({ isSubmitting: false });
+                this.setState({isSubmitting: false});
             }, 3000);
         } else {
-            this.setState({ isSubmitting: false });
+            this.setState({isSubmitting: false});
         }
         return make_order
     }
@@ -149,6 +156,23 @@ class OrderForm extends React.Component {
             ...prevState,
             [name]: value
         }))
+    }
+
+    on_change_coupon_code = async event => {
+        const name = event.target.name
+        const value = event.target.value
+
+        this.setState(prevState => ({
+            ...prevState,
+            [name]: value
+        }))
+
+        if (this.interval_coupon_code) {
+            clearTimeout(this.interval_coupon_code)
+        }
+        this.interval_coupon_code = setTimeout(async () => {
+            await this.update_order_price()
+        }, 1000)
     }
 
     on_change_receiver_request_message = async event => {
@@ -173,8 +197,24 @@ class OrderForm extends React.Component {
             return 1
         }
 
+        if (name === "pickup_reservation") {
+            if (checked) {
+                alert("카카오톡 채널을 통해 미리 문의하시기 바랍니다");
+            } else {
+                this.setState({
+                    pickup_reservation_time: ''
+                })
+            }
+        }
+
         this.setState({
             [name]: checked
+        })
+    }
+
+    on_toggle_pay_method = event => {
+        this.setState({
+            pay_method: event.target.name
         })
     }
 
@@ -378,7 +418,8 @@ class OrderForm extends React.Component {
                             }
 
                             <Form.Group className={styles.orderFormSectionRow}>
-                                <Form.Label className={styles.orderFormSectionRowName}>물품 수령자<br />부재 시 요청 사항</Form.Label>
+                                <Form.Label className={styles.orderFormSectionRowName}>물품 수령자<br/>부재 시 요청
+                                    사항</Form.Label>
                                 <div className={styles.orderFormSectionRowInput}>
                                     <Form.Control
                                         as="select"
@@ -481,6 +522,34 @@ class OrderForm extends React.Component {
                                 </div>
                             </Form.Group>
 
+                            <Form.Group className={styles.orderFormSectionRow}>
+                                <Form.Label className={styles.orderFormSectionRowName}>픽업시간 예약</Form.Label>
+                                <div
+                                    className={isMobile ? styles.orderFormSectionRowInput : styles.orderFormSectionFlexRow}
+                                    style={isMobile ? {} : {justifyContent: 'flex-start', height: 38}}>
+                                    <Form.Check
+                                        inline
+                                        id="pickup_reservation"
+                                        name="pickup_reservation"
+                                        type="checkbox"
+                                        label="픽업 시간을 예약합니다."
+                                        style={{width: 180}}
+                                        checked={this.state.pickup_reservation}
+                                        onChange={event => this.on_toggle(event)}/>
+                                    {this.state.pickup_reservation ? (
+                                        <Form.Control
+                                            type="text"
+                                            name="pickup_reservation_time"
+                                            placeholder="픽업 일자/시간을 알려주세요."
+                                            style={{width: 300}}
+                                            value={this.state.pickup_reservation_time}
+                                            onChange={event => this.on_change(event)}
+                                            required
+                                        />
+                                    ) : null}
+                                </div>
+                            </Form.Group>
+
 
                             <Form.Group className={styles.orderFormSectionRow}>
                                 <Form.Label className={styles.orderFormSectionRowName}>추가 요청사항 (선택)</Form.Label>
@@ -494,7 +563,7 @@ class OrderForm extends React.Component {
                                         보내시는/받으시는 분이 부재중이실 예정인 경우 물건을 찾을/둘 위치를 꼭 기입해주세요.
                                     </Form.Text>
                                     <Form.Text className="text-muted">
-                                        예 : 픽업지 도착 10분 전 전화 주세요. / 배송지에 부재 시 현관문 앞에 놔 주세요. 
+                                        예 : 픽업지 도착 10분 전 전화 주세요. / 배송지에 부재 시 현관문 앞에 놔 주세요.
                                     </Form.Text>
                                 </div>
 
@@ -517,7 +586,7 @@ class OrderForm extends React.Component {
                                         type="text"
                                         name="coupon_code"
                                         value={this.state.coupon_code}
-                                        onChange={event => this.on_change(event)}/>
+                                        onChange={event => this.on_change_coupon_code(event)}/>
                                     <Form.Text className="text-muted">
                                         받으신 쿠폰 코드를 기입해주시면 결제 시 쿠폰에 해당하는 금액을 할인해드립니다.
                                     </Form.Text>
@@ -540,8 +609,8 @@ class OrderForm extends React.Component {
                                     결제 금액
                                 </Form.Label>
                                 <Form.Label className={[styles.orderFormSectionRowInput, styles.priceRow].join(' ')}>
-                                    <p className={this.state.coupon_code === '신속배송' ? styles.prevPrice : ''}>{this.state.price} 원</p>
-                                    { this.state.coupon_code === '신속배송' ? (<p>{this.state.price * 0.9} 원</p>) : '' }
+                                    <p className={this.state.price_discount ? styles.prevPrice : ''}>{this.state.price} 원</p>
+                                    {this.state.price_discount ? (<p>{this.state.price_discount} 원</p>) : ''}
                                 </Form.Label>
                             </Form.Group>
 
@@ -550,14 +619,39 @@ class OrderForm extends React.Component {
                                 <div className={styles.orderFormSectionRowInput}>
                                     <Form.Check
                                         inline
-                                        name="credit_card"
+                                        id="pay_method_card"
+                                        name="card"
                                         type="radio"
-                                        label="카드 결제"
-                                        checked={this.state.credit_card}
-                                        onChange={event => this.on_toggle(event)}/>
-                                    <Form.Text className="text-muted">
-                                        계좌이체를 원하시는 분은 배송신청을 누르신 후 두드림퀵 카카오 채널로 연락 주세요.
-                                    </Form.Text>
+                                        label="카드결제"
+                                        checked={this.state.pay_method === 'card'}
+                                        onChange={event => this.on_toggle_pay_method(event)}/>
+                                    <Form.Check
+                                        inline
+                                        id="pay_method_vbank"
+                                        name="vbank"
+                                        type="radio"
+                                        label="가상계좌(무통장입금)"
+                                        checked={this.state.pay_method === 'vbank'}
+                                        onChange={event => this.on_toggle_pay_method(event)}/>
+                                    <Form.Check
+                                        inline
+                                        id="pay_method_kakaopay"
+                                        name="kakaopay"
+                                        type="radio"
+                                        label="간편결제(카카오페이)"
+                                        checked={this.state.pay_method === 'kakaopay'}
+                                        onChange={event => this.on_toggle_pay_method(event)}/>
+                                    <Form.Check
+                                        inline
+                                        id="pay_method_tosspay"
+                                        name="tosspay"
+                                        type="radio"
+                                        label="간편결제(토스간편결제)"
+                                        checked={this.state.pay_method === 'tosspay'}
+                                        onChange={event => this.on_toggle_pay_method(event)}/>
+                                    {/*<Form.Text className="text-muted">*/}
+                                    {/*    계좌이체를 원하시는 분은 배송신청을 누르신 후 두드림퀵 카카오 채널로 연락 주세요.*/}
+                                    {/*</Form.Text>*/}
                                 </div>
                             </Form.Group>
                         </div>

@@ -1,9 +1,10 @@
 import React from 'react'
-import {addOrder, completeOrderPayment, validateIMPPayment} from "../apis/api";
+import {addOrder, completeOrderPayment, getSetting, validateIMPPayment} from "../apis/api";
 import OrderForm from "../components/OrderForm";
 import styles from "../app.module.css"
 import {Helmet} from "react-helmet/es/Helmet";
 import {connect} from "react-redux";
+import {get_setting} from "../redux/actions/common_actions";
 
 
 
@@ -14,26 +15,51 @@ const caution_clock = require("../assets/caution_clock.png");
 
 class Order extends React.Component {
 
-    componentDidMount() {
+    state = {
+        is_opened: false
+    }
 
+    async componentDidMount() {
         ReactGA.initialize('UA-158814088-1');
-        ReactGA.pageview(window.location.pathname+window.location.search);
-        const now = new Date();
-        const current_hour = now.getHours();
-        const current_day = now.getDay();
+        ReactGA.pageview(window.location.pathname + window.location.search);
 
-        //alert("배송 가능한 택배원이 많지 않아 부득이하게 주문을 닫습니다. 정말 죄송합니다.");
-        //this.props.history.push("/");
-        //alert("죄송합니다. 시스템 오류로 인해 잠시 주문접수를 중단합니다.")
-        if (current_day === 6 || current_day === 0) {
-            alert("공휴일 및 주말에는 주문이 불가능합니다 :) 평일에 찾아주세요!");
-            this.props.history.push("/");
-        }  else if (current_hour < 9 || current_hour > 16) {
-            alert("주문이 불가능한 시간입니다!두드림퀵 배송 신청은 오전 9시부터 오후 5시까지입니다.");
-            this.props.history.push("/");
+        const setting = await getSetting()
+        await this.props.dispatch(get_setting(setting))
+
+        if (setting) {
+            this.setIsOpen(setting);
         }
     }
 
+    setIsOpen = (setting) => {
+        const now = new Date();
+        const open = new Date();
+        const close = new Date();
+        const current_day = now.getDay();
+
+        let close_message = setting.order_close_message === '' ? null : setting.order_close_message
+
+        open.setHours(Number(setting.order_open_time.slice(0, 2)), Number(setting.order_open_time.slice(3, 5)), 0)
+        close.setHours(Number(setting.order_close_time.slice(0, 2)), Number(setting.order_close_time.slice(3, 5)), 0)
+
+        if (setting.order_never_open) {
+            this.setState({ is_opened: false });
+            alert(close_message || "죄송합니다. 내부사정으로 인해 잠시 주문접수를 중단합니다.");
+            this.props.history.goBack();
+            return;
+        } else if (current_day === 6 || current_day === 0) {
+            this.setState({ is_opened: false });
+            alert(close_message || "공휴일 및 주말에는 주문이 불가능합니다 :) 평일에 찾아주세요!");
+            this.props.history.goBack();
+            return;
+        } else if (now < open || now > close) {
+            this.setState({ is_opened: false });
+            alert(close_message || "주문이 불가능한 시간입니다!두드림퀵 배송 신청은 오전 9시부터 오후 5시까지입니다.");
+            this.props.history.goBack();
+            return;
+        }
+        this.setState({ is_opened: true });
+    }
 
     make_order = async order_data => {
         const is_company_user = this.props.role === 'CO'
@@ -59,7 +85,7 @@ class Order extends React.Component {
         IMP.init('imp38282929') // 가맹점 식별코드
         await IMP.request_pay({
             pg : 'html5_inicis',
-            pay_method : 'card',
+            pay_method : order_data.pay_method,
             merchant_uid : 'merchant_' + new Date().getTime(),
             name : '두드림퀵 배송 주문 (' + order.id + ')',
             amount : order_data.price,
@@ -98,7 +124,8 @@ class Order extends React.Component {
     }
 
     render() {
-        return (
+        const { setting } = this.props;
+        return this.state.is_opened && setting ? (
             <div className={styles.contentContainer}>
                 <Helmet>
                     <title>두드림퀵: 배송 신청</title>
@@ -141,10 +168,10 @@ class Order extends React.Component {
                     <OrderForm make_order={this.make_order}/>
                 </div>
             </div>
-        )
+        ) : null
     }
 }
 
-const mapStateToProps = state => state.user
+const mapStateToProps = state => ({...state.common, ...state.user})
 
 export default connect(mapStateToProps)(Order)

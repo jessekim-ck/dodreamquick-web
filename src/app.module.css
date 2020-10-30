@@ -79,6 +79,10 @@
     border-bottom: 4px solid transparent;
 }
 
+.menuBarContainer .menuBarNav:hover {
+    text-decoration: none;
+}
+
 .menuBarContainer.mobile {
     padding: 0 10px;
     display: block;

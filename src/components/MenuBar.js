@@ -1,4 +1,5 @@
 import React from 'react'
+import { NavLink } from 'react-router-dom'
 import Navbar from 'react-bootstrap/Navbar'
 import Nav from 'react-bootstrap/Nav'
 import styles from '../app.module.css'
@@ -11,22 +12,21 @@ import {connect} from 'react-redux'
 class MenuBar extends React.Component {
 
     render() {
-        const pathName = window.location.pathname
         return (
             <Navbar expand={true} className={[styles.menuBarContainer, isMobile ? styles.mobile : '']}>
                 <Navbar.Collapse id="basic-navbar-nav" className={[styles.collapse]}>
-                    <Nav className={[styles.menuBarNav, pathName === '/about' && styles.active]}>
-                        <Nav.Link href="/about">회사소개</Nav.Link>
+                    <Nav className={[styles.menuBarNav]} as={NavLink} activeClassName={styles.active} exact to="/about">
+                        <Nav.Link as={NavLink} to="/about">회사소개</Nav.Link>
                     </Nav>
-                    <Nav className={[styles.menuBarNav, pathName === '/order' && styles.active]}>
+                    <Nav className={[styles.menuBarNav]} as={NavLink} activeClassName={styles.active} exact to="/order">
                         { isMobile ? null : <div className={styles.specialMenu}><p>바로가기</p></div> }
-                        <Nav.Link href="/order">배송신청</Nav.Link>
+                        <Nav.Link as={NavLink} to="/order">배송신청</Nav.Link>
                     </Nav>
-                    <Nav className={[styles.menuBarNav, pathName === '/price' && styles.active]}>
-                        <Nav.Link href="/price">요금안내</Nav.Link>
+                    <Nav className={[styles.menuBarNav]} as={NavLink} activeClassName={styles.active} exact to="/price">
+                        <Nav.Link as={NavLink} to="/price">요금안내</Nav.Link>
                     </Nav>
-                    <Nav className={[styles.menuBarNav, pathName === '/how_to_use' && styles.active]}>
-                        <Nav.Link href="/how_to_use">이용방법</Nav.Link>
+                    <Nav className={[styles.menuBarNav]} as={NavLink} activeClassName={styles.active} exact to="/how_to_use">
+                        <Nav.Link as={NavLink} to="/how_to_use">이용방법</Nav.Link>
                     </Nav>
                     <Nav className={[styles.menuBarNav]}>
                         <Nav.Link href="https://dodreamall.modoo.at/" target="_blank">두드림몰</Nav.Link>

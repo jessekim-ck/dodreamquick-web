@@ -1,5 +1,15 @@
 import {api, get_header} from './config'
 
+export const getSetting = async () => {
+    try {
+        const response = await api.get('api/getSetting/',)
+        const result = response.data
+        return result
+    } catch (err) {
+        console.log(err)
+    }
+}
+
 export const delete_user = async(username) => {
     try {
         const header = await get_header()
@@ -136,6 +146,20 @@ export const getOrderPrice = async (sender_address, receiver_address) => {
         const response = await api.post(
             'api/getOrderPrice/',
             {sender_address, receiver_address}
+        )
+        const result = await response.data
+        return result
+    } catch (err) {
+        console.log(err)
+        throw err
+    }
+}
+
+export const getDiscountPrice = async (price, coupon_code) => {
+    try {
+        const response = await api.post(
+            'api/getDiscountPrice/',
+            {price, coupon_code}
         )
         const result = await response.data
         return result
@@ -421,19 +445,6 @@ export const getNoticeModal = async () => {
 export const getPolicy = async () => {
     try {
         const response = await api.get("api/getPolicy/")
-        const result = response.data
-        return result
-    } catch (err) {
-        console.log(err)
-    }
-}
-
-export const getResource = async resource_id => {
-    try {
-        const response = await api.post(
-            'api/getResource/',
-            {resource_id}
-        )
         const result = response.data
         return result
     } catch (err) {

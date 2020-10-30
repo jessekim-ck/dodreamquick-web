@@ -3,7 +3,7 @@ import {LOG_IN, LOG_OUT} from "../actions/user_actions";
 
 const initial_state = {
     username: '',
-    deposit: 0,
+    deposit: 0
 }
 
 const user_reducer = (state = initial_state, action) => {

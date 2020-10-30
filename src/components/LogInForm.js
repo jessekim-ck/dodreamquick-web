@@ -24,13 +24,8 @@ class LoginForm extends React.Component {
 
     on_submit = async event => {
         await event.preventDefault()
-
-        if (!this.state.username.match(/.+@.+\..+/)) {
-            alert('올바른 이메일 형식을 입력해주세요!')
-        } else if (this.state.password.length < 6) {
-            alert('비밀번호는 6자리 이상이어야 합니다!')
-        } else {
-            await this.props.authenticate(this.state.username, this.state.password)
+        const authenticated = await this.props.authenticate(this.state.username, this.state.password)
+        if (authenticated) {
             this.props.on_hide()
         }
     }
@@ -47,7 +42,7 @@ class LoginForm extends React.Component {
                             <Form.Label>이메일 주소</Form.Label>
                             <Form.Control
                                 required
-                                type="text"
+                                type="email"
                                 name="username"
                                 className={styles.input}
                                 value={this.state.username}
@@ -61,6 +56,7 @@ class LoginForm extends React.Component {
                                 required
                                 type="password"
                                 name="password"
+                                minlength="6"
                                 className={styles.input}
                                 value={this.state.password}
                                 onChange={event => this.on_change(event)}

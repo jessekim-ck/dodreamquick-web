@@ -1,4 +1,5 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
 import Navbar from 'react-bootstrap/Navbar'
 import Nav from 'react-bootstrap/Nav'
 import styles from '../app.module.css'
@@ -52,7 +53,7 @@ class NavigationBar extends React.Component {
         return (
             <Navbar expand={"lg"} className={styles.navBarContainer}>
                 <Nav className={["mr-auto", styles.quickMenu]}>
-                    <Nav.Link href="/post/notice">공지사항</Nav.Link>
+                    <Nav.Link as={Link} to="/post/notice">공지사항</Nav.Link>
                     <Nav.Link href="https://blog.naver.com/dodream-enactus" target="_blank">
                         <img
                             src="/ic_naver_blog.png"

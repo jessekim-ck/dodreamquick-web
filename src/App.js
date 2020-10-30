@@ -1,6 +1,7 @@
 import React from 'react';
+import { Link } from 'react-router-dom'
 import {BrowserRouter as Router, Route, Switch} from "react-router-dom";
-import {authenticate_user, editUserInfo, get_current_user, refresh_token, sign_up} from "./apis/api";
+import {authenticate_user, editUserInfo, get_current_user, refresh_token, sign_up, getSetting} from "./apis/api";
 import styles from './app.module.css'
 import favicon from './assets/favicon.ico'
 import {Helmet} from 'react-helmet'
@@ -8,6 +9,7 @@ import {Helmet} from 'react-helmet'
 // Redux
 import {connect} from 'react-redux';
 import {log_in, log_out} from './redux/actions/user_actions'
+import {get_setting} from './redux/actions/common_actions'
 
 // Routes
 import Index from './routes/index'
@@ -38,6 +40,8 @@ class App extends React.Component {
     }
 
     async componentDidMount() {
+        const setting = await getSetting()
+        await this.props.dispatch(get_setting(setting))
         const token = localStorage.getItem('token')
         if (token) {
             await refresh_token()
@@ -61,6 +65,7 @@ class App extends React.Component {
             const current_user = await get_current_user()
             await this.props.dispatch(log_in(current_user))
             this.close_modal('login')
+            return true
         } catch (err) {
             if (err.toString().includes('400')) {
                 alert("회원 정보를 찾을 수 없습니다! 오타를 확인해주세요.")
@@ -68,6 +73,7 @@ class App extends React.Component {
                 alert("로그인할 수 없습니다! 두드림퀵 카카오톡 플러스친구로 문의해주세요.")
                 console.log(err)
             }
+            return false
         }
     }
 
@@ -112,7 +118,7 @@ class App extends React.Component {
                         close_modal={this.close_modal}
                         log_out={this.log_out}/>
                     <div className={styles.mainLogo}>
-                        <Navbar.Brand href="/">
+                        <Navbar.Brand as={Link} to="/">
                             <img
                                 src={logo}
                                 alt="두드림퀵"/>

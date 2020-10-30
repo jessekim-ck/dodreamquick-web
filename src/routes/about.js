@@ -3,7 +3,7 @@ import {Helmet} from "react-helmet/es/Helmet";
 import {connect} from "react-redux";
 import styles from "../app.module.css";
 import {baseURL} from "../apis/config";
-import {getNews, getResource} from "../apis/api";
+import {getNews} from "../apis/api";
 import NewsListView from "../components/NewsListView";
 
 const ReactGA = require('react-ga');
@@ -12,7 +12,6 @@ class About extends React.Component {
 
     state = {
         selectedTab: 0,
-        resource: null,
         news_list: [],
     }
 
@@ -27,15 +26,11 @@ class About extends React.Component {
         ReactGA.initialize('UA-158814088-1');
         ReactGA.pageview(window.location.pathname + window.location.search);
 
-        const resource = await getResource(9)
-        this.setState({resource})
-
         const news_list = await getNews()
         this.setState({news_list})
     }
 
     render() {
-        const {resource} = this.state
         return (
             <div>
                 <div>
@@ -65,7 +60,7 @@ class About extends React.Component {
                     this.state.selectedTab === 0
                         ? (
                             <div className={[styles.contentContainer, styles.aboutContainer].join(' ')}>
-                                {resource ? <img className={styles.aboutImg} src={`${baseURL}${resource.image}`}
+                                {this.props.setting ? <img className={styles.aboutImg} src={`${baseURL}${this.props.setting.about_company_image}`}
                                                  alt="두드림퀵 지하철 퀵서비스 회사소개"/> : null}
                             </div>
                         )
@@ -81,6 +76,6 @@ class About extends React.Component {
 }
 
 
-const mapStateToProps = state => state.user
+const mapStateToProps = state => ({...state.common, ...state.user})
 
 export default connect(mapStateToProps)(About)
