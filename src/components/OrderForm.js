@@ -134,7 +134,7 @@ class OrderForm extends React.Component {
             ...this.state,
             sender_address: this.state.sender_address + ' ' + this.state.sender_address_detail,
             receiver_address: this.state.receiver_address + ' ' + this.state.receiver_address_detail,
-            memo: `${this.state.pickup_reservation_time === '' ? '' : this.state.pickup_reservation_time + " / "}${this.state.memo}/${this.state.receiver_request_message}`,
+            memo: `${this.state.pickup_reservation_time === '' ? '' : `픽업예약:${this.state.pickup_reservation_time}/`}${this.state.memo}/${this.state.receiver_request_message}`,
             price: this.state.price_discount || this.state.price,
             ...(this.state.pickup_reservation ? {is_failed: true, reservation: true} : {}),
         })
