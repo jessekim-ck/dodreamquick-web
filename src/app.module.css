@@ -956,6 +956,25 @@
     margin-top: 24px;
 }
 
+.orderCompleteTable {
+    width: 100%;
+    margin-bottom: 30px;
+    border: 1px solid #ddd;
+}
+
+.orderCompleteTable > tr {
+    border-bottom: 1px solid #ddd;
+}
+
+.orderCompleteTable > tr > td{
+    padding: 10px 20px;
+}
+
+.orderCompleteTable > tr > td:first-child {
+    background-color: #f0f0f0;
+    border-right: 1px solid #ddd;
+}
+
 .orderCompleteCTA {
     margin-top: 48px;
 }

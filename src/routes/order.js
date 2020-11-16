@@ -92,28 +92,33 @@ class Order extends React.Component {
             buyer_name : order_data.sender_name,
             buyer_tel : order_data.sender_phone,
             buyer_email: this.props.username,
-            m_redirect_url: `https://dodreamquick.com/order/complete/${order.id}/${order_data.price}`
+            m_redirect_url: `https://dodreamquick.com/order/complete/${order.id}/${order_data.price}`,
+            vbank_due: `${new Date().getFullYear()}${new Date().getMonth() + 1}${new Date().getDate()}1730`
         }, async response => {
             if (response.success) {
-                // Validate IMP payment: it should be "paid" and the amount should be consistent
-                const validated = await validateIMPPayment(response.imp_uid, order_data.price)
+                try {
+                    const validated = await validateIMPPayment(response.imp_uid, order_data.price)
 
-                // IMP payment status is not "paid"
-                if (validated === -2) {
-                    alert("결제 승인이 완료되지 않았습니다. 두드림퀵 팀에 문의해주세요.")
-                    return -1
-                // IMP payment amount is not consistent
-                } else if (validated === -1) {
-                    alert("결제 요청 금액과 실 결제 금액이 일치하지 않습니다. 두드림퀵 팀에 문의해주세요.")
-                    return -1
-                // Validation success
-                } else if (validated === 1) {
-                    await completeOrderPayment(order.id, order_data.price)
-                    alert("결제가 완료되었습니다!")
-                    this.props.history.push("/order/complete")
-                // Unknown error
-                } else {
+                    if (validated.status === 'ready') {
+                        // await completeOrderPayment(order_id, order_price)
+                        this.props.history.push({
+                            pathname: '/order/complete',
+                            state: { detail: validated }
+                        })
+                    } else if (validated.status !== 'paid') {
+                        alert("결제 승인이 완료되지 않았습니다. 두드림퀵 팀에 문의해주세요.")
+                        return -1
+                    } else if (Number(order_data.price) !== Number(validated.amount)) {
+                        alert("결제 요청 금액과 실 결제 금액이 일치하지 않습니다. 두드림퀵 팀에 문의해주세요.")
+                        return -1
+                    } else {
+                        await completeOrderPayment(order.id, order_data.price)
+                        alert("결제가 완료되었습니다!")
+                        this.props.history.push("/order/complete")
+                    }
+                } catch (e) {
                     alert("오류가 발생했습니다. 두드림퀵 팀에 문의해주세요.")
+                    console.error(e)
                     return -1
                 }
             } else {
