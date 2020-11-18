@@ -547,6 +547,9 @@ class OrderForm extends React.Component {
                                             required
                                         />
                                     ) : null}
+                                    <Form.Text className="text-muted">
+                                        현재 시각 기준으로 3시간 이상이 지난 시점의 픽업 요청인 경우에만 예약이 가능합니다.
+                                    </Form.Text>
                                 </div>
                             </Form.Group>
 

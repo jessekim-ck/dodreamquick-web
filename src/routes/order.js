@@ -151,7 +151,7 @@ class Order extends React.Component {
                                 예약 주문 관련 안내
                             </div>
                             <div className={styles.orderCautionItemText}>
-                                즉시 배송이 아니라 픽업 시간을 지정하시고 싶으신 경우 반드시 <span>사전 문의 바랍니다.</span>
+                                즉시 배송이 아니라 픽업 시간을 지정하시고 싶으신 경우 반드시 <span>카카오톡 채널을 통해 사전 문의 바랍니다.</span> 문의되지 않은 예약 주문은 정상 진행되지 않을 수 있으며, 사전 고지 없이 환불될 수 있습니다.
                             </div>
                         </div>
 
