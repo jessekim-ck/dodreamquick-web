@@ -489,9 +489,9 @@ class OrderForm extends React.Component {
                             <Form.Group className={styles.orderFormSectionRow}>
                                 <Form.Label className={styles.orderFormSectionRowName}>배송 무게 제한</Form.Label>
                                 <div className={styles.orderFormSectionRowInput}>
-                                    <Form.Check id="agree_weight" label="배송 물품의 무게가 5kg 이하입니다" required/>
+                                    <Form.Check id="agree_weight" label="배송 물품의 무게가 3kg 이하입니다" required/>
                                     <Form.Text className="text-muted">
-                                        배송 물품의 무게가 5kg 이상일 시 배송이 취소됩니다.
+                                        배송 물품의 무게가 3kg 이상일 시 배송이 취소됩니다.
                                     </Form.Text>
                                 </div>
                             </Form.Group>
