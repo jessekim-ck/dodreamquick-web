@@ -630,11 +630,11 @@ class OrderForm extends React.Component {
                                         onChange={event => this.on_toggle_pay_method(event)}/>
                                     <Form.Check
                                         inline
-                                        id="pay_method_vbank"
-                                        name="vbank"
+                                        id="pay_method_trans"
+                                        name="trans"
                                         type="radio"
-                                        label="가상계좌(무통장입금)"
-                                        checked={this.state.pay_method === 'vbank'}
+                                        label="실시간 계좌이체"
+                                        checked={this.state.pay_method === 'trans'}
                                         onChange={event => this.on_toggle_pay_method(event)}/>
                                     <Form.Check
                                         inline
