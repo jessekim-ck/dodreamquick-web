@@ -83,6 +83,8 @@ class Order extends React.Component {
     request_pay = async (order_data, order) => {
         let IMP = window.IMP
         IMP.init('imp38282929') // 가맹점 식별코드
+        const dueDateMonth = (new Date().getMonth() + 1) < 10 ? `0${new Date().getMonth() + 1}` : new Date().getMonth() + 1
+        const dueDateDate = new Date().getDate() < 10 ? `0${new Date().getDate()}` : new Date().getDate()
         await IMP.request_pay({
             pg : 'html5_inicis',
             pay_method : order_data.pay_method,
@@ -93,7 +95,7 @@ class Order extends React.Component {
             buyer_tel : order_data.sender_phone,
             buyer_email: this.props.username,
             m_redirect_url: `https://dodreamquick.com/order/complete/${order.id}/${order_data.price}`,
-            vbank_due: `${new Date().getFullYear()}${new Date().getMonth() + 1}${new Date().getDate()}1730`
+            vbank_due: `${new Date().getFullYear()}${dueDateMonth}${dueDateDate}1730`
         }, async response => {
             if (response.success) {
                 try {
