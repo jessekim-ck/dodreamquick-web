@@ -47,6 +47,7 @@ class Order extends React.Component {
             alert(close_message || "죄송합니다. 내부사정으로 인해 잠시 주문접수를 중단합니다.");
             this.props.history.goBack();
             return;
+        } else if (setting.order_open_company_user && this.props.role === 'CO') {
         } else if (current_day === 6 || current_day === 0) {
             this.setState({ is_opened: false });
             alert(close_message || "공휴일 및 주말에는 주문이 불가능합니다 :) 평일에 찾아주세요!");

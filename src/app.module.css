@@ -590,6 +590,10 @@
     font-size: 16px;
 }
 
+.searchCostDescription {
+    font-size: 14px;
+}
+
 /* Page: Post List Page */
 
 .postList {

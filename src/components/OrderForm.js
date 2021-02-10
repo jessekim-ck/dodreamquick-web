@@ -3,7 +3,7 @@ import Form from "react-bootstrap/Form";
 import {isMobile} from 'react-device-detect'
 import PostCodeForm from "./PostCodeForm";
 import styles from "../app.module.css"
-import {getDiscountPrice, getOrderPrice, getPolicy, getUserDefaultLocations} from "../apis/api";
+import {getOrderPrices, getPolicy, getUserDefaultLocations} from "../apis/api";
 import ManageLocationModal from "./ManageLocationModal";
 import ManageMemoModal from "./ManageMemoModal";
 import {connect} from "react-redux";
@@ -68,8 +68,12 @@ class OrderForm extends React.Component {
         show_modal: false,
         modal_target: "",
 
-        price: 0,
-        price_discount: 0,
+        prices: {
+            default: 0,
+            addition: 0,
+            discount: 0,
+            total: 0
+        },
 
         isSubmitting: false
     }
@@ -115,9 +119,8 @@ class OrderForm extends React.Component {
     }
 
     update_order_price = async () => {
-        const price = await getOrderPrice(this.state.sender_address, this.state.receiver_address)
-        const price_discount = await getDiscountPrice(price, this.state.coupon_code)
-        this.setState({price, price_discount: parseInt(price_discount)})
+        const prices = await getOrderPrices(this.state.sender_address, this.state.receiver_address, this.state.coupon_code)
+        this.setState({prices})
     }
 
     on_submit_order = async event => {
@@ -125,7 +128,7 @@ class OrderForm extends React.Component {
         await event.preventDefault();
         await event.stopPropagation();
 
-        if (!this.state.price) {
+        if (!this.state.prices.total) {
             alert("주문할 수 없는 지역입니다! 두드림퀵 카카오톡 플러스친구로 문의해주세요.")
             this.setState({isSubmitting: false});
             return 0
@@ -135,7 +138,8 @@ class OrderForm extends React.Component {
             sender_address: this.state.sender_address + ' ' + this.state.sender_address_detail,
             receiver_address: this.state.receiver_address + ' ' + this.state.receiver_address_detail,
             memo: `${this.state.pickup_reservation_time === '' ? '' : `픽업예약:${this.state.pickup_reservation_time}/`}${this.state.memo}/${this.state.receiver_request_message}`,
-            price: this.state.price_discount || this.state.price,
+            price: this.state.prices.total,
+            price_addition: this.state.prices.addition,
             ...(this.state.pickup_reservation ? {is_failed: true, reservation: true} : {}),
         })
         if (make_order) {
@@ -611,9 +615,20 @@ class OrderForm extends React.Component {
                                 <Form.Label className={styles.orderFormSectionRowName}>
                                     결제 금액
                                 </Form.Label>
-                                <Form.Label className={[styles.orderFormSectionRowInput, styles.priceRow].join(' ')}>
-                                    <p className={this.state.price_discount ? styles.prevPrice : ''}>{this.state.price} 원</p>
-                                    {this.state.price_discount ? (<p>{this.state.price_discount} 원</p>) : ''}
+                                <Form.Label>
+                                    <div className={[styles.orderFormSectionRowInput, styles.priceRow].join(' ')}>
+                                        <p className={this.state.prices.discount ? styles.prevPrice : ''}>
+                                            {(this.state.prices.default + this.state.prices.addition).toLocaleString()} 원
+                                        </p>
+                                        {this.state.prices.discount ? (
+                                            <p>{(this.state.prices.total).toLocaleString()} 원</p>
+                                        ) : ''}
+                                    </div>
+                                    {this.state.prices.addition? (
+                                            <Form.Text className="text-muted">
+                                                {`※ 픽업지 또는 도착지가 지하철역으로부터 700m 바깥에 있어서 배송 가격이 ${this.state.prices.addition.toLocaleString()}원 상승했습니다`}
+                                            </Form.Text>
+                                    ) : null}
                                 </Form.Label>
                             </Form.Group>
 

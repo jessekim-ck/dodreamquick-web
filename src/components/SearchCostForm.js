@@ -1,5 +1,5 @@
 import React from 'react'
-import {getLocationList, getOrderPrice} from "../apis/api";
+import {getLocationList, getOrderPrices} from "../apis/api";
 import Table from 'react-bootstrap/Table'
 import styles from '../app.module.css'
 
@@ -26,14 +26,14 @@ class SearchCostForm extends React.Component {
         location_list: [],
         selected_departure_location: "",
         selected_arrival_location: "",
-        order_price: ""
+        prices: null
     }
 
     async componentDidMount() {
 
-        ReactGA.initialize('UA-158814088-1'); 
+        ReactGA.initialize('UA-158814088-1');
         ReactGA.pageview(window.location.pathname+window.location.search);
-        
+
         const location_list = await getLocationList()
         const location_list_sorted = location_list.sort(
             (a, b) => (a.id < b.id) ? -1 : 1
@@ -45,7 +45,7 @@ class SearchCostForm extends React.Component {
     async componentDidUpdate(prevProps, prevState, snapshot) {
         if (prevState.selected_departure_location !== this.state.selected_departure_location ||
         prevState.selected_arrival_location !== this.state.selected_arrival_location) {
-            await this.search_price()
+            await this.search_prices()
         }
     }
 
@@ -53,13 +53,9 @@ class SearchCostForm extends React.Component {
         this.setState({[key]: value})
     }
 
-    search_price = async () => {
-        const order_price = await getOrderPrice(this.state.selected_departure_location, this.state.selected_arrival_location)
-        if (order_price !== 0) {
-            this.setState({order_price})
-        } else {
-            this.setState({order_price: ""})
-        }
+    search_prices = async () => {
+        const prices = await getOrderPrices(this.state.selected_departure_location, this.state.selected_arrival_location)
+        this.setState({prices})
     }
 
     render() {
@@ -122,17 +118,23 @@ class SearchCostForm extends React.Component {
                         </tr>
                         </thead>
                         <tbody>
-                        <tr>
-                            <td>{this.state.selected_departure_location}</td>
-                            <td>{this.state.selected_arrival_location}</td>
-                            <td>
-                                {
-                                    this.state.order_price &&
-                                    this.state.order_price !== 0 &&
-                                    <div>{this.state.order_price} 원</div>
-                                }
-                            </td>
-                        </tr>
+                        {
+                            this.state.prices && this.state.prices.default > 0 && (
+                                <tr>
+                                    <td>{this.state.selected_departure_location}</td>
+                                    <td>{this.state.selected_arrival_location}</td>
+                                    <td style={{maxWidth: '200px'}}>
+                                        {
+                                            this.state.prices &&
+                                            <div>{this.state.prices.default.toLocaleString()} 원</div>
+                                        }
+                                        <span className={styles.searchCostDescription}>
+                                            ※ 픽업지, 도착지가 지하철역으로부터 700m 바깥에 있을 경우 각각 배송 가격이 1,000원씩 상승됩니다.
+                                        </span>
+                                    </td>
+                                </tr>
+                            )
+                        }
                         </tbody>
                     </Table>
                 </div>

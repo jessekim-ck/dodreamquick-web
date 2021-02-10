@@ -141,25 +141,11 @@ export const validateIMPPayment = async (imp_uid, price_dodream) => {
     }
 }
 
-export const getOrderPrice = async (sender_address, receiver_address) => {
+export const getOrderPrices = async (sender_address, receiver_address, coupon_code) => {
     try {
         const response = await api.post(
-            'api/getOrderPrice/',
-            {sender_address, receiver_address}
-        )
-        const result = await response.data
-        return result
-    } catch (err) {
-        console.log(err)
-        throw err
-    }
-}
-
-export const getDiscountPrice = async (price, coupon_code) => {
-    try {
-        const response = await api.post(
-            'api/getDiscountPrice/',
-            {price, coupon_code}
+            'api/getOrderPrices/',
+            {sender_address, receiver_address, coupon_code}
         )
         const result = await response.data
         return result
