@@ -626,7 +626,14 @@ class OrderForm extends React.Component {
                                     </div>
                                     {this.state.prices.addition? (
                                             <Form.Text className="text-muted">
-                                                {`※ 픽업지 또는 도착지가 지하철역으로부터 700m 바깥에 있어서 배송 가격이 ${this.state.prices.addition.toLocaleString()}원 상승했습니다`}
+                                                {this.state.prices.addition_sender && this.state.prices.addition_receiver
+                                                    ? '※ 픽업지와 도착지가 모두'
+                                                    : this.state.prices.addition_sender
+                                                        ? '※ 픽업지가'
+                                                        : this.state.prices.addition_receiver
+                                                            ? '※ 도착지가'
+                                                            : ''}
+                                                {` 지하철역으로부터 700m 바깥에 있어서 배송 가격이 ${this.state.prices.addition.toLocaleString()}원 상승했습니다`}
                                             </Form.Text>
                                     ) : null}
                                 </Form.Label>
