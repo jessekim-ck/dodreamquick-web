@@ -150,7 +150,7 @@ class HowToUse extends React.Component {
                                                 주문 접수 가능 시간
                                             </div>
                                             <div className={styles.introTableRowText}>
-                                                주문 접수 가능 시간은 <span>월-금요일 오전 9시-오후 5시</span>입니다.
+                                                주문 접수 가능 시간은 <span>월-금요일 오전 9시-오후 3시</span>입니다.
                                                 (토, 일요일/공휴일 휴무) 해당 시간 이외에 주문하시는 경우 접수되지 않으니 유의해주세요.
                                             </div>
                                         </div>
@@ -160,7 +160,8 @@ class HowToUse extends React.Component {
                                                 배송 취소 및 환불
                                             </div>
                                             <div className={styles.introTableRowText}>
-                                                주문 접수 후 기사님이 배정되어 고객님께 <span>접수 확인 알림톡이 전송되면 취소와 환불이 불가능</span>합니다.
+                                                기사님이 배정되어 고객님께 <span>접수 확인 알림톡이 전송된 후 10분 이상이 지난 뒤에 주문 취소 요청 시 배송 요금의 40%만 환불 가능</span>합니다.
+                                                또한 물품 픽업 완료 이후에 주문 취소 요청 시 배송 요금이 환불되지 않습니다.
                                                 택배원 배정 알림톡이 전송되기 전에 주문을 취소하고 싶으신 경우 카카오톡 플러스친구 '두드림퀵'으로 문의해주세요.
 
                                             </div>
@@ -171,7 +172,7 @@ class HowToUse extends React.Component {
                                                 배송 불가능 품목
                                             </div>
                                             <div className={styles.introTableRowText}>
-                                                노인 택배원이 운반하기 어려운 <span>5kg 이상의 물품은 배송이 제한됩니다.</span>
+                                                노인 택배원이 운반하기 어려운 <span>3kg 이상의 물품은 배송이 제한됩니다.</span>
                                                 또한, 지하철 안전 수칙에 따라 악취가 나는 물질, 알루미늄 풍선, 위해물품, 동물 등은 배송이 불가하니 양해 부탁드립니다.
                                             </div>
                                         </div>
@@ -183,7 +184,7 @@ class HowToUse extends React.Component {
                                             <div className={styles.introTableRowText}>
                                                 전화 문의가 불가능합니다.
                                                 택배원 현 위치 등이 궁금하시면 <span>알림톡에 안내된 택배원 또는 시니어클럽 전화번호</span>로 문의해주세요.
-                                                또한, 배송 예약은 반드시 사전 문의 바랍니다.
+                                                또한, 배송 예약을 위해서는 반드시 카카오톡 채널을 통해 사전 문의를 주시기 바랍니다.
                                             </div>
                                         </div>
                                     </div>

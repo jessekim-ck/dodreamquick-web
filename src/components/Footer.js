@@ -14,7 +14,7 @@ const Footer = () => {
                     </div>
                     <div className={styles.footerText}>
                         <div>상호명: 두드림퀵</div>
-                        <div>대표: 양승훈</div>
+                        <div>대표: 이가영</div>
                         <div>사업자등록번호 : 811-88-01483</div>
                         <div>통신판매번호: 제2019-서울금천-1887호</div>
                         <div>본사: 서울특별시 금천구 가산디지털2로 98, 롯데IT캐슬 2동 1107호</div>
@@ -29,7 +29,7 @@ const Footer = () => {
                     </Nav.Link>
                     <div>
                         <div className={styles.footerTitle}>@두드림퀵</div>
-                        <div className={styles.footerText}>카카오톡 채널 고객센터 : 평일 AM 9:00 ~ PM 5:00</div>
+                        <div className={styles.footerText}>카카오톡 채널 고객센터 : 평일 AM 9:00 ~ PM 6:00</div>
                     </div>
                 </div>
             </div>
