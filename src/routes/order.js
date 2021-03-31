@@ -54,7 +54,7 @@ class Order extends React.Component {
             return;
         } else if (now < open || now > close) {
             this.setState({is_opened: false});
-            alert(close_message || "주문이 불가능한 시간입니다!두드림퀵 배송 신청은 오전 9시부터 오후 5시까지입니다.");
+            alert(close_message || "주문이 불가능한 시간입니다!두드림퀵 배송 신청은 오전 9시부터 오후 3시까지입니다.");
             this.props.history.goBack();
             return;
         }
@@ -164,7 +164,7 @@ class Order extends React.Component {
                                 주문 가능 시간
                             </div>
                             <div className={styles.orderCautionItemText}>
-                                주문 가능 시간은 <span>월-금요일 오전 9시~오후 5시</span>입니다.
+                                주문 가능 시간은 <span>월-금요일 오전 9시~오후 3시</span>입니다.
                                 <br/>
                                 (주말 및 공휴일 휴무)
                             </div>
