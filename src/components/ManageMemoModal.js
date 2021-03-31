@@ -7,7 +7,6 @@ import {
     getUserMemoList,
     setDefaultMemo
 } from "../apis/api";
-import PostCodeForm from "./PostCodeForm";
 import styles from "../app.module.css"
 
 

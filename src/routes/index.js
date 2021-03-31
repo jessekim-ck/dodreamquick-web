@@ -1,6 +1,7 @@
 import React from 'react'
 import styles from "../app.module.css"
 import {Helmet} from "react-helmet/es/Helmet";
+import Carousel from 'react-bootstrap/Carousel';
 
 // redux
 import {connect} from 'react-redux'
@@ -49,11 +50,48 @@ class Index extends React.Component {
                         <link rel="canonical" href="https://dodreamquick.com" />
                     </Helmet>
                 </div>
-                <div className={styles.landingDoor}>
-                    <div className={styles.landingDoorText}>
-                        버스,도보 추가요금 없이<br/>
-                        서울 전 지역 7,000원부터!
-                    </div>
+                <Carousel>
+                    <Carousel.Item>
+                        <img
+                        className="d-block w-100"
+                        src="https://dodreamquick.com/landing_door_desktop.jpeg"
+                        alt="First slide"
+                        />
+                        <Carousel.Caption>
+                        <h3>First slide label</h3>
+                        <p>버스,도보 추가요금 없이<br/>서울 전 지역 7,000원부터!</p>
+                        </Carousel.Caption>
+                    </Carousel.Item>
+                    <Carousel.Item>
+                        <img
+                        className="d-block w-100"
+                        src="https://dodreamquick.com/landing_door_desktop.jpeg"
+                        alt="Second slide"
+                        />
+
+                        <Carousel.Caption>
+                        <h3>Second slide label</h3>
+                        <p>버스,도보 추가요금 없이<br/>서울 전 지역 7,000원부터!</p>
+                        </Carousel.Caption>
+                    </Carousel.Item>
+                    <Carousel.Item>
+                        <img
+                        className="d-block w-100"
+                        src="https://dodreamquick.com/landing_door_desktop.jpeg"
+                        alt="Third slide"
+                        />
+
+                        <Carousel.Caption>
+                        <h3>Third slide label</h3>
+                        <p>버스,도보 추가요금 없이<br/>서울 전 지역 7,000원부터!</p>
+                        </Carousel.Caption>
+                    </Carousel.Item>
+                </Carousel>
+                {/*<div className={styles.landingDoor}>*/}
+                    {/*<div className={styles.landingDoorText}>*/}
+                    {/*    버스,도보 추가요금 없이<br/>*/}
+                    {/*    서울 전 지역 7,000원부터!*/}
+                    {/*</div>*/}
                     {/*<div className={styles.landingDoorCTA}>*/}
                     {/*    <button*/}
                     {/*        onClick={() => {this.props.history.push("/order"); Event("배송신청버튼", "배송신청하기","배송신청하기");}}*/}
@@ -67,7 +105,7 @@ class Index extends React.Component {
                     {/*        </button>*/}
                     {/*    </a>*/}
                     {/*</div>*/}
-                </div>
+                {/*</div>*/}
 
                 <div className={styles.landingIntro}>
                     <div className={styles.landingIntroText}>
