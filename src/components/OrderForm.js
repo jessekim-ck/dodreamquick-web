@@ -203,7 +203,7 @@ class OrderForm extends React.Component {
 
         if (name === "pickup_reservation") {
             if (checked) {
-                alert("카카오톡 채널을 통해 미리 문의하시기 바랍니다");
+                alert("예약 주문의 경우, 본 페이지에서 배송 신청을 마친 뒤 두드림퀵 카카오톡 채널을 통해 연락을 주시기 바랍니다 :)");
             } else {
                 this.setState({
                     pickup_reservation_time: ''
@@ -551,7 +551,7 @@ class OrderForm extends React.Component {
                                             required
                                         />
                                     ) : null}
-                                    <Form.Text className="text-muted">
+                                    <Form.Text className="text-danger">
                                         현재 시각 기준으로 3시간 이상이 지난 시점의 픽업 요청인 경우에만 예약이 가능합니다.
                                     </Form.Text>
                                 </div>
@@ -566,7 +566,10 @@ class OrderForm extends React.Component {
                                         name="memo"
                                         value={this.state.memo}
                                         onChange={event => this.on_change(event)}/>
-                                    <Form.Text className="text-muted">
+                                    <Form.Text className="text-danger">
+                                        요청사항을 작성하실 때 '픽업지'와 '배송지'를 잘 구별해 주세요.
+                                    </Form.Text>
+                                    <Form.Text className="text-danger">
                                         보내시는/받으시는 분이 부재중이실 예정인 경우 물건을 찾을/둘 위치를 꼭 기입해주세요.
                                     </Form.Text>
                                     <Form.Text className="text-muted">
