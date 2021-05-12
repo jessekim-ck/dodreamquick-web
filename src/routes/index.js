@@ -62,9 +62,15 @@ class Index extends React.Component {
                             }}
                         />
                         <Carousel.Caption style={{top: "37%"}}>
-                        <h1>버스,도보 추가요금 없이<br/>서울 전 지역 7,000원부터!</h1>
+                        <h1 style={{
+                            fontSize: 36,
+                            fontWeight: 700,
+                        }}>
+                            서울 전 지역 7,000원부터!
+                        </h1>
                         </Carousel.Caption>
                     </Carousel.Item>
+                    {/*
                     <Carousel.Item>
                         <img
                             className="d-block w-100"
@@ -76,7 +82,7 @@ class Index extends React.Component {
                             }}
                         />
                         <Carousel.Caption style={{top: "37%"}}>
-                        <h1>버스,도보 추가요금 없이<br/>서울 전 지역 7,000원부터!</h1>
+                        <h1>가장 따뜻한 퀵서비스<br/>서울 전 지역 7,000원부터!</h1>
                         </Carousel.Caption>
                     </Carousel.Item>
                     <Carousel.Item>
@@ -90,9 +96,10 @@ class Index extends React.Component {
                             }}
                         />
                         <Carousel.Caption style={{top: "37%"}}>
-                        <h1>버스,도보 추가요금 없이<br/>서울 전 지역 7,000원부터!</h1>
+                        <h1>가장 따뜻한 퀵서비스<br/>서울 전 지역 7,000원부터!</h1>
                         </Carousel.Caption>
                     </Carousel.Item>
+                    */}
                 </Carousel>
                 {/*<div className={styles.landingDoor}>*/}
                     {/*<div className={styles.landingDoorText}>*/}
