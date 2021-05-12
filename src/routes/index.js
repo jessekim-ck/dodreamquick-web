@@ -53,37 +53,44 @@ class Index extends React.Component {
                 <Carousel>
                     <Carousel.Item>
                         <img
-                        className="d-block w-100"
-                        src="https://dodreamquick.com/landing_door_desktop.jpeg"
-                        alt="First slide"
+                            className="d-block w-100"
+                            src="https://dodreamquick.com/landing_door_desktop.jpeg"
+                            alt="First slide"
+                            style={{
+                                objectFit: "cover",
+                                height: 400,
+                            }}
                         />
-                        <Carousel.Caption>
-                        <h3>First slide label</h3>
-                        <p>버스,도보 추가요금 없이<br/>서울 전 지역 7,000원부터!</p>
+                        <Carousel.Caption style={{top: "37%"}}>
+                        <h1>버스,도보 추가요금 없이<br/>서울 전 지역 7,000원부터!</h1>
                         </Carousel.Caption>
                     </Carousel.Item>
                     <Carousel.Item>
                         <img
-                        className="d-block w-100"
-                        src="https://dodreamquick.com/landing_door_desktop.jpeg"
-                        alt="Second slide"
+                            className="d-block w-100"
+                            src="https://dodreamquick.com/landing_door_desktop.jpeg"
+                            alt="Second slide"
+                            style={{
+                                objectFit: "cover",
+                                height: 400,
+                            }}
                         />
-
-                        <Carousel.Caption>
-                        <h3>Second slide label</h3>
-                        <p>버스,도보 추가요금 없이<br/>서울 전 지역 7,000원부터!</p>
+                        <Carousel.Caption style={{top: "37%"}}>
+                        <h1>버스,도보 추가요금 없이<br/>서울 전 지역 7,000원부터!</h1>
                         </Carousel.Caption>
                     </Carousel.Item>
                     <Carousel.Item>
                         <img
-                        className="d-block w-100"
-                        src="https://dodreamquick.com/landing_door_desktop.jpeg"
-                        alt="Third slide"
+                            className="d-block w-100"
+                            src="https://dodreamquick.com/landing_door_desktop.jpeg"
+                            alt="Third slide"
+                            style={{
+                                objectFit: "cover",
+                                height: 400,
+                            }}
                         />
-
-                        <Carousel.Caption>
-                        <h3>Third slide label</h3>
-                        <p>버스,도보 추가요금 없이<br/>서울 전 지역 7,000원부터!</p>
+                        <Carousel.Caption style={{top: "37%"}}>
+                        <h1>버스,도보 추가요금 없이<br/>서울 전 지역 7,000원부터!</h1>
                         </Carousel.Caption>
                     </Carousel.Item>
                 </Carousel>
