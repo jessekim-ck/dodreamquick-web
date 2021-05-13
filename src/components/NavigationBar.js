@@ -66,7 +66,7 @@ class NavigationBar extends React.Component {
                             height="28"
                             alt="두드림퀵"/>
                     </Nav.Link>
-                    <Nav.Link href="https://www.instagram.com/dodream_tale/?hl=ko" target="_blank">
+                    <Nav.Link href="https://www.instagram.com/dodream.quick/" target="_blank">
                         <img
                             src="/ic_instagram.png"
                             height="28"
